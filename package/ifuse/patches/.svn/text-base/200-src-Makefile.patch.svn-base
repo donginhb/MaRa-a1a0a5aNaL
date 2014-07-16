@@ -1,0 +1,11 @@
+--- ../src/Makefile.in	2010-05-13 10:28:25.162097985 +0800
++++ ../src/Makefile.in.new	2010-05-13 10:28:22.954596557 +0800
+@@ -86,7 +86,7 @@
+ INSTALL_PROGRAM = @INSTALL_PROGRAM@
+ INSTALL_SCRIPT = @INSTALL_SCRIPT@
+ INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+-LDFLAGS = @LDFLAGS@
++LDFLAGS = @LDFLAGS@ -limobiledevice -lz -lgcrypt -lgpg-error -lplist -lxml2 -lusbmuxd -lusb-1.0 -ltasn1 -lglib-2.0 -lgthread-2.0 -lgnutls -liconv
+ LIBOBJS = @LIBOBJS@
+ LIBS = @LIBS@
+ LTLIBOBJS = @LTLIBOBJS@

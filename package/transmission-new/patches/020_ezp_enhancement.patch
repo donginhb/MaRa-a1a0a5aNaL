@@ -1,0 +1,338 @@
+diff -Nur transmission-2.77/daemon/daemon.c transmission-2.77.new/daemon/daemon.c
+--- transmission-2.77/daemon/daemon.c	2013-02-18 22:40:43.404716014 +0800
++++ transmission-2.77.new/daemon/daemon.c	2013-04-16 12:35:05.745127405 +0800
+@@ -129,6 +129,10 @@
+     { 953, "global-seedratio", "All torrents, unless overridden by a per-torrent setting, should seed until a specific ratio", "gsr", 1, "ratio" },
+     { 954, "no-global-seedratio", "All torrents, unless overridden by a per-torrent setting, should seed regardless of ratio", "GSR", 0, NULL },
+     { 'x', "pid-file", "Enable PID file", "x", 1, "<pid-file>" },
++    /* EZP: */
++    { 'z', "max-download-torrent", "Max allow download torrents", "z", 1, NULL},
++    { 's', "speed-limit-up", "Set max upload speed", "s", 1,  "<KB/s>"},
++    { 'S', "speed-limit-down", "Set max download speed", "S", 1,  "<KB/s>"},
+     { 0, NULL, NULL, NULL, 0, NULL }
+ };
+ 
+@@ -468,6 +472,32 @@
+                       break;
+             case 'Y': tr_bencDictAddBool (&settings, TR_PREFS_KEY_LPD_ENABLED, false);
+                       break;
++                      /* EZP */
++            case 'z': /* EZP set max download torrrent */
++                      tr_bencDictAddInt( &settings, TR_MAX_DOWNLOAD_TORRENT, atoi(optarg));
++                      break;
++            case 's': /* EZP upload speed limit */
++                      if (atoi(optarg)) {
++                          tr_bencDictAddInt( &settings,
++                                  TR_PREFS_KEY_USPEED_KBps, atoi(optarg));
++                          tr_bencDictAddBool( &settings,
++                                  TR_PREFS_KEY_USPEED_ENABLED, true);
++                      } else {
++                          tr_bencDictAddBool( &settings,
++                                  TR_PREFS_KEY_USPEED_ENABLED, false);
++                      }
++                      break;
++            case 'S': /* EZP download speed limit */
++                      if (atoi(optarg)) {
++                          tr_bencDictAddInt( &settings,
++                                  TR_PREFS_KEY_DSPEED_KBps, atoi(optarg));
++                          tr_bencDictAddBool( &settings,
++                                  TR_PREFS_KEY_DSPEED_ENABLED, true);
++                      } else {
++                          tr_bencDictAddBool( &settings,
++                                  TR_PREFS_KEY_DSPEED_ENABLED, false);
++                      }
++                      break;
+             case 810: tr_bencDictAddInt (&settings,  TR_PREFS_KEY_MSGLEVEL, TR_MSG_ERR);
+                       break;
+             case 811: tr_bencDictAddInt (&settings,  TR_PREFS_KEY_MSGLEVEL, TR_MSG_INF);
+diff -Nur transmission-2.77/libtransmission/peer-mgr.c transmission-2.77.new/libtransmission/peer-mgr.c
+--- transmission-2.77/libtransmission/peer-mgr.c	2013-02-18 22:38:47.040713248 +0800
++++ transmission-2.77.new/libtransmission/peer-mgr.c	2013-04-16 12:38:49.825240229 +0800
+@@ -3628,6 +3628,10 @@
+             tr_torrentRecheckCompleteness (tor);
+         }
+ 
++        /* EZP remove the completed torrent */
++        if ( tor->completeness == TR_SEED ) {
++            tr_torrentRemove( tor, false, NULL );
++        }
+         /* stop torrents that are ready to stop, but couldn't be stopped
+            earlier during the peer-io callback call chain */
+         if (tor->isStopping)
+diff -Nur transmission-2.77/libtransmission/rpcimpl.c transmission-2.77.new/libtransmission/rpcimpl.c
+--- transmission-2.77/libtransmission/rpcimpl.c	2013-02-18 22:38:49.392713304 +0800
++++ transmission-2.77.new/libtransmission/rpcimpl.c	2013-04-16 12:30:24.384986529 +0800
+@@ -1344,6 +1344,10 @@
+     else if (err == TR_PARSE_ERR)
+     {
+         result = "invalid or corrupt torrent file";
++    } 
++    else if( err == TR_PARSE_MAX ) /* EZP add new error msg */
++    {
++        result = "Reach at max torrent count";
+     }
+ 
+     tr_idle_function_done (data, result);
+diff -Nur transmission-2.77/libtransmission/session.c transmission-2.77.new/libtransmission/session.c
+--- transmission-2.77/libtransmission/session.c	2013-02-18 22:38:50.932713341 +0800
++++ transmission-2.77.new/libtransmission/session.c	2013-04-16 12:34:14.445101515 +0800
+@@ -58,7 +58,8 @@
+ enum
+ {
+ #ifdef TR_LIGHTWEIGHT
+-    DEFAULT_CACHE_SIZE_MB = 2,
++    /* EZP: */ 
++    DEFAULT_CACHE_SIZE_MB = 1,
+     DEFAULT_PREFETCH_ENABLED = false,
+ #else
+     DEFAULT_CACHE_SIZE_MB = 4,
+@@ -370,6 +370,9 @@
+     tr_bencDictAddStr (d, TR_PREFS_KEY_BIND_ADDRESS_IPV6,               TR_DEFAULT_BIND_ADDRESS_IPV6);
+     tr_bencDictAddBool (d, TR_PREFS_KEY_START,                           true);
+     tr_bencDictAddBool (d, TR_PREFS_KEY_TRASH_ORIGINAL,                  false);
++    /* EZP set default max download torrent, set 0 is unlimit download
++     * torrent   */
++    tr_bencDictAddInt (d, TR_MAX_DOWNLOAD_TORRENT, atoi( TR_MAX_DOWNLOAD_TORRENT ) );
+ }
+ 
+ void
+@@ -441,6 +444,9 @@
+     tr_bencDictAddStr (d, TR_PREFS_KEY_BIND_ADDRESS_IPV6,                tr_address_to_string (&s->public_ipv6->addr));
+     tr_bencDictAddBool (d, TR_PREFS_KEY_START,                            !tr_sessionGetPaused (s));
+     tr_bencDictAddBool (d, TR_PREFS_KEY_TRASH_ORIGINAL,                   tr_sessionGetDeleteSource (s));
++    /* EZP max download torrent */
++    tr_bencDictAddInt (d, TR_MAX_DOWNLOAD_TORRENT,  s->max_torrent   );
++
+ }
+ 
+ bool
+@@ -662,6 +668,69 @@
+     /* fprintf (stderr, "time %zu sec, %zu microsec\n", (size_t)tr_time (), (size_t)tv.tv_usec); */
+ }
+ 
++/* EZP */
++#define DUMP_INTERVAL_SECS 5
++/* EZP dump download info function */
++static void
++onDumpTimer( int foo UNUSED, short bar UNUSED, void * vsession )
++{
++    tr_torrent * tor = NULL;
++    tr_session * session = vsession;
++    FILE *fd;
++    tr_sessionLock( session );
++    if (fd = fopen("/var/stats/stats-widget-bt-upgrade1", "w")){
++        while(( tor = tr_torrentNext( session, tor ))) {
++            if (tr_isTorrent( tor )) {
++                const tr_info * inf = tr_torrentInfo( tor );
++                const tr_stat * st = tr_torrentStat( tor );
++                char download_status[128];
++                unsigned int status, process, up, down;
++                process = (unsigned int)(st->percentDone * 100);
++                up = (unsigned int)(st->rawUploadSpeed_KBps * 1024);
++                down = (unsigned int)(st->rawDownloadSpeed_KBps * 1024);
++
++                switch (st->activity)
++                {
++                    case TR_STATUS_STOPPED:
++                        strcpy(download_status ,"Stopped");
++                        status = STOPPED;
++                        break;
++
++                    case TR_STATUS_CHECK_WAIT:
++                    case TR_STATUS_CHECK:
++                        if (st->activity == TR_STATUS_CHECK_WAIT) {
++                            strcpy(download_status, "Waitting for hash");
++                            status = WAITING;
++                        } else {
++                            strcpy(download_status, "Hashing");
++                            status = HASHING;
++                            if( st->recheckProgress )
++                                process = (int)(st->recheckProgress * 100);
++                        }
++                        break;
++                    case TR_STATUS_DOWNLOAD:
++                    case TR_STATUS_SEED:
++                        strcpy(download_status, "Downloading");
++                        status = DOWNLOADING;
++                        if( process >= 100) {
++                            strcpy(download_status, "Completed");
++                            status = COMPLETED;
++                        }
++                        break;
++                }
++                fprintf(fd, "%s^%llu^%llu^%u^%d-%d^%u^%u^%s^%d^%s\n",
++                        inf->name, st->sizeWhenDone, st->downloadedEver,
++                        process, st->peersConnected, st->peersConnected,
++                        up, down, download_status, status,
++                        inf->hashString);
++            }
++        }
++        fclose(fd);
++    }
++    tr_sessionUnlock( session );
++    tr_timerAdd( session->dumpTimer, DUMP_INTERVAL_SECS, 0 );
++}
++
+ static void loadBlocklists (tr_session * session);
+ 
+ static void
+@@ -715,6 +784,9 @@
+     session->saveTimer = evtimer_new (session->event_base, onSaveTimer, session);
+     tr_timerAdd (session->saveTimer, SAVE_INTERVAL_SECS, 0);
+ 
++    session->dumpTimer = evtimer_new (session->event_base, onDumpTimer, session);
++    tr_timerAdd (session->dumpTimer, DUMP_INTERVAL_SECS, 0);
++
+     tr_announcerInit (session);
+ 
+     /* first %s is the application name
+@@ -922,6 +994,10 @@
+     if (tr_bencDictFindBool (settings, TR_PREFS_KEY_SCRAPE_PAUSED_TORRENTS, &boolVal))
+         session->scrapePausedTorrents = boolVal;
+ 
++    /* EZP read max download torrent setting */
++    if( tr_bencDictFindInt( settings, TR_MAX_DOWNLOAD_TORRENT, &i ) )
++        session->max_torrent = i;
++
+     data->done = true;
+ }
+ 
+@@ -1751,6 +1827,9 @@
+ 
+     event_free (session->nowTimer);
+     session->nowTimer = NULL;
++    /* EZP */
++    event_free (session->dumpTimer);
++    session->dumpTimer = NULL;
+ 
+     tr_verifyClose (session);
+     tr_sharedClose (session);
+diff -Nur transmission-2.77/libtransmission/session.h transmission-2.77.new/libtransmission/session.h
+--- transmission-2.77/libtransmission/session.h	2013-02-18 22:38:51.104713345 +0800
++++ transmission-2.77.new/libtransmission/session.h	2013-04-16 12:34:12.655100729 +0800
+@@ -34,6 +34,22 @@
+ 
+ typedef enum { TR_NET_OK, TR_NET_ERROR, TR_NET_WAIT } tr_tristate_t;
+ 
++/* EZP define download status for gui */
++enum {
++    DOWNLOADING = 0,
++    STOPPED,
++    PAUSED,
++    WAITING,
++    HASHING,
++    COMPLETED,
++    STOPPING,
++    PAUSING,
++    STARTING,
++    DELETING,
++    RESUMING,
++    HASH_FOR_CPL
++};
++
+ typedef enum {
+     TR_AUTO_SWITCH_UNUSED,
+     TR_AUTO_SWITCH_ON,
+@@ -176,6 +192,8 @@
+ 
+     int                          torrentCount;
+     tr_torrent *                 torrentList;
++    /* EZP max download torrent */
++    int                          max_torrent;
+ 
+     char *                       torrentDoneScript;
+ 
+@@ -211,6 +229,8 @@
+ 
+     struct event               * nowTimer;
+     struct event               * saveTimer;
++    /* EZP add dump timer for dump download info */
++    struct event               * dumpTimer;
+ 
+     /* monitors the "global pool" speeds */
+     struct tr_bandwidth          bandwidth;
+diff -Nur transmission-2.77/libtransmission/torrent.c transmission-2.77.new/libtransmission/torrent.c
+--- transmission-2.77/libtransmission/torrent.c	2013-02-18 22:38:51.252713348 +0800
++++ transmission-2.77.new/libtransmission/torrent.c	2013-04-16 12:47:15.835492309 +0800
+@@ -630,6 +630,27 @@
+     return priority;
+ }
+ 
++/* EZP  download complete function */
++static void
++downloadCompletedCallback( tr_torrent       * tor,
++        tr_completeness    completeness,
++        void *             user_data )
++{
++    FILE *fp_bt_cpl = NULL;
++    char download_cpl_file[512];
++
++    /* snprintf(download_cpl_file, sizeof(download_cpl_file),
++            "/tmp/%s/download/session/bt-cpl", mount_point(NULL)); */
++    /* open file that save complete task */
++    if ((fp_bt_cpl = fopen("/tmp/bt-cpl", "a"))) {
++        fprintf(fp_bt_cpl, "%s^%llu^%llu^100^^^^Completed^%d^%s\n",
++                tor->info.name, tor->stats.sizeWhenDone,
++                tor->stats.sizeWhenDone, COMPLETED, tor->info.hashString);
++        fclose(fp_bt_cpl);
++    }
++}
++
++
+ static void
+ tr_torrentInitFilePieces (tr_torrent * tor)
+ {
+@@ -848,6 +869,8 @@
+ 
+     tr_ctorInitTorrentPriorities (ctor, tor);
+     tr_ctorInitTorrentWanted (ctor, tor);
++    /* EZP set a callback function for torrent download complete */
++    tr_torrentSetCompletenessCallback( tor, downloadCompletedCallback, NULL);
+ 
+     refreshCurrentDir (tor);
+ 
+@@ -973,9 +996,19 @@
+     tr_info tmpInfo;
+     tr_parse_result r;
+     tr_torrent * tor = NULL;
++    /* EZP: */
++    tr_session * session = tr_ctorGetSession( ctor );
+ 
+     assert (ctor != NULL);
+-    assert (tr_isSession (tr_ctorGetSession (ctor)));
++    assert( tr_isSession( session ) );
++
++    /* EZP Check  torrent count over max download torrent */
++    if( session->max_torrent > 0  && 
++            session->torrentCount >= session->max_torrent )
++    {
++        *setmeError = TR_PARSE_MAX;
++        return tor;
++    }
+ 
+     r = torrentParseImpl (ctor, &tmpInfo, &hasInfo, &len);
+     if (r == TR_PARSE_OK)
+diff -Nur transmission-2.77/libtransmission/transmission.h transmission-2.77.new/libtransmission/transmission.h
+--- transmission-2.77/libtransmission/transmission.h	2013-02-18 22:38:50.444713329 +0800
++++ transmission-2.77.new/libtransmission/transmission.h	2013-04-16 12:36:33.455170990 +0800
+@@ -219,6 +219,9 @@
+ #define TR_PREFS_KEY_UPLOAD_SLOTS_PER_TORRENT           "upload-slots-per-torrent"
+ #define TR_PREFS_KEY_START                              "start-added-torrents"
+ #define TR_PREFS_KEY_TRASH_ORIGINAL                     "trash-original-torrent-files"
++/* EZP */
++#define TR_MAX_DOWNLOAD_TORRENT                 "max-download-torrent"
++
+ 
+ 
+ /**
+@@ -1098,7 +1101,9 @@
+ {
+     TR_PARSE_OK,
+     TR_PARSE_ERR,
+-    TR_PARSE_DUPLICATE
++    /* EZP */
++    TR_PARSE_DUPLICATE,
++    TR_PARSE_MAX
+ }
+ tr_parse_result;
+ 

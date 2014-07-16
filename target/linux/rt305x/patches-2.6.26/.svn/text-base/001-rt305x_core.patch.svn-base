@@ -1,0 +1,244 @@
+--- old/arch/mips/Kconfig	2007-04-26 11:08:32.000000000 +0800
++++ new/arch/mips/Kconfig	2008-10-24 14:20:15.000000000 +0800
+@@ -13,10 +13,60 @@
+ 
+ config ZONE_DMA
+ 	bool
++	default y
+ 
++config RALINK_RT2880_MP
++	bool
++config RALINK_RT2880_SHUTTLE
++	bool
++config RALINK_RT3052_MP2
++	bool
+ choice
+ 	prompt "System type"
+-	default SGI_IP22
++	default RALINK_RT3052
++
++config RALINK_RT2880
++        bool "Ralink RT2880 board"
++	select DMA_NONCOHERENT
++	select IRQ_CPU
++	select HW_HAS_PCI
++	select SWAP_IO_SPACE
++	select SYS_HAS_CPU_MIPS32_R1
++	select SYS_SUPPORTS_LITTLE_ENDIAN
++	select BOOT_ELF32
++	select SYS_SUPPORTS_32BIT_KERNEL
++	select RALINK_RT2880_MP
++        help
++         Ralink evaluation board based on RT2880
++
++config RALINK_RT2883
++        bool "Ralink RT2883 board"
++	select DMA_NONCOHERENT
++	select IRQ_CPU
++	select HW_HAS_PCI
++	select SWAP_IO_SPACE
++	select SYS_HAS_CPU_MIPS32_R1
++	select SYS_SUPPORTS_LITTLE_ENDIAN
++	select BOOT_ELF32
++	select SYS_SUPPORTS_32BIT_KERNEL
++	select RALINK_RT2883_MP
++        help
++         Ralink evaluation board based on RT2883
++
++config RALINK_RT3052
++        bool "Ralink RT3052 board"
++	select CEVT_R4K
++	select CSRC_R4K
++	select DMA_NONCOHERENT
++	select IRQ_CPU
++	select SWAP_IO_SPACE
++	select SYS_HAS_CPU_MIPS32_R1
++	select SYS_SUPPORTS_LITTLE_ENDIAN
++	select BOOT_ELF32
++	select SYS_SUPPORTS_32BIT_KERNEL
++	select RALINK_RT3052_MP2
++        help
++         Ralink evaluation board based on RT3052
+ 
+ config MACH_ALCHEMY
+ 	bool "Alchemy processor based machines"
+@@ -697,6 +745,10 @@
+ source "arch/mips/tx4927/Kconfig"
+ source "arch/mips/tx4938/Kconfig"
+ source "arch/mips/vr41xx/Kconfig"
++source "arch/mips/rt2880/Kconfig"
++  
++config SERIAL_CONSOLE 
++	bool
+ 
+ endmenu
+ 
+@@ -2190,3 +2190,5 @@
+ source "crypto/Kconfig"
+ 
+ source "lib/Kconfig"
++
++source "ralink/Kconfig"
+--- old/arch/mips/pci/pci.c	2007-04-26 11:08:32.000000000 +0800
++++ new/arch/mips/pci/pci.c	2008-10-24 14:20:15.000000000 +0800
+@@ -111,10 +111,15 @@
+ 	return PCI_SLOT(dev->devfn);
+ }
+ 
++int mips_system_has_legacy_ide;
++
++EXPORT_SYMBOL_GPL(mips_system_has_legacy_ide);
++
+ static int __init pcibios_init(void)
+ {
+ 	struct pci_controller *hose;
+ 	struct pci_bus *bus;
++	struct pci_dev *dev;
+ 	int next_busno;
+ 	int need_domain_info = 0;
+ 
+@@ -158,6 +163,13 @@
+ 		pci_assign_unassigned_resources();
+ 	pci_fixup_irqs(common_swizzle, pcibios_map_irq);
+ 
++	if ((dev = pci_get_class(PCI_CLASS_BRIDGE_EISA << 8, NULL)) != NULL ||
++	    (dev = pci_get_class(PCI_CLASS_BRIDGE_ISA << 8, NULL)) != NULL) {
++		pci_dev_put(dev);
++
++		mips_system_has_legacy_ide = 1;
++	}
++
+ 	return 0;
+ }
+ 
+diff -Nur old/arch/mips/Makefile new/arch/mips/Makefile
+--- old/arch/mips/Makefile	2007-04-26 11:08:32.000000000 +0800
++++ new/arch/mips/Makefile	2008-10-24 14:20:15.000000000 +0800
+@@ -158,6 +158,27 @@
+ #
+ 
+ #
++# Ralink RT2880 board
++#
++core-$(CONFIG_RALINK_RT2880)	+= arch/mips/rt2880/
++cflags-$(CONFIG_RALINK_RT2880)	+= -Iinclude/asm-mips/rt2880
++load-$(CONFIG_RALINK_RT2880)	+= 0x88000000
++
++#
++# Ralink RT2883 board
++#
++core-$(CONFIG_RALINK_RT2883)	+= arch/mips/rt2880/
++cflags-$(CONFIG_RALINK_RT2883)	+= -Iinclude/asm-mips/rt2880
++load-$(CONFIG_RALINK_RT2883)	+= 0x80000000
++
++#
++# Ralink RT3052 board
++#
++core-$(CONFIG_RALINK_RT3052)	+= arch/mips/rt2880/
++cflags-$(CONFIG_RALINK_RT3052)	+= -Iinclude/asm-mips/rt2880
++load-$(CONFIG_RALINK_RT3052)	+= 0x80000000
++
++#
+ # Acer PICA 61, Mips Magnum 4000 and Olivetti M700.
+ #
+ core-$(CONFIG_MACH_JAZZ)	+= arch/mips/jazz/
+@@ -669,6 +690,18 @@
+ vmlinux.32: vmlinux
+ 	$(OBJCOPY) -O $(32bit-bfd) $(OBJCOPYFLAGS) $< $@
+ 
++ifdef CONFIG_RALINK_RT2880
++#error zImage rImage
++zImage rImage: vmlinux $(TOPDIR)/.config
++	$(Q)$(MAKE) $(build)=arch/mips/rt2880/boot $@
++endif
++
++ifdef CONFIG_RALINK_RT3052
++#error zImage rImage
++zImage rImage: vmlinux $(TOPDIR)/.config
++	$(Q)$(MAKE) $(build)=arch/mips/rt2880/boot $@
++endif
++
+ #
+ # The 64-bit ELF tools are pretty broken so at this time we generate 64-bit
+ # ELF files from 32-bit files by conversion.
+--- old/arch/mips/kernel/ptrace.c	2007-04-26 11:08:32.000000000 +0800
++++ new/arch/mips/kernel/ptrace.c	2008-10-24 14:20:15.000000000 +0800
+@@ -468,7 +468,7 @@
+ {
+ 	/* do the secure computing check first */
+ 	if (!entryexit)
+-		secure_computing(regs->regs[0]);
++		secure_computing(regs->orig_eax);
+ 
+ 	if (unlikely(current->audit_context) && entryexit)
+ 		audit_syscall_exit(AUDITSC_RESULT(regs->regs[2]),
+@@ -497,7 +497,7 @@
+ 
+ out:
+ 	if (unlikely(current->audit_context) && !entryexit)
+-		audit_syscall_entry(audit_arch(), regs->regs[0],
++		audit_syscall_entry(audit_arch(), regs->orig_eax,
+ 				    regs->regs[4], regs->regs[5],
+ 				    regs->regs[6], regs->regs[7]);
+ }
+--- old/arch/mips/kernel/cevt-r4k.c	2008-07-14 05:51:29.000000000 +0800
++++ new/arch/mips/kernel/cevt-r4k.c	2008-12-02 14:11:18.000000000 +0800
+@@ -172,6 +172,7 @@
+ /*
+  * FIXME: This doesn't hold for the relocated E9000 compare interrupt.
+  */
++#ifdef EZPACKET
+ static int c0_compare_int_pending(void)
+ {
+ 	return (read_c0_cause() >> cp0_compare_irq) & 0x100;
+@@ -210,7 +211,7 @@
+ 
+ 	write_c0_compare(read_c0_count());
+ 	irq_disable_hazard();
+-	if (c0_compare_int_pending())
++	if (c0_compare_int_pending()) 
+ 		return 0;
+ 
+ 	/*
+@@ -218,6 +219,7 @@
+ 	 */
+ 	return 1;
+ }
++#endif
+ 
+ int __cpuinit mips_clockevent_init(void)
+ {
+@@ -240,8 +242,10 @@
+ 		return 0;
+ #endif
+ 
+-	if (!c0_compare_int_usable())
++#ifdef EZPACKET
++    if (!c0_compare_int_usable())
+ 		return -ENXIO;
++#endif
+ 
+ 	/*
+ 	 * With vectored interrupts things are getting platform specific.
+@@ -287,6 +291,11 @@
+ #else
+ 	setup_irq(irq, &c0_compare_irqaction);
+ #endif
++#ifndef EZPACKET
++#define ALLINTS (IE_IRQ0 | IE_IRQ1 | IE_IRQ2 | IE_IRQ3 | IE_IRQ4 | IE_IRQ5)
++    write_c0_compare(read_c0_count() + 3000000);
++    set_c0_status(ALLINTS);
++#endif
+ 
+ 	return 0;
+ }
+--- old/arch/mips/mm/cache.c	2009-02-25 17:29:41.000000000 +0800
++++ new/arch/mips/mm/cache.c	2009-02-25 17:27:38.000000000 +0800
+@@ -50,6 +50,7 @@
+ void (*_dma_cache_inv)(unsigned long start, unsigned long size);
+ 
+ EXPORT_SYMBOL(_dma_cache_wback_inv);
++EXPORT_SYMBOL(_dma_cache_inv);
+ 
+ #endif /* CONFIG_DMA_NONCOHERENT */
+ 

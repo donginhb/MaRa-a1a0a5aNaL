@@ -1,0 +1,125 @@
+#!/bin/sh
+#
+# chilli      CoovaChilli init
+#
+# chkconfig: 2345 65 35
+# description: CoovaChilli
+
+# Source function library.
+
+daemon=
+killproc=killall
+LAN_IF=$(nvram get lan0_ifname)
+[ -n "$3" ] && chilli_dbg_opt=" -f -d "
+
+[ -e /etc/rc.d/init.d/functions ] && {
+    . /etc/rc.d/init.d/functions
+    daemon=daemon
+    killproc=killproc
+}
+
+[ -e /etc/sysconfig/network ] && {
+    . /etc/sysconfig/network
+    [ ${NETWORKING} = "no" ] && exit 0
+}
+
+[ -f /usr/sbin/chilli ] || exit 0
+[ -f /etc/chilli.conf ] || exit 0
+
+. /etc/chilli/functions
+
+check_required
+
+RETVAL=0
+prog="chilli"
+
+case $1 in
+    start)
+        echo "Starting $prog: "
+        echo -n "Activate router forwarding ... "
+        echo 1 > /proc/sys/net/ipv4/ip_forward
+        echo "ok"
+
+        write_chilli_user
+        write_chilli_conf
+
+        echo -n "Add cron checking ... "
+        (crontab -l 2>&- | grep -v $0
+            test ${HS_ADMINTERVAL:-0} -gt 0 && echo "*/$HS_ADMINTERVAL * * * * $0 radconfig"
+            echo "*/10 * * * * $0 checkrunning"
+#           echo "*/2  * * * * $0 arping"
+        ) | crontab - 2>&-
+        echo "ok"
+
+        echo -n "Disabling bridge on $LAN_IF ... "
+        [ -z $LAN_IF ] && {
+            echo "Failed, exit ..."
+            exit 0
+        }
+        [ -n "$2" ] && ifconfig $LAN_IF 0.0.0.0
+        echo "ok"
+
+        echo -n "Starting ... "
+        echo "$daemon /usr/sbin/chilli $chilli_dbg_opt"
+        [ -n "$2" ] && $daemon /usr/sbin/chilli $chilli_dbg_opt
+        echo "ok"
+        RETVAL=$?
+
+        [ $RETVAL -eq 0 ] && touch /var/lock/subsys/chilli 2>/dev/null
+        echo
+	;;
+    
+    checkrunning)
+	[ -e $LKFILE -a ! -e $PIDFILE ] && $0 start
+	;;
+
+    radconfig)
+	[ -e $MAIN_CONF ] || writeconfig
+	radiusconfig
+	;;
+
+    reload)
+	killall -HUP chilli
+	;;
+
+    restart)
+	$0 stop
+	$0 start
+	RETVAL=$?
+	;;
+    
+    stop)
+        echo -n "Shutting down $prog: "
+
+	    crontab -l 2>&- | grep -v $0 | crontab -
+
+        [ -f /var/run/chilli.pid ] && { 
+	        [ -n "$2" ] && kill $(cat /var/run/chilli.pid)
+	        RETVAL=$
+	        [ $RETVAL = 0 ] && {
+		    rm -f /var/lock/subsys/chilli /var/run/chilli.pid 2>/dev/null
+	        }
+	    }
+        [ -n "$2" ] && ifconfig $LAN_IF $(nvram get lan0_ipaddr)
+	    [ -n "$2" ] && $killproc chilli
+        echo
+	;;
+    
+    condrestart)
+        if [ -f /var/lock/subsys/chilli ] ; then
+	    $0 restart
+            RETVAL=$?
+        fi
+        ;;
+    
+    status)
+        status chilli
+        RETVAL=$?
+        ;;
+
+    *)
+        echo "Usage: $0 {start|stop|restart|condrestart|status|reload|radconfig}"
+        exit 1
+esac
+
+exit $?

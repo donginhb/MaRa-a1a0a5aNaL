@@ -1,0 +1,10 @@
+diff -Nur linux_2.6.21/drivers/ide/mips/Makefile /home/ckjwang/work/RT288x_SDK/source/linux-2.6.21.x/drivers/ide/mips/Makefile
+--- linux_2.6.21/drivers/ide/mips/Makefile	2007-04-26 11:08:32.000000000 +0800
++++ /home/ckjwang/work/RT288x_SDK/source/linux-2.6.21.x/drivers/ide/mips/Makefile	2008-10-24 14:20:13.000000000 +0800
+@@ -1,4 +1,4 @@
+ obj-$(CONFIG_BLK_DEV_IDE_SWARM)		+= swarm.o
+ obj-$(CONFIG_BLK_DEV_IDE_AU1XXX)	+= au1xxx-ide.o
+ 
+-EXTRA_CFLAGS    := -Idrivers/ide
++CFLAGS_au1xxx-ide.o := -Idrivers/ide
+

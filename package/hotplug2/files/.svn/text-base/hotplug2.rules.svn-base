@@ -1,0 +1,46 @@
+#ACTION is set {
+#   printdebug
+#}
+
+# For some reasons, 
+ACTION == remove, PHYSDEVDRIVER ~~ (option*|sierra*|rndis_host*|sierra_net*|cdc_ether*|ezp_iphone*|cdc_acm*|usbbcm*|Gobi*) {
+    exec /usr/sbin/nvram fset wan_upnp_status_rule=1^down^;
+    exec /usr/sbin/nvram default wan_wwan_probe_rule;
+}
+
+$include /etc/hotplug2-common.rules
+
+SUBSYSTEM ~~ (net|button|usb|block|scsi_generic|sound) {
+        exec /sbin/hotplug-call %SUBSYSTEM%;
+}
+
+ACTION == add, PHYSDEVDRIVER ~~ (option|sierra|cdc_acm) {
+    exec /usr/sbin/nvram fset wan_upnp_status_rule=1^up^wwan;
+	next
+}
+
+#For AC341U have two drivers , rndis_host and Gobi, to avoid it uses rndis driver
+#ACTION == add, PHYSDEVDRIVER ~~ (rndis_host) {
+#    exec /usr/sbin/nvram fset wan_upnp_status_rule=1^up^htc;
+#	next
+#}
+
+ACTION == add, PHYSDEVDRIVER ~~ (sierra_net|cdc_ether|Gobi*) {
+    exec /usr/sbin/nvram fset wan_upnp_status_rule=1^up^directip;
+	next
+}
+
+ACTION == add, PHYSDEVDRIVER ~~ (usbbcm) {
+    exec /usr/sbin/nvram fset wan_upnp_status_rule=1^up^beceem;
+    next
+}
+
+ACTION == add, PHYSDEVDRIVER ~~ (ezp_iphone) {
+    exec /usr/sbin/nvram fset wan_upnp_status_rule=1^up^iphone;
+    next
+}
+
+DEVICENAME ~~ (watchdog) {
+	exec /sbin/watchdog -t 5 /dev/watchdog;
+	next
+}

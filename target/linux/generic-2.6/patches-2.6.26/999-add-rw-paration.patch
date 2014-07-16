@@ -1,0 +1,34 @@
+--- linux-2.6.26/drivers/mtd/ralink/ralink_spi.c	2014-07-02 11:29:11.105324588 +0800
++++ linux-2.6.26/drivers/mtd/ralink/ralink_spi.c	2014-07-14 15:18:59.559652675 +0800
+@@ -61,11 +61,30 @@
+         }, {
+                 name:           "rootfs",
+ #ifdef CONFIG_RT3052_FLASH_16M
+-                size:           0xE90000,
++                size:           0xD90000,
++#else
++#ifdef CONFIG_RT3052_FLASH_8M
++		size:           0x650000,
+ #else
+                 size:           0x690000,
+ #endif
++#endif
+                 offset:         0x150000,
++
++#ifdef CONFIG_AMIT_CDW531AC
++        }, {
++                name:           "datafs",
++                size:           0x040000,
++                offset:         0x7A0000,
++#endif
++
++#ifdef CONFIG_RT3052_FLASH_16M
++        }, {
++                name:           "datafs",
++                size:           0x100000,
++                offset:         0xE90000,
++#endif
++
+                 /*
+ #ifdef CONFIG_ROOTFS_IN_FLASH_NO_PADDING
+         }, {

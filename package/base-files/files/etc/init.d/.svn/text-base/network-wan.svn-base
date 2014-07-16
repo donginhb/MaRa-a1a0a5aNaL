@@ -1,0 +1,29 @@
+#!/bin/sh /etc/rc.common
+# $NUM is optional.
+. /etc/functions.sh
+. /etc/network.sh
+
+START=96
+log_msg="network-wan"
+no_log=1
+start () {
+    # if product is P1, config eth port to wan or lan
+    local prod_cat=$(nvram get prod_cat)
+    local prod_subcat=$(nvram get prod_subcat)
+
+    [ "$(nvram show appmgr_rule 0 portcfg)" = "1" ] && {
+        ezp-vlan
+    }
+
+    # start wan control daemon
+    [ -z "$(pidof ezp-netstat)" ] && /bin/ezp-netstat -i 3 -f & 
+    
+    return $err
+}
+stop () {
+    [ -z "$NUM" ] && NUM="0"
+    killall ezp-netstat
+    NUM=$NUM /sbin/ifcontrol wan_updown active_stop
+    # ifdown wan$NUM
+    return $err
+}

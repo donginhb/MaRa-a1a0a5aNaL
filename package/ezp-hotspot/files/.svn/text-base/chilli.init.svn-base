@@ -1,0 +1,77 @@
+#!/bin/sh /etc/rc.common
+# hotplug event: $TYPE are required.
+
+START=90
+genconfig() {
+    . /etc/chilli/gen_default_tmpl
+    cp /etc/chilli/defaults.tmpl /etc/chilli/defaults
+}
+precheck () {
+    [ -f /usr/sbin/chilli ] || exit 0
+    . /etc/chilli/functions
+
+    MULTI=$(ls /etc/chilli/*/chilli.conf 2>/dev/null)
+    [ -z "$DHCPIF" ] && [ -n "$MULTI" ] && {
+        for c in $MULTI; 
+        do
+	    echo "Found configuration $c"
+	    DHCPIF=$(basename $(echo $c|sed 's#/chilli.conf##'))
+	    export DHCPIF
+	    echo "Running DHCPIF=$DHCPIF $0 $*"
+	    sh $0 $*
+        done
+        exit
+    }
+
+    if [ -n "$DHCPIF" ]; then
+        CONFIG=/etc/chilli/$DHCPIF/chilli.conf
+        pidfile=/var/run/chilli.$DHCPIF.pid
+    else
+        CONFIG=/etc/chilli.conf
+        pidfile=/var/run/chilli.pid
+    fi
+
+    [ -f $CONFIG ] || {
+        echo "$CONFIG Not found"
+        exit 0
+    }
+
+
+    check_required
+}
+start () {
+        stop
+	genconfig
+	[ "$(nvram show hs_server_rule 0 enable)" == "1" ] && {        
+        precheck
+        logger "EZP_USR" "Hotspot [start]"
+
+        /sbin/modprobe tun >/dev/null 2>&1
+        echo 1 > /proc/sys/net/ipv4/ip_forward
+
+	[ -e /dev/net/tun ] || {
+	    (cd /dev; 
+		mkdir net; 
+		cd net; 
+		mknod tun c 10 200)
+	}
+
+	writeconfig
+        radiusconfig
+
+	test ${HS_ADMINTERVAL:-0} -gt 0 && {	
+            (crontab -l 2>&- | grep -v $0
+		echo "*/$HS_ADMINTERVAL * * * * $0 radconfig"
+		) | crontab - 2>&-
+	}
+	
+	ifconfig $HS_LANIF 0.0.0.0
+	/usr/sbin/chilli  --noradallow -c $CONFIG --pidfile=$pidfile &
+	}
+}
+stop () {
+        logger "EZP_USR" "Hotspot [stop]"
+	crontab -l 2>&- | grep -v $0 | crontab -
+        killall -9 chilli
+        rm -f /var/run/chilli*.pid 2>/dev/null
+}

@@ -1,0 +1,9 @@
+--- linux-2.6.26/drivers/usb/serial/Makefile	2008-07-14 05:51:29.000000000 +0800
++++ linux-2.6.26/drivers/usb/serial/Makefile	2013-09-06 14:20:46.000000000 +0800
+@@ -52,4 +52,6 @@
+ obj-$(CONFIG_USB_SERIAL_VISOR)			+= visor.o
+ obj-$(CONFIG_USB_SERIAL_WHITEHEAT)		+= whiteheat.o
+ obj-$(CONFIG_USB_SERIAL_XIRCOM)			+= keyspan_pda.o
++obj-$(CONFIG_USB_GOBI_NET)			    += GobiNet/
++obj-$(CONFIG_USB_GOBI_SERIAL)			+= GobiSerial.o
+ 

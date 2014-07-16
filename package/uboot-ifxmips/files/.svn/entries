@@ -1,0 +1,55 @@
+10
+
+dir
+39
+svn://10.1.1.252/share/svn/ezp/branches/squirt/package/uboot-ifxmips/files
+svn://10.1.1.252/share/svn/ezp
+
+
+
+2014-07-01T10:59:42.780744Z
+23
+chenhj
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+e312dddf-68fe-4d5c-8447-00546c441c28
+
+drivers
+dir
+
+tools
+dir
+
+lib_generic
+dir
+
+include
+dir
+
+lib_bootstrap
+dir
+
+net
+dir
+
+board
+dir
+
+cpu
+dir
+
+common
+dir
+

@@ -1,0 +1,15 @@
+<!--
+  --  The login form
+  -->
+
+<div id="login-form">
+<table>
+<tr>
+  <td><INPUT type="hidden" NAME="username" VALUE="abc"></td>
+</tr>
+<tr>
+  <td><INPUT type="hidden" NAME="password" VALUE="abc" TYPE="password"></td>
+</tr>
+
+</table>
+</div>

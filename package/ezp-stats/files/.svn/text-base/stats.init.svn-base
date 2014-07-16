@@ -1,0 +1,12 @@
+#!/bin/sh /etc/rc.common
+BIN=/usr/sbin/stats
+PID_FILE=/var/run/stats.pid
+. /etc/network.sh
+START=50
+log_msg="STATS-server"
+start () {
+    [ $(nvram show stats_rule 0 enable) = "1" ] && {
+        $BIN || err=1 
+    }
+    return $err
+}

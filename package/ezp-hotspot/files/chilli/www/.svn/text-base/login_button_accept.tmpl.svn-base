@@ -1,0 +1,13 @@
+<!--
+  --  The login button & accept
+  -->
+
+<div id="login-button">
+<table>
+<tr>
+  <td colspan="2" nowrap align="center">
+    <input type="submit" name="button" value="Login & Accept Terms">
+  </td>
+</tr>
+</table>
+</div>

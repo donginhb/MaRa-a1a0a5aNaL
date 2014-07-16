@@ -1,0 +1,72 @@
+#!/bin/sh 
+
+. /etc/arch.sh
+. /etc/functions.sh
+
+PID_DIR="/tmp/ezp-gpio"
+
+[ -d "$PID_DIR" ] && {
+    exit
+} || {
+    mkdir -p $PID_DIR
+}
+
+while [ ! -e "/dev/nvram" ]; do
+    echo "$(sleep 1)"
+done
+
+change_xmode() {
+    local newmode="$(nvram show x_mode_data $1 prod_cat)"
+    # X-series can do the mode switching
+    [ "$(nvram get prod_supercat)" == "X" ] && {
+        [ "$(nvram get prod_cat)" = "$newmode" ] || {
+            nvram fset prod_cat="$newmode"
+            nvram commit
+            echo "1"
+            return "1"
+        }
+    }
+    echo "0"
+}
+
+local gp_action=$1
+case "$gp_action" in
+    usb-remove)
+        [ "$(nvram get brand)" != "ZYUS" ] && /sbin/usb-remove
+    ;;
+    default)
+        arch_led_start factory
+        /usr/sbin/nvram factory
+    ;;
+    wifi)
+        [ "$(nvram get brand)" != "ZYUS" ] && /sbin/ezp-wifionoff
+    ;;
+    sdcard)
+        [ "$(nvram get platform)" = "AXA" ] &&  {
+            for i in /dev/sd[a-z]; do
+                sdparm --command=ready $i
+                [ "$?" != "0" ] && umount ${i}1
+            done
+            USBSTORAGE_SERVICE
+        }
+    ;;
+    func)
+        local res
+        case "$2" in
+        17)
+            res="$(/sbin/ezp-wl-mode lrouter)"
+        ;;
+        18)
+            res="$(/sbin/ezp-wl-mode bridge)"
+        ;;
+        19)
+            res="$(/sbin/ezp-wl-mode gateway)"
+        ;;
+        *)
+            res="$(/sbin/ezp-wl-mode gateway)"
+        ;;
+        esac
+        [ "$res" = "success" ] && reboot
+    ;;
+esac
+rm -rf $PID_DIR

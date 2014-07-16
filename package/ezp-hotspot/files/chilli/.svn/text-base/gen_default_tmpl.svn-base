@@ -1,0 +1,283 @@
+#!/bin/sh
+#
+# Copyright (c) 2006-2012 David Bird (Coova Technologies)
+# Licensed under Gnu General Public License. 
+# http://www.coova.org/
+#
+
+
+CHILLI=/etc/chilli
+
+
+
+DEFAULT_CONF_TMPL=$CHILLI/defaults.tmpl
+
+configs_default=$DEFAULT_CONF_TMPL
+addconfig_default() { [ -n "$*" ] && cat<<EOF>>$configs_default
+$*
+EOF
+}
+
+write_chilli_user()
+{
+    CHILLI_USER=$(nvram show hs_server_rule 0 userdb)
+    [ -z "$CHILLI_USER" ] && CHILLI_USER=/etc/chilli/localusers
+    case $HS_OP_TYPE in
+        "simple")
+            echo -n "" > $CHILLI_USER
+            echo "abc:abc" >> $CHILLI_USER
+            ;;
+        "local")
+            usercount=$(nvram get hs_user_rule_num)
+            ind=0
+            userdb=""
+            echo -n "" > $CHILLI_USER
+
+            while [ $ind -lt $usercount ]
+            do
+               name=$(nvram show hs_user_rule $ind name)
+               pass=$(nvram show hs_user_rule $ind password)
+               echo "$name:$pass" >> $CHILLI_USER
+               ind=$(($ind + 1))
+            done
+        ;;
+    *)
+        exit 1
+        ;;
+    esac
+}
+
+write_netmask()
+{
+    eval $(ipcalc $(nvram show hs_server_rule 0 ipaddr) $(nvram show hs_server_rule 0 mask))
+    HS_NETMASK=$NETMASK
+}
+
+write_network_ip()
+{
+    hs_interface_ip=$(nvram show hs_server_rule 0 ipaddr)
+    HS_NETWORK=${hs_interface_ip%.*}".0"
+}
+
+write_radius_config(){
+    HS_UAMPORT=$(nvram show hs_server_rule 0 uam_port)
+    HS_UAMLISTEN=$(nvram show hs_server_rule 0 ipaddr)
+    HS_UAMSERVER=$(nvram show hs_server_rule 0 ipaddr)
+    HS_UAMUIPORT=$(nvram show hs_server_rule 0 uam_ui_port)
+    HS_UAMSECRET=$(nvram show hs_server_rule 0 uam_secret)
+    case $HS_OP_TYPE in
+    "simple")
+        HS_RADIUS="127.0.0.1"
+        HS_RADIUS2="127.0.0.1"
+        HS_UAMALLOW=\"$(cat /tmp/jffs2/hs_uam_allow.txt)\"
+        HS_UAMHOMEPAGE="http://"$HS_UAMLISTEN":"$HS_UAMPORT"/www/coova.html"
+        HS_UAMFORMAT="http://"$HS_UAMLISTEN":"$HS_UAMPORT"/www/login.chi"
+        ;;
+    "local")
+        HS_RADIUS="127.0.0.1"  
+        HS_RADIUS2="127.0.0.1"
+        HS_UAMALLOW=\"$(cat /tmp/jffs2/hs_uam_allow.txt)\"
+        HS_UAMHOMEPAGE="http://"$HS_UAMLISTEN":"$HS_UAMPORT"/www/coova.html"
+        HS_UAMFORMAT="http://"$HS_UAMLISTEN":"$HS_UAMPORT"/www/login.chi"
+        ;;
+    "radius")
+        HS_RADIUS=$(nvram show hs_server_rule 0 radius_ipaddr)
+        HS_RADIUS2=$(nvram show hs_server_rule 0 radius_ipaddr1)
+        HS_UAMALLOW=\"$(cat /tmp/jffs2/hs_uam_allow.txt)\"
+        HS_UAMHOMEPAGE=
+        HS_UAMFORMAT=
+        ;;
+    "hs")
+        HS_RADIUS=$(nvram show hs_server_rule 0 radius_ipaddr)
+        HS_RADIUS2=$(nvram show hs_server_rule 0 radius_ipaddr1)
+        HS_UAMHOMEPAGE=
+        HS_UAMFORMAT=https://customer.hotspotsystem.com/customer/hotspotlogin.php
+        HS_UAMALLOW="194.149.46.0/24 198.241.128.0/17 66.211.128.0/17 216.113.128.0/17 70.42.128.0/17 \
+         128.242.125.0/24 216.52.17.0/24 62.249.232.74 155.136.68.77 155.136.66.34 \
+         66.4.128.0/17 66.211.128.0/17 66.235.128.0/17 88.221.136.146 195.228.254.149 \
+         195.228.254.152 203.211.140.157 203.211.150.204 \
+         www.paypal.com www.paypalobjects.com live.adyen.com \
+         www.worldpay.com select.worldpay.com secure.ims.worldpay.com \
+         www.rbsworldpay.com secure.wp3.rbsworldpay.com www.directebanking.com \
+         betalen.rabobank.nl ideal.ing.nl internetbankieren.frieslandbank.nl \
+         ideal.abnamro.nl ideal.snsreaal.nl ideal.triodos-onlinebanking.nl \
+         www.hotspotsystem.com customer.hotspotsystem.com tech.hotspotsystem.com \
+         a1.hotspotsystem.com a2.hotspotsystem.com a3.hotspotsystem.com a4.hotspotsystem.com \
+         a5.hotspotsystem.com a6.hotspotsystem.com a7.hotspotsystem.com a8.hotspotsystem.com \
+         a9.hotspotsystem.com a10.hotspotsystem.com a11.hotspotsystem.com a12.hotspotsystem.com \
+         a13.hotspotsystem.com a14.hotspotsystem.com a15.hotspotsystem.com a16.hotspotsystem.com \
+         a17.hotspotsystem.com a18.hotspotsystem.com a19.hotspotsystem.com a20.hotspotsystem.com"
+         HS_UAMDOMAINS="paypal.com paypalobjects.com worldpay.com rbsworldpay.com adyen.com hotspotsystem.com"
+        ;;
+    *)
+        HS_RADIUS="127.0.0.1"
+        HS_RADIUS2="127.0.0.1"
+        ;;
+    esac
+    HS_RADSECRET=$(nvram show hs_server_rule 0 radius_secret)
+    HS_RADAUTH=$(nvram show hs_server_rule 0 radius_auth_port)
+    HS_RADACCT=$(nvram show hs_server_rule 0 radius_accp_port)
+    HS_AAA="radius"
+    HS_RADCONF="off"
+    HS_NASID=$(nvram show hs_server_rule 0 nasid)
+    HS_DNS_DOMAIN="key.chillispot.info"
+    HS_DYNIP=$HS_NETWORK
+    HS_DYNIP_MASK=$HS_NETMASK
+
+                                                                                                                                                                                                                                                                                         
+}
+config_by_type()
+{
+  [ "$HS_OP_TYPE" = "simple" -o "$HS_OP_TYPE" = "local" ] && {
+      HS_USELOCALUSERS="on"
+      HS_MACAUTHMODE="local"
+      HS_LOCAL="on"
+  } || {
+      HS_USELOCALUSERS="off"
+      HS_LOCAL="off"
+              
+  }
+}
+write_tos_term()                                                                 
+{ 
+    local CHILLI_TOS
+    local tmp_tos
+    HS_TOS_ENABLE=$(nvram show hs_tos_rule 0 tos_enable)
+    [ "$HS_TOS_ENABLE" = "1" ] && {
+	rm "/etc/chilli/www/terms.tmpl"
+        CHILLI_TOS=/etc/chilli/www/terms.tmpl
+        tmp_tos=$(cat /tmp/jffs2/hs_tos_text.txt) 
+        echo "$tmp_tos" >> $CHILLI_TOS
+    }        
+}
+write_pages_mode() 
+{
+    local CHILLI_PAGAS_HEADER_ELEMENTS
+    local CHILLI_PAGAS_HEADER
+    local CHILLI_PAGAS_WELCOME
+    local CHILLI_PAGAS_TOS
+    local CHILLI_PAGAS_AD
+    local CHILLI_PAGAS_FOOTER
+    local tmp_header_elements
+    local tmp_header
+    local tmp_welcome
+    local tmp_tos
+    local tmp_ad
+    local tmp_footer
+    HS_BRAND=$(nvram show hs_pages_rule 0 brand)
+    HS_PAGES_MODE=$(nvram show hs_pages_rule 0 pages_mode)
+    HS_PAGES_TITLE=$(nvram show hs_pages_rule 0 title)
+
+    [ "$HS_PAGES_MODE" = "customization" ] && {
+
+        rm "/etc/chilli/www/header_elements.tmpl"
+        CHILLI_PAGAS_HEADER_ELEMENTS=/etc/chilli/www/header_elements.tmpl
+        tmp_header_elements=$(cat /tmp/jffs2/hs_page_header_elements_contents.txt)
+        echo "$tmp_header_elements" >> $CHILLI_PAGAS_HEADER_ELEMENTS
+
+
+    	rm "/etc/chilli/www/header.tmpl"  
+    	CHILLI_PAGAS_HEADER=/etc/chilli/www/header.tmpl
+    	tmp_header=$(cat /tmp/jffs2/hs_page_header_contents.txt)
+    	echo "$tmp_header" >> $CHILLI_PAGAS_HEADER
+
+        rm "/etc/chilli/www/welcome.tmpl"
+        CHILLI_PAGAS_WELCOME=/etc/chilli/www/welcome.tmpl
+        tmp_welcome=$(cat /tmp/jffs2/hs_page_welcome_message.txt)
+        echo "$tmp_welcome" >> $CHILLI_PAGAS_WELCOME
+
+        rm "/etc/chilli/www/tos_message.tmpl"
+        CHILLI_PAGAS_TOS=/etc/chilli/www/tos_message.tmpl
+        tmp_tos=$(cat /tmp/jffs2/hs_page_tos_agreement.txt)
+        echo "$tmp_tos" >> $CHILLI_PAGAS_TOS
+    
+        rm "/etc/chilli/www/advertisement.tmpl"                         
+        CHILLI_PAGAS_AD=/etc/chilli/www/advertisement.tmpl      
+        tmp_ad=$(cat /tmp/jffs2/hs_page_ad_contents.txt)    
+        echo "$tmp_ad" >> $CHILLI_PAGAS_AD   
+    
+        rm "/etc/chilli/www/footer.tmpl"                         
+        CHILLI_PAGAS_FOOTER=/etc/chilli/www/footer.tmpl         
+        tmp_footer=$(cat /tmp/jffs2/hs_page_footer_contents.txt)     
+        echo "$tmp_footer" >> $CHILLI_PAGAS_FOOTER   
+    	
+    } || {
+
+        cp "/etc/chilli/www/header_elements.tmpl.default" "/etc/chilli/www/header_elements.tmpl"
+        cp "/etc/chilli/www/header.tmpl.default" "/etc/chilli/www/header.tmpl"
+        cp "/etc/chilli/www/welcome.tmpl.default" "/etc/chilli/www/welcome.tmpl"
+        cp "/etc/chilli/www/tos_message.tmpl.default" "/etc/chilli/www/tos_message.tmpl"
+        cp "/etc/chilli/www/advertisement.tmpl.default" "/etc/chilli/www/advertisement.tmpl"
+        cp "/etc/chilli/www/footer.tmpl.default" "/etc/chilli/www/footer.tmpl"
+
+
+    } 
+                   
+}                                                                
+config_from_nvram(){
+    HS_LOC_NAME=$(nvram show hs_server_rule 0 locname) 
+    HS_WIFI_SSID=$(nvram show wl0_ssid_rule 1 ssid) 
+    write_tos_term
+    write_pages_mode
+    write_network_ip
+    write_netmask
+    write_chilli_user
+    write_radius_config
+}
+config_general(){
+    HS_MODE="wireless"
+    HS_TYPE="chillispot"
+    HS_LAN_ACCESS="allow"
+    HS_LANIF="ra1"
+    HS_DNS1="8.8.8.8"
+    HS_DNS2="8.8.4.4"
+    HS_WWWDIR="/etc/chilli/www"
+    HS_WWWBIN="/etc/chilli/wwwsh"
+    HS_OP_TYPE=$(nvram show hs_server_rule 0 mode) 
+    config_by_type
+}
+
+rm $DEFAULT_CONF_TMPL
+[ -e $DEFAULT_CONF_TMPL ] || touch $DEFAULT_CONF_TMPL
+ config_general
+ config_from_nvram
+ addconfig_default ${HS_MODE:+"HS_MODE=$HS_MODE"}
+ addconfig_default ${HS_TYPE:+"HS_TYPE=$HS_TYPE"}
+ addconfig_default ${HS_LAN_ACCESS:+"HS_LAN_ACCESS=$HS_LAN_ACCESS"}
+ addconfig_default ${HS_WANIF:+"HS_WANIF=$HS_WANIF"}
+ addconfig_default ${HS_LANIF:+"HS_LANIF=$HS_LANIF"}
+ addconfig_default ${HS_WWWDIR:+"HS_WWWDIR=$HS_WWWDIR"}
+ addconfig_default ${HS_WWWBIN:+"HS_WWWBIN=$HS_WWWBIN"}
+ addconfig_default ${HS_OP_TYPE:+"HS_OP_TYPE=$HS_OP_TYPE"}
+ addconfig_default ${HS_LOC_NAME:+"HS_LOC_NAME=$HS_LOC_NAME"}
+ addconfig_default ${HS_NETWORK:+"HS_NETWORK=$HS_NETWORK"}
+ addconfig_default ${HS_NETMASK:+"HS_NETMASK=$HS_NETMASK"}
+ addconfig_default ${HS_DNS1:+"HS_DNS1=$HS_DNS1"}
+ addconfig_default ${HS_DNS2:+"HS_DNS2=$HS_DNS2"}
+ addconfig_default ${HS_TOS_ENABLE:+"HS_TOS_ENABLE=$HS_TOS_ENABLE"}
+ addconfig_default ${HS_RADIUS:+"HS_RADIUS=$HS_RADIUS"}
+ addconfig_default ${HS_RADIUS2:+"HS_RADIUS2=$HS_RADIUS2"}
+ addconfig_default ${HS_RADSECRET:+"HS_RADSECRET=$HS_RADSECRET"}
+ addconfig_default ${HS_RADAUTH:+"HS_RADAUTH=$HS_RADAUTH"}
+ addconfig_default ${HS_RADACCT:+"HS_RADACCT=$HS_RADACCT"}
+ addconfig_default ${HS_AAA:+"HS_AAA=$HS_AAA"}
+ addconfig_default ${HS_RADCONF:+"HS_RADCONF=$HS_RADCONF"}
+ addconfig_default ${HS_NASID:+"HS_NASID=$HS_NASID"}
+ addconfig_default ${HS_DNS_DOMAIN:+"HS_DNS_DOMAIN=$HS_DNS_DOMAIN"}
+ addconfig_default ${HS_DYNIP:+"HS_DYNIP=$HS_DYNIP"}
+ addconfig_default ${HS_DYNIP_MASK:+"HS_DYNIP_MASK=$HS_DYNIP_MASK"}
+ addconfig_default ${HS_UAMLISTEN:+"HS_UAMLISTEN=$HS_UAMLISTEN"}
+ addconfig_default ${HS_UAMSERVER:+"HS_UAMSERVER=$HS_UAMSERVER"}
+ addconfig_default ${HS_UAMPORT:+"HS_UAMPORT=$HS_UAMPORT"}
+ addconfig_default ${HS_UAMUIPORT:+"HS_UAMUIPORT=$HS_UAMUIPORT"}
+ addconfig_default ${HS_UAMSECRET:+"HS_UAMSECRET=$HS_UAMSECRET"}
+ addconfig_default ${HS_UAMHOMEPAGE:+"HS_UAMHOMEPAGE=$HS_UAMHOMEPAGE"}
+ addconfig_default ${HS_UAMFORMAT:+"HS_UAMFORMAT=$HS_UAMFORMAT"}
+ addconfig_default ${HS_UAMALLOW:+"HS_UAMALLOW=$HS_UAMALLOW"}
+ addconfig_default ${HS_UAMDOMAINS:+"HS_UAMDOMAINS=$HS_UAMDOMAINS"}
+ addconfig_default ${HS_USELOCALUSERS:+"HS_USELOCALUSERS=$HS_USELOCALUSERS"}
+ addconfig_default ${HS_MACAUTHMODE:+"HS_MACAUTHMODE=$HS_MACAUTHMODE"}
+ addconfig_default ${HS_LOCAL:+"HS_LOCAL=$HS_LOCAL"}
+ addconfig_default ${HS_WIFI_SSID:+"HS_WIFI_SSID=$HS_WIFI_SSID"}
+ addconfig_default ${HS_PAGES_TITLE:+"HS_PAGES_TITLE=$HS_PAGES_TITLE"}
+ addconfig_default ${HS_PAGES_HEADER_ELEMENTS:+"HS_PAGES_HEADER_ELEMENTS=$HS_PAGES_HEADER_ELEMENTS"}

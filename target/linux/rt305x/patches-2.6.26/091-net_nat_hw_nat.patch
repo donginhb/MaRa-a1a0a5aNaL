@@ -1,0 +1,11 @@
+--- a/net/nat/hw_nat/ra_nat.c	2013-03-05 09:40:20.022957409 +0800
++++ b/net/nat/hw_nat/ra_nat.c	2013-03-05 09:41:12.072984129 +0800
+@@ -2388,7 +2388,7 @@
+ 
+ struct net_device *ra_dev_get_by_name(const char *name)
+ {
+-#if LINUX_VERSION_CODE > KERNEL_VERSION(2,6,35)
++#if LINUX_VERSION_CODE > KERNEL_VERSION(2,6,21)
+ 	return dev_get_by_name(&init_net, name);
+ #else
+ 	return dev_get_by_name(name);

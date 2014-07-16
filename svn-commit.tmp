@@ -1,0 +1,15 @@
+ - Add Hotspot UI & nvram 
+--This line, and those below, will be ignored--
+
+A    target/linux/generic-2.6/patches-2.6.26/999-add-rw-paration.patch
+M    package/base-files/files/etc/init.d/done
+A    package/ezp-httpd/src/hotspot.c
+M    package/ezp-httpd/src/Makefile
+M    package/ezp-httpd/src/ezp.c
+M    package/ezp-httpd/src/ezp.h
+A    package/ezp-httpd/files/www.PROX/hotspot.asp
+A    package/ezp-httpd/files/www.PROX/hs_simple.asp
+A    package/ezp-httpd/files/www.PROX/hs_local.asp
+M    package/ezp-nvram/src/nvram_data.h
+M    package/ezp-nvram/src/ezp-lib.c
+M    package/ezp-nvram/src/nvram_ezpacket.h

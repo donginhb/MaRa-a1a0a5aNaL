@@ -1,0 +1,837 @@
++ pwd
+make: Entering directory `/home/chenhj/work/mr101n/package/libvorbis'
+gzip -dc /home/dl/libvorbis-1.2.3.tar.gz | /bin/tar -C /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/.. -xf -
+
+Applying ./patches/001-automake-compat.patch using plaintext: 
+patching file Makefile.am
+touch /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/.prepared_af6b6a9435a40269fa1f66c6665b0b4a
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./libtool" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/bin/libtool" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./libtool; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/bin/libtool /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./; fi
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./ltmain.sh" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/share/libtool/ltmain.sh" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./ltmain.sh; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/share/libtool/ltmain.sh /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./; fi
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./libtool.m4" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/share/aclocal/libtool.m4" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./libtool.m4; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/share/aclocal/libtool.m4 /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./; fi
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./configure" ]; then /home/chenhj/work/mr101n/staging_dir/host/bin/sed -i -e 's,pardus_ltmain_version=.*,pardus_ltmain_version="$pardus_lt_version",' /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./configure; fi
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./; if [ -x ./configure ]; then /usr/bin/find /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ -name config.guess | xargs -r -n1 cp /home/chenhj/work/mr101n/scripts/config.guess; /usr/bin/find /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ -name config.sub | xargs -r -n1 cp /home/chenhj/work/mr101n/scripts/config.sub; AR=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar AS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -c -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts" LD=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld NM=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm CC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" GCC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" CXX="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++" RANLIB=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib STRIP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip OBJCOPY=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objcopy OBJDUMP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objdump SIZE=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-size CFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts " CXXFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts " CPPFLAGS="-I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " LDFLAGS="-L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib " PKG_CONFIG_PATH="/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/pkgconfig:/home/chenhj/work/mr101n/staging_dir/host/usr/lib/pkgconfig" PKG_CONFIG_LIBDIR="/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/pkgconfig"  ./configure --target=mipsel-linux --host=mipsel-linux --build=x86_64-linux-gnu --program-prefix="" --program-suffix="" --prefix=/usr --exec-prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin --libexecdir=/usr/lib --sysconfdir=/etc --datadir=/usr/share --localstatedir=/var --mandir=/usr/man --infodir=/usr/info --disable-nls --disable-oggtest  ; fi; )
+configure: loading site script /home/chenhj/work/mr101n/include/site/mipsel-linux-uclibc
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... mipsel-unknown-linux-gnu
+checking target system type... mipsel-unknown-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking for mipsel-linux-strip... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip
+checking for mipsel-linux-gcc... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... yes
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc accepts -g... yes
+checking for /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc option to accept ISO C89... none needed
+checking for style of include used by make... GNU
+checking dependency style of /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc... gcc3
+checking how to run the C preprocessor... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -E
+checking for inline... inline
+checking for a sed that does not truncate output... /home/chenhj/work/mr101n/staging_dir/host/bin/sed
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ld used by /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld
+checking if the linker (/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld) is GNU ld... yes
+checking for /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld option to reload object files... -r
+checking for BSD-compatible nm... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm
+checking whether ln -s works... yes
+checking how to recognize dependent libraries... pass_all
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking whether we are using the GNU C++ compiler... yes
+checking whether /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ accepts -g... yes
+checking dependency style of /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++... gcc3
+checking how to run the C++ preprocessor... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ -E
+checking for mipsel-linux-g77... no
+checking for mipsel-linux-xlf... no
+checking for mipsel-linux-f77... no
+checking for mipsel-linux-frt... no
+checking for mipsel-linux-pgf77... no
+checking for mipsel-linux-cf77... no
+checking for mipsel-linux-fort77... no
+checking for mipsel-linux-fl32... no
+checking for mipsel-linux-af77... no
+checking for mipsel-linux-xlf90... no
+checking for mipsel-linux-f90... no
+checking for mipsel-linux-pgf90... no
+checking for mipsel-linux-pghpf... no
+checking for mipsel-linux-epcf90... no
+checking for mipsel-linux-gfortran... no
+checking for mipsel-linux-g95... no
+checking for mipsel-linux-xlf95... no
+checking for mipsel-linux-f95... no
+checking for mipsel-linux-fort... no
+checking for mipsel-linux-ifort... no
+checking for mipsel-linux-ifc... no
+checking for mipsel-linux-efc... no
+checking for mipsel-linux-pgf95... no
+checking for mipsel-linux-lf95... no
+checking for mipsel-linux-ftn... no
+checking for g77... no
+checking for xlf... no
+checking for f77... no
+checking for frt... no
+checking for pgf77... no
+checking for cf77... no
+checking for fort77... no
+checking for fl32... no
+checking for af77... no
+checking for xlf90... no
+checking for f90... no
+checking for pgf90... no
+checking for pghpf... no
+checking for epcf90... no
+checking for gfortran... no
+checking for g95... no
+checking for xlf95... no
+checking for f95... no
+checking for fort... no
+checking for ifort... no
+checking for ifc... no
+checking for efc... no
+checking for pgf95... no
+checking for lf95... no
+checking for ftn... no
+checking whether we are using the GNU Fortran 77 compiler... no
+checking whether  accepts -g... no
+checking the maximum length of command line arguments... 3458764513820540925
+checking command to parse /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm output from /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc object... ok
+checking for objdir... .libs
+checking for mipsel-linux-ar... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar
+checking for mipsel-linux-ranlib... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib
+checking for mipsel-linux-strip... (cached) /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc supports -fno-rtti -fno-exceptions... no
+checking for /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc option to produce PIC... -fPIC
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc PIC flag -fPIC works... yes
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc static flag -static works... yes
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc supports -c -o file.o... yes
+checking whether the /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc linker (/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+configure: creating libtool
+appending configuration tag "CXX" to libtool
+checking for ld used by /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld
+checking if the linker (/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld) is GNU ld... yes
+checking whether the /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ linker (/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld) supports shared libraries... yes
+checking for /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ option to produce PIC... -fPIC
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ PIC flag -fPIC works... yes
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ static flag -static works... yes
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ supports -c -o file.o... yes
+checking whether the /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ linker (/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld) supports shared libraries... yes
+checking dynamic linker characteristics... GNU/Linux ld.so
+(cached) (cached) checking how to hardcode library paths into programs... immediate
+appending configuration tag "F77" to libtool
+checking whether /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc and cc understand -c and -o together... yes
+checking GCC version... 4.2.4
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc accepts -Wdeclaration-after-statement... yes
+checking for memory.h... (cached) yes
+checking for cos in -lm... yes
+checking for pthread_create in -lpthread... yes
+checking pkg-config is at least version 0.9.0... yes
+checking for OGG... yes
+checking for working alloca.h... yes
+checking for alloca... yes
+checking for working memcmp... (cached) yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating m4/Makefile
+config.status: creating lib/Makefile
+config.status: creating lib/modes/Makefile
+config.status: creating lib/books/Makefile
+config.status: creating lib/books/coupled/Makefile
+config.status: creating lib/books/uncoupled/Makefile
+config.status: creating lib/books/floor/Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/vorbisfile/Makefile
+config.status: creating doc/vorbisenc/Makefile
+config.status: creating include/Makefile
+config.status: creating include/vorbis/Makefile
+config.status: creating examples/Makefile
+config.status: creating test/Makefile
+config.status: creating vq/Makefile
+config.status: creating libvorbis.spec
+config.status: creating vorbis.pc
+config.status: creating vorbisenc.pc
+config.status: creating vorbisfile.pc
+config.status: creating vorbis-uninstalled.pc
+config.status: creating vorbisenc-uninstalled.pc
+config.status: creating vorbisfile-uninstalled.pc
+config.status: creating config.h
+config.status: executing depfiles commands
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./libtool" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/bin/libtool" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./libtool; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/bin/libtool /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./; fi
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./ltmain.sh" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/share/libtool/ltmain.sh" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./ltmain.sh; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/share/libtool/ltmain.sh /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./; fi
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./libtool.m4" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/share/aclocal/libtool.m4" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./libtool.m4; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/share/aclocal/libtool.m4 /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/./; fi
+touch /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/.configured
+CFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " CXXFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " LDFLAGS="-L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib " make -C /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/. AR=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar AS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -c -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts" LD=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld NM=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm CC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" GCC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" CXX="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++" RANLIB=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib STRIP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip OBJCOPY=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objcopy OBJDUMP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objdump SIZE=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-size CROSS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-" ARCH="mipsel" ;
+make[1]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3'
+ cd . && /bin/bash /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/missing --run automake-1.10 --foreign  Makefile
+aclocal.m4:16: warning: this file was generated for autoconf 2.61.
+You have another version of autoconf.  It may work, but is not guaranteed to.
+If you have problems, you may need to regenerate the build system entirely.
+To do so, use the procedure documented by the package, typically `autoreconf'.
+configure.ac:14: version mismatch.  This is Automake 1.10.2,
+configure.ac:14: but the definition used by this AM_INIT_AUTOMAKE
+configure.ac:14: comes from Automake 1.10.1.  You should recreate
+configure.ac:14: aclocal.m4 with aclocal and run automake again.
+WARNING: `automake-1.10' is probably too old.  You should only need it if
+         you modified `Makefile.am', `acinclude.m4' or `configure.ac'.
+         You might want to install the `Automake' and `Perl' packages.
+         Grab them from any GNU archive site.
+ cd . && /bin/bash ./config.status Makefile 
+config.status: creating Makefile
+make[1]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3'
+make[1]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3'
+make  all-recursive
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3'
+Making all in m4
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/m4'
+ cd .. && /bin/bash ./config.status m4/Makefile 
+config.status: creating m4/Makefile
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/m4'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/m4'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/m4'
+Making all in include
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include'
+ cd .. && /bin/bash ./config.status include/Makefile 
+config.status: creating include/Makefile
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include'
+Making all in vorbis
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include/vorbis'
+ cd ../.. && /bin/bash ./config.status include/vorbis/Makefile 
+config.status: creating include/vorbis/Makefile
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include/vorbis'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include/vorbis'
+make[4]: Nothing to be done for `all'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include/vorbis'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include'
+make[4]: Nothing to be done for `all-am'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include'
+Making all in vq
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/vq'
+ cd .. && /bin/bash ./config.status vq/Makefile depfiles
+config.status: creating vq/Makefile
+config.status: executing depfiles commands
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/vq'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/vq'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/vq'
+Making all in lib
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib'
+ cd .. && /bin/bash ./config.status lib/Makefile depfiles
+config.status: creating lib/Makefile
+config.status: executing depfiles commands
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib'
+Making all in modes
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/modes'
+ cd ../.. && /bin/bash ./config.status lib/modes/Makefile 
+config.status: creating lib/modes/Makefile
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/modes'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/modes'
+make[4]: Nothing to be done for `all'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/modes'
+Making all in books
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books'
+ cd ../.. && /bin/bash ./config.status lib/books/Makefile 
+config.status: creating lib/books/Makefile
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books'
+Making all in coupled
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/coupled'
+ cd ../../.. && /bin/bash ./config.status lib/books/coupled/Makefile 
+config.status: creating lib/books/coupled/Makefile
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/coupled'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/coupled'
+make[5]: Nothing to be done for `all'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/coupled'
+Making all in uncoupled
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/uncoupled'
+ cd ../../.. && /bin/bash ./config.status lib/books/uncoupled/Makefile 
+config.status: creating lib/books/uncoupled/Makefile
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/uncoupled'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/uncoupled'
+make[5]: Nothing to be done for `all'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/uncoupled'
+Making all in floor
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/floor'
+ cd ../../.. && /bin/bash ./config.status lib/books/floor/Makefile 
+config.status: creating lib/books/floor/Makefile
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/floor'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/floor'
+make[5]: Nothing to be done for `all'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/floor'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books'
+make[5]: Nothing to be done for `all-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib'
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT mdct.lo -MD -MP -MF .deps/mdct.Tpo -c -o mdct.lo mdct.c
+mkdir .libs
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT mdct.lo -MD -MP -MF .deps/mdct.Tpo -c mdct.c  -fPIC -DPIC -o .libs/mdct.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT mdct.lo -MD -MP -MF .deps/mdct.Tpo -c mdct.c -o mdct.o >/dev/null 2>&1
+mv -f .deps/mdct.Tpo .deps/mdct.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT smallft.lo -MD -MP -MF .deps/smallft.Tpo -c -o smallft.lo smallft.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT smallft.lo -MD -MP -MF .deps/smallft.Tpo -c smallft.c  -fPIC -DPIC -o .libs/smallft.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT smallft.lo -MD -MP -MF .deps/smallft.Tpo -c smallft.c -o smallft.o >/dev/null 2>&1
+mv -f .deps/smallft.Tpo .deps/smallft.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT block.lo -MD -MP -MF .deps/block.Tpo -c -o block.lo block.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT block.lo -MD -MP -MF .deps/block.Tpo -c block.c  -fPIC -DPIC -o .libs/block.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT block.lo -MD -MP -MF .deps/block.Tpo -c block.c -o block.o >/dev/null 2>&1
+mv -f .deps/block.Tpo .deps/block.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT envelope.lo -MD -MP -MF .deps/envelope.Tpo -c -o envelope.lo envelope.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT envelope.lo -MD -MP -MF .deps/envelope.Tpo -c envelope.c  -fPIC -DPIC -o .libs/envelope.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT envelope.lo -MD -MP -MF .deps/envelope.Tpo -c envelope.c -o envelope.o >/dev/null 2>&1
+mv -f .deps/envelope.Tpo .deps/envelope.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT window.lo -MD -MP -MF .deps/window.Tpo -c -o window.lo window.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT window.lo -MD -MP -MF .deps/window.Tpo -c window.c  -fPIC -DPIC -o .libs/window.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT window.lo -MD -MP -MF .deps/window.Tpo -c window.c -o window.o >/dev/null 2>&1
+mv -f .deps/window.Tpo .deps/window.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT lsp.lo -MD -MP -MF .deps/lsp.Tpo -c -o lsp.lo lsp.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT lsp.lo -MD -MP -MF .deps/lsp.Tpo -c lsp.c  -fPIC -DPIC -o .libs/lsp.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT lsp.lo -MD -MP -MF .deps/lsp.Tpo -c lsp.c -o lsp.o >/dev/null 2>&1
+mv -f .deps/lsp.Tpo .deps/lsp.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT lpc.lo -MD -MP -MF .deps/lpc.Tpo -c -o lpc.lo lpc.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT lpc.lo -MD -MP -MF .deps/lpc.Tpo -c lpc.c  -fPIC -DPIC -o .libs/lpc.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT lpc.lo -MD -MP -MF .deps/lpc.Tpo -c lpc.c -o lpc.o >/dev/null 2>&1
+mv -f .deps/lpc.Tpo .deps/lpc.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT analysis.lo -MD -MP -MF .deps/analysis.Tpo -c -o analysis.lo analysis.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT analysis.lo -MD -MP -MF .deps/analysis.Tpo -c analysis.c  -fPIC -DPIC -o .libs/analysis.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT analysis.lo -MD -MP -MF .deps/analysis.Tpo -c analysis.c -o analysis.o >/dev/null 2>&1
+mv -f .deps/analysis.Tpo .deps/analysis.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT synthesis.lo -MD -MP -MF .deps/synthesis.Tpo -c -o synthesis.lo synthesis.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT synthesis.lo -MD -MP -MF .deps/synthesis.Tpo -c synthesis.c  -fPIC -DPIC -o .libs/synthesis.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT synthesis.lo -MD -MP -MF .deps/synthesis.Tpo -c synthesis.c -o synthesis.o >/dev/null 2>&1
+mv -f .deps/synthesis.Tpo .deps/synthesis.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT psy.lo -MD -MP -MF .deps/psy.Tpo -c -o psy.lo psy.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT psy.lo -MD -MP -MF .deps/psy.Tpo -c psy.c  -fPIC -DPIC -o .libs/psy.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT psy.lo -MD -MP -MF .deps/psy.Tpo -c psy.c -o psy.o >/dev/null 2>&1
+mv -f .deps/psy.Tpo .deps/psy.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT info.lo -MD -MP -MF .deps/info.Tpo -c -o info.lo info.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT info.lo -MD -MP -MF .deps/info.Tpo -c info.c  -fPIC -DPIC -o .libs/info.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT info.lo -MD -MP -MF .deps/info.Tpo -c info.c -o info.o >/dev/null 2>&1
+mv -f .deps/info.Tpo .deps/info.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT floor1.lo -MD -MP -MF .deps/floor1.Tpo -c -o floor1.lo floor1.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT floor1.lo -MD -MP -MF .deps/floor1.Tpo -c floor1.c  -fPIC -DPIC -o .libs/floor1.o
+floor1.c: In function 'floor1_look':
+floor1.c:190: warning: unused parameter 'vd'
+floor1.c: At top level:
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT floor1.lo -MD -MP -MF .deps/floor1.Tpo -c floor1.c -o floor1.o >/dev/null 2>&1
+mv -f .deps/floor1.Tpo .deps/floor1.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT floor0.lo -MD -MP -MF .deps/floor0.Tpo -c -o floor0.lo floor0.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT floor0.lo -MD -MP -MF .deps/floor0.Tpo -c floor0.c  -fPIC -DPIC -o .libs/floor0.o
+floor0.c: In function 'floor0_look':
+floor0.c:144: warning: unused parameter 'vd'
+floor0.c: At top level:
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT floor0.lo -MD -MP -MF .deps/floor0.Tpo -c floor0.c -o floor0.o >/dev/null 2>&1
+mv -f .deps/floor0.Tpo .deps/floor0.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT res0.lo -MD -MP -MF .deps/res0.Tpo -c -o res0.lo res0.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT res0.lo -MD -MP -MF .deps/res0.Tpo -c res0.c  -fPIC -DPIC -o .libs/res0.o
+res0.c: In function '_encodepart':
+res0.c:378: warning: unused parameter 'acc'
+res0.c: In function '_01forward':
+res0.c:521: warning: unused parameter 'vb'
+res0.c: At top level:
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT res0.lo -MD -MP -MF .deps/res0.Tpo -c res0.c -o res0.o >/dev/null 2>&1
+mv -f .deps/res0.Tpo .deps/res0.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT mapping0.lo -MD -MP -MF .deps/mapping0.Tpo -c -o mapping0.lo mapping0.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT mapping0.lo -MD -MP -MF .deps/mapping0.Tpo -c mapping0.c  -fPIC -DPIC -o .libs/mapping0.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT mapping0.lo -MD -MP -MF .deps/mapping0.Tpo -c mapping0.c -o mapping0.o >/dev/null 2>&1
+mv -f .deps/mapping0.Tpo .deps/mapping0.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT registry.lo -MD -MP -MF .deps/registry.Tpo -c -o registry.lo registry.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT registry.lo -MD -MP -MF .deps/registry.Tpo -c registry.c  -fPIC -DPIC -o .libs/registry.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT registry.lo -MD -MP -MF .deps/registry.Tpo -c registry.c -o registry.o >/dev/null 2>&1
+mv -f .deps/registry.Tpo .deps/registry.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT codebook.lo -MD -MP -MF .deps/codebook.Tpo -c -o codebook.lo codebook.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT codebook.lo -MD -MP -MF .deps/codebook.Tpo -c codebook.c  -fPIC -DPIC -o .libs/codebook.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT codebook.lo -MD -MP -MF .deps/codebook.Tpo -c codebook.c -o codebook.o >/dev/null 2>&1
+mv -f .deps/codebook.Tpo .deps/codebook.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT sharedbook.lo -MD -MP -MF .deps/sharedbook.Tpo -c -o sharedbook.lo sharedbook.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT sharedbook.lo -MD -MP -MF .deps/sharedbook.Tpo -c sharedbook.c  -fPIC -DPIC -o .libs/sharedbook.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT sharedbook.lo -MD -MP -MF .deps/sharedbook.Tpo -c sharedbook.c -o sharedbook.o >/dev/null 2>&1
+mv -f .deps/sharedbook.Tpo .deps/sharedbook.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT lookup.lo -MD -MP -MF .deps/lookup.Tpo -c -o lookup.lo lookup.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT lookup.lo -MD -MP -MF .deps/lookup.Tpo -c lookup.c  -fPIC -DPIC -o .libs/lookup.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT lookup.lo -MD -MP -MF .deps/lookup.Tpo -c lookup.c -o lookup.o >/dev/null 2>&1
+mv -f .deps/lookup.Tpo .deps/lookup.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT bitrate.lo -MD -MP -MF .deps/bitrate.Tpo -c -o bitrate.lo bitrate.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT bitrate.lo -MD -MP -MF .deps/bitrate.Tpo -c bitrate.c  -fPIC -DPIC -o .libs/bitrate.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT bitrate.lo -MD -MP -MF .deps/bitrate.Tpo -c bitrate.c -o bitrate.o >/dev/null 2>&1
+mv -f .deps/bitrate.Tpo .deps/bitrate.Plo
+/bin/bash ../libtool --tag=CC   --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc  -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -no-undefined -version-info 4:3:4 -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o libvorbis.la -rpath /usr/lib mdct.lo smallft.lo block.lo envelope.lo window.lo lsp.lo lpc.lo analysis.lo synthesis.lo psy.lo info.lo floor1.lo floor0.lo res0.lo mapping0.lo registry.lo codebook.lo sharedbook.lo lookup.lo bitrate.lo -lm -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib -logg   
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -shared  .libs/mdct.o .libs/smallft.o .libs/block.o .libs/envelope.o .libs/window.o .libs/lsp.o .libs/lpc.o .libs/analysis.o .libs/synthesis.o .libs/psy.o .libs/info.o .libs/floor1.o .libs/floor0.o .libs/res0.o .libs/mapping0.o .libs/registry.o .libs/codebook.o .libs/sharedbook.o .libs/lookup.o .libs/bitrate.o  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib -lm -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib /home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/libogg.so  -mips32 -mtune=mips32 -Wl,-soname -Wl,libvorbis.so.0 -o .libs/libvorbis.so.0.4.3
+(cd .libs && rm -f libvorbis.so.0 && ln -s libvorbis.so.0.4.3 libvorbis.so.0)
+(cd .libs && rm -f libvorbis.so && ln -s libvorbis.so.0.4.3 libvorbis.so)
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar cru .libs/libvorbis.a  mdct.o smallft.o block.o envelope.o window.o lsp.o lpc.o analysis.o synthesis.o psy.o info.o floor1.o floor0.o res0.o mapping0.o registry.o codebook.o sharedbook.o lookup.o bitrate.o
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib .libs/libvorbis.a
+creating libvorbis.la
+(cd .libs && rm -f libvorbis.la && ln -s ../libvorbis.la libvorbis.la)
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT vorbisfile.lo -MD -MP -MF .deps/vorbisfile.Tpo -c -o vorbisfile.lo vorbisfile.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT vorbisfile.lo -MD -MP -MF .deps/vorbisfile.Tpo -c vorbisfile.c  -fPIC -DPIC -o .libs/vorbisfile.o
+vorbisfile.c: In function 'ov_read_filter':
+vorbisfile.c:1879: warning: unused variable 'fpu'
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT vorbisfile.lo -MD -MP -MF .deps/vorbisfile.Tpo -c vorbisfile.c -o vorbisfile.o >/dev/null 2>&1
+mv -f .deps/vorbisfile.Tpo .deps/vorbisfile.Plo
+/bin/bash ../libtool --tag=CC   --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc  -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -no-undefined -version-info 6:2:3 -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o libvorbisfile.la -rpath /usr/lib vorbisfile.lo libvorbis.la -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib -logg   
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -shared  .libs/vorbisfile.o  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib ./.libs/libvorbis.so -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib /home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/libogg.so  -mips32 -mtune=mips32 -Wl,-soname -Wl,libvorbisfile.so.3 -o .libs/libvorbisfile.so.3.3.2
+(cd .libs && rm -f libvorbisfile.so.3 && ln -s libvorbisfile.so.3.3.2 libvorbisfile.so.3)
+(cd .libs && rm -f libvorbisfile.so && ln -s libvorbisfile.so.3.3.2 libvorbisfile.so)
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar cru .libs/libvorbisfile.a  vorbisfile.o
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib .libs/libvorbisfile.a
+creating libvorbisfile.la
+(cd .libs && rm -f libvorbisfile.la && ln -s ../libvorbisfile.la libvorbisfile.la)
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT vorbisenc.lo -MD -MP -MF .deps/vorbisenc.Tpo -c -o vorbisenc.lo vorbisenc.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT vorbisenc.lo -MD -MP -MF .deps/vorbisenc.Tpo -c vorbisenc.c  -fPIC -DPIC -o .libs/vorbisenc.o
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -MT vorbisenc.lo -MD -MP -MF .deps/vorbisenc.Tpo -c vorbisenc.c -o vorbisenc.o >/dev/null 2>&1
+mv -f .deps/vorbisenc.Tpo .deps/vorbisenc.Plo
+/bin/bash ../libtool --tag=CC   --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc  -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -no-undefined -version-info 2:6:0 -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o libvorbisenc.la -rpath /usr/lib vorbisenc.lo libvorbis.la -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib -logg   
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -shared  .libs/vorbisenc.o  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib ./.libs/libvorbis.so -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib /home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/libogg.so  -mips32 -mtune=mips32 -Wl,-soname -Wl,libvorbisenc.so.2 -o .libs/libvorbisenc.so.2.0.6
+(cd .libs && rm -f libvorbisenc.so.2 && ln -s libvorbisenc.so.2.0.6 libvorbisenc.so.2)
+(cd .libs && rm -f libvorbisenc.so && ln -s libvorbisenc.so.2.0.6 libvorbisenc.so)
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar cru .libs/libvorbisenc.a  vorbisenc.o
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib .libs/libvorbisenc.a
+creating libvorbisenc.la
+(cd .libs && rm -f libvorbisenc.la && ln -s ../libvorbisenc.la libvorbisenc.la)
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include  -D_V_SELFTEST -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT test_sharedbook-sharedbook.o -MD -MP -MF .deps/test_sharedbook-sharedbook.Tpo -c -o test_sharedbook-sharedbook.o `test -f 'sharedbook.c' || echo './'`sharedbook.c
+os.h:173: warning: 'vorbis_ftoi' defined but not used
+mv -f .deps/test_sharedbook-sharedbook.Tpo .deps/test_sharedbook-sharedbook.Po
+/bin/bash ../libtool --tag=CC   --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -D_V_SELFTEST -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o test_sharedbook test_sharedbook-sharedbook.o -lm 
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -D_V_SELFTEST -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -o test_sharedbook test_sharedbook-sharedbook.o  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib -lm  
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib'
+Making all in examples
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/examples'
+ cd .. && /bin/bash ./config.status examples/Makefile depfiles
+config.status: creating examples/Makefile
+config.status: executing depfiles commands
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/examples'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/examples'
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT decoder_example.o -MD -MP -MF .deps/decoder_example.Tpo -c -o decoder_example.o decoder_example.c
+mv -f .deps/decoder_example.Tpo .deps/decoder_example.Po
+/bin/bash ../libtool --tag=CC   --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc  -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o decoder_example decoder_example.o ../lib/libvorbis.la  
+mkdir .libs
+LD_RUN_PATH="/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib:$LD_RUN_PATH" /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -o .libs/decoder_example decoder_example.o  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib ../lib/.libs/libvorbis.so -lm -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib /home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/libogg.so 
+creating decoder_example
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT encoder_example.o -MD -MP -MF .deps/encoder_example.Tpo -c -o encoder_example.o encoder_example.c
+mv -f .deps/encoder_example.Tpo .deps/encoder_example.Po
+/bin/bash ../libtool --tag=CC   --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc  -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o encoder_example encoder_example.o ../lib/libvorbisenc.la ../lib/libvorbis.la  
+LD_RUN_PATH="/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib:$LD_RUN_PATH" /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -o .libs/encoder_example encoder_example.o  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib ../lib/.libs/libvorbisenc.so /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/.libs/libvorbis.so -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib ../lib/.libs/libvorbis.so -lm /home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/libogg.so 
+creating encoder_example
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT chaining_example.o -MD -MP -MF .deps/chaining_example.Tpo -c -o chaining_example.o chaining_example.c
+../include/vorbis/vorbisfile.h:75: warning: 'OV_CALLBACKS_DEFAULT' defined but not used
+../include/vorbis/vorbisfile.h:89: warning: 'OV_CALLBACKS_STREAMONLY' defined but not used
+../include/vorbis/vorbisfile.h:96: warning: 'OV_CALLBACKS_STREAMONLY_NOCLOSE' defined but not used
+mv -f .deps/chaining_example.Tpo .deps/chaining_example.Po
+/bin/bash ../libtool --tag=CC   --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc  -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o chaining_example chaining_example.o ../lib/libvorbisfile.la ../lib/libvorbis.la  
+LD_RUN_PATH="/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib:$LD_RUN_PATH" /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -o .libs/chaining_example chaining_example.o  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib ../lib/.libs/libvorbisfile.so /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/.libs/libvorbis.so -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib ../lib/.libs/libvorbis.so -lm /home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/libogg.so 
+creating chaining_example
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT vorbisfile_example.o -MD -MP -MF .deps/vorbisfile_example.Tpo -c -o vorbisfile_example.o vorbisfile_example.c
+../include/vorbis/vorbisfile.h:75: warning: 'OV_CALLBACKS_DEFAULT' defined but not used
+../include/vorbis/vorbisfile.h:89: warning: 'OV_CALLBACKS_STREAMONLY' defined but not used
+../include/vorbis/vorbisfile.h:96: warning: 'OV_CALLBACKS_STREAMONLY_NOCLOSE' defined but not used
+mv -f .deps/vorbisfile_example.Tpo .deps/vorbisfile_example.Po
+/bin/bash ../libtool --tag=CC   --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc  -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o vorbisfile_example vorbisfile_example.o ../lib/libvorbisfile.la ../lib/libvorbis.la  
+LD_RUN_PATH="/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib:$LD_RUN_PATH" /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -o .libs/vorbisfile_example vorbisfile_example.o  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib ../lib/.libs/libvorbisfile.so /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/.libs/libvorbis.so -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib ../lib/.libs/libvorbis.so -lm /home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/libogg.so 
+creating vorbisfile_example
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT seeking_example.o -MD -MP -MF .deps/seeking_example.Tpo -c -o seeking_example.o seeking_example.c
+../include/vorbis/vorbisfile.h:75: warning: 'OV_CALLBACKS_DEFAULT' defined but not used
+../include/vorbis/vorbisfile.h:89: warning: 'OV_CALLBACKS_STREAMONLY' defined but not used
+../include/vorbis/vorbisfile.h:96: warning: 'OV_CALLBACKS_STREAMONLY_NOCLOSE' defined but not used
+mv -f .deps/seeking_example.Tpo .deps/seeking_example.Po
+/bin/bash ../libtool --tag=CC   --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc  -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o seeking_example seeking_example.o ../lib/libvorbisfile.la ../lib/libvorbis.la  
+LD_RUN_PATH="/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib:$LD_RUN_PATH" /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -o .libs/seeking_example seeking_example.o  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib ../lib/.libs/libvorbisfile.so /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/.libs/libvorbis.so -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib ../lib/.libs/libvorbis.so -lm /home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/libogg.so 
+creating seeking_example
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/examples'
+Making all in test
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/test'
+ cd .. && /bin/bash ./config.status test/Makefile depfiles
+config.status: creating test/Makefile
+config.status: executing depfiles commands
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/test'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/test'
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT util.o -MD -MP -MF .deps/util.Tpo -c -o util.o util.c
+mv -f .deps/util.Tpo .deps/util.Po
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT write_read.o -MD -MP -MF .deps/write_read.Tpo -c -o write_read.o write_read.c
+mv -f .deps/write_read.Tpo .deps/write_read.Po
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr//include    -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H -MT test.o -MD -MP -MF .deps/test.Tpo -c -o test.o test.c
+mv -f .deps/test.Tpo .deps/test.Po
+/bin/bash ../libtool --tag=CC   --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc  -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -DUSE_MEMORY_H  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o test util.o write_read.o test.o ../lib/libvorbisenc.la ../lib/libvorbis.la -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib -logg   
+mkdir .libs
+LD_RUN_PATH="/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib:$LD_RUN_PATH" /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -o .libs/test util.o write_read.o test.o  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib ../lib/.libs/libvorbisenc.so /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/.libs/libvorbis.so -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib ../lib/.libs/libvorbis.so -lm /home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/libogg.so 
+creating test
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/test'
+Making all in doc
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc'
+ cd .. && /bin/bash ./config.status doc/Makefile 
+config.status: creating doc/Makefile
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc'
+Making all in vorbisfile
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc/vorbisfile'
+ cd ../.. && /bin/bash ./config.status doc/vorbisfile/Makefile 
+config.status: creating doc/vorbisfile/Makefile
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc/vorbisfile'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc/vorbisfile'
+make[4]: Nothing to be done for `all'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc/vorbisfile'
+Making all in vorbisenc
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc/vorbisenc'
+ cd ../.. && /bin/bash ./config.status doc/vorbisenc/Makefile 
+config.status: creating doc/vorbisenc/Makefile
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc/vorbisenc'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc/vorbisenc'
+make[4]: Nothing to be done for `all'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc/vorbisenc'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc'
+make[4]: Nothing to be done for `all-am'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3'
+make[1]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3'
+CFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " CXXFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " LDFLAGS="-L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib " make -C /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/. AR=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar AS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -c -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts" LD=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld NM=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm CC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" GCC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" CXX="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++" RANLIB=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib STRIP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip OBJCOPY=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objcopy OBJDUMP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objdump SIZE=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-size CROSS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-" ARCH="mipsel" DESTDIR="/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install"  install;
+make[1]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3'
+Making install in m4
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/m4'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/m4'
+make[3]: Nothing to be done for `install-exec-am'.
+make[3]: Nothing to be done for `install-data-am'.
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/m4'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/m4'
+Making install in include
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include'
+Making install in vorbis
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include/vorbis'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include/vorbis'
+make[4]: Nothing to be done for `install-exec-am'.
+test -z "/usr/include/vorbis" || /bin/mkdir -p "/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/include/vorbis"
+ /usr/bin/install -c -m 644 'codec.h' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/include/vorbis/codec.h'
+ /usr/bin/install -c -m 644 'vorbisfile.h' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/include/vorbis/vorbisfile.h'
+ /usr/bin/install -c -m 644 'vorbisenc.h' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/include/vorbis/vorbisenc.h'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include/vorbis'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include/vorbis'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include'
+make[4]: Nothing to be done for `install-exec-am'.
+make[4]: Nothing to be done for `install-data-am'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/include'
+Making install in vq
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/vq'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/vq'
+make[3]: Nothing to be done for `install-exec-am'.
+make[3]: Nothing to be done for `install-data-am'.
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/vq'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/vq'
+Making install in lib
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib'
+Making install in modes
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/modes'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/modes'
+make[4]: Nothing to be done for `install-exec-am'.
+make[4]: Nothing to be done for `install-data-am'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/modes'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/modes'
+Making install in books
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books'
+Making install in coupled
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/coupled'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/coupled'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/coupled'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/coupled'
+Making install in uncoupled
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/uncoupled'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/uncoupled'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/uncoupled'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/uncoupled'
+Making install in floor
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/floor'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/floor'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/floor'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books/floor'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib/books'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib'
+test -z "/usr/lib" || /bin/mkdir -p "/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib"
+ /bin/bash ../libtool   --mode=install /usr/bin/install -c  'libvorbis.la' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbis.la'
+/usr/bin/install -c .libs/libvorbis.so.0.4.3 /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbis.so.0.4.3
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib && { ln -s -f libvorbis.so.0.4.3 libvorbis.so.0 || { rm -f libvorbis.so.0 && ln -s libvorbis.so.0.4.3 libvorbis.so.0; }; })
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib && { ln -s -f libvorbis.so.0.4.3 libvorbis.so || { rm -f libvorbis.so && ln -s libvorbis.so.0.4.3 libvorbis.so; }; })
+/usr/bin/install -c .libs/libvorbis.lai /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbis.la
+/usr/bin/install -c .libs/libvorbis.a /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbis.a
+chmod 644 /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbis.a
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbis.a
+libtool: install: warning: remember to run `libtool --finish /usr/lib'
+ /bin/bash ../libtool   --mode=install /usr/bin/install -c  'libvorbisfile.la' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbisfile.la'
+libtool: install: warning: relinking `libvorbisfile.la'
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib; /bin/bash ../libtool  --tag=CC --mode=relink /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -no-undefined -version-info 6:2:3 -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib -o libvorbisfile.la -rpath /usr/lib vorbisfile.lo libvorbis.la -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib -logg -inst-prefix-dir /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install)  
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -shared  .libs/vorbisfile.o  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib -L/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib -L/usr/lib -lvorbis -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib -L/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -logg  -mips32 -mtune=mips32 -Wl,-soname -Wl,libvorbisfile.so.3 -o .libs/libvorbisfile.so.3.3.2
+/usr/bin/install -c .libs/libvorbisfile.so.3.3.2T /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbisfile.so.3.3.2
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib && { ln -s -f libvorbisfile.so.3.3.2 libvorbisfile.so.3 || { rm -f libvorbisfile.so.3 && ln -s libvorbisfile.so.3.3.2 libvorbisfile.so.3; }; })
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib && { ln -s -f libvorbisfile.so.3.3.2 libvorbisfile.so || { rm -f libvorbisfile.so && ln -s libvorbisfile.so.3.3.2 libvorbisfile.so; }; })
+/usr/bin/install -c .libs/libvorbisfile.lai /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbisfile.la
+/usr/bin/install -c .libs/libvorbisfile.a /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbisfile.a
+chmod 644 /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbisfile.a
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbisfile.a
+libtool: install: warning: remember to run `libtool --finish /usr/lib'
+ /bin/bash ../libtool   --mode=install /usr/bin/install -c  'libvorbisenc.la' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbisenc.la'
+libtool: install: warning: relinking `libvorbisenc.la'
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib; /bin/bash ../libtool  --tag=CC --mode=relink /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -O20 -Wall -Wextra -ffast-math -D_REENTRANT -fsigned-char -Wdeclaration-after-statement -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -DUSE_MEMORY_H -no-undefined -version-info 2:6:0 -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib -o libvorbisenc.la -rpath /usr/lib vorbisenc.lo libvorbis.la -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib -logg -inst-prefix-dir /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install)  
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -shared  .libs/vorbisenc.o  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib -L/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib -L/usr/lib -lvorbis -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr//lib -L/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -logg  -mips32 -mtune=mips32 -Wl,-soname -Wl,libvorbisenc.so.2 -o .libs/libvorbisenc.so.2.0.6
+/usr/bin/install -c .libs/libvorbisenc.so.2.0.6T /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbisenc.so.2.0.6
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib && { ln -s -f libvorbisenc.so.2.0.6 libvorbisenc.so.2 || { rm -f libvorbisenc.so.2 && ln -s libvorbisenc.so.2.0.6 libvorbisenc.so.2; }; })
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib && { ln -s -f libvorbisenc.so.2.0.6 libvorbisenc.so || { rm -f libvorbisenc.so && ln -s libvorbisenc.so.2.0.6 libvorbisenc.so; }; })
+/usr/bin/install -c .libs/libvorbisenc.lai /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbisenc.la
+/usr/bin/install -c .libs/libvorbisenc.a /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbisenc.a
+chmod 644 /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbisenc.a
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/libvorbisenc.a
+libtool: install: warning: remember to run `libtool --finish /usr/lib'
+make[4]: Nothing to be done for `install-data-am'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/lib'
+Making install in examples
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/examples'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/examples'
+make[3]: Nothing to be done for `install-exec-am'.
+make[3]: Nothing to be done for `install-data-am'.
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/examples'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/examples'
+Making install in test
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/test'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/test'
+make[3]: Nothing to be done for `install-exec-am'.
+make[3]: Nothing to be done for `install-data-am'.
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/test'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/test'
+Making install in doc
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc'
+Making install in vorbisfile
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc/vorbisfile'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc/vorbisfile'
+make[4]: Nothing to be done for `install-exec-am'.
+test -z "/usr/share/doc/libvorbis-1.2.3/vorbisfile" || /bin/mkdir -p "/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile"
+ /usr/bin/install -c -m 644 'OggVorbis_File.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/OggVorbis_File.html'
+ /usr/bin/install -c -m 644 'callbacks.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/callbacks.html'
+ /usr/bin/install -c -m 644 'chaining_example_c.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/chaining_example_c.html'
+ /usr/bin/install -c -m 644 'chainingexample.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/chainingexample.html'
+ /usr/bin/install -c -m 644 'crosslap.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/crosslap.html'
+ /usr/bin/install -c -m 644 'datastructures.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/datastructures.html'
+ /usr/bin/install -c -m 644 'decoding.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/decoding.html'
+ /usr/bin/install -c -m 644 'example.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/example.html'
+ /usr/bin/install -c -m 644 'exampleindex.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/exampleindex.html'
+ /usr/bin/install -c -m 644 'fileinfo.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/fileinfo.html'
+ /usr/bin/install -c -m 644 'index.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/index.html'
+ /usr/bin/install -c -m 644 'initialization.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/initialization.html'
+ /usr/bin/install -c -m 644 'ov_bitrate.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_bitrate.html'
+ /usr/bin/install -c -m 644 'ov_bitrate_instant.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_bitrate_instant.html'
+ /usr/bin/install -c -m 644 'ov_callbacks.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_callbacks.html'
+ /usr/bin/install -c -m 644 'ov_clear.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_clear.html'
+ /usr/bin/install -c -m 644 'ov_comment.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_comment.html'
+ /usr/bin/install -c -m 644 'ov_crosslap.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_crosslap.html'
+ /usr/bin/install -c -m 644 'ov_fopen.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_fopen.html'
+ /usr/bin/install -c -m 644 'ov_info.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_info.html'
+ /usr/bin/install -c -m 644 'ov_open.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_open.html'
+ /usr/bin/install -c -m 644 'ov_open_callbacks.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_open_callbacks.html'
+ /usr/bin/install -c -m 644 'ov_pcm_seek.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_pcm_seek.html'
+ /usr/bin/install -c -m 644 'ov_pcm_seek_lap.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_pcm_seek_lap.html'
+ /usr/bin/install -c -m 644 'ov_pcm_seek_page.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_pcm_seek_page.html'
+ /usr/bin/install -c -m 644 'ov_pcm_seek_page_lap.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_pcm_seek_page_lap.html'
+ /usr/bin/install -c -m 644 'ov_pcm_tell.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_pcm_tell.html'
+ /usr/bin/install -c -m 644 'ov_pcm_total.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_pcm_total.html'
+ /usr/bin/install -c -m 644 'ov_raw_seek.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_raw_seek.html'
+ /usr/bin/install -c -m 644 'ov_raw_seek_lap.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_raw_seek_lap.html'
+ /usr/bin/install -c -m 644 'ov_raw_tell.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_raw_tell.html'
+ /usr/bin/install -c -m 644 'ov_raw_total.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_raw_total.html'
+ /usr/bin/install -c -m 644 'ov_read.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_read.html'
+ /usr/bin/install -c -m 644 'ov_read_float.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_read_float.html'
+ /usr/bin/install -c -m 644 'ov_seekable.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_seekable.html'
+ /usr/bin/install -c -m 644 'ov_serialnumber.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_serialnumber.html'
+ /usr/bin/install -c -m 644 'ov_streams.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_streams.html'
+ /usr/bin/install -c -m 644 'ov_test.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_test.html'
+ /usr/bin/install -c -m 644 'ov_test_callbacks.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_test_callbacks.html'
+ /usr/bin/install -c -m 644 'ov_test_open.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_test_open.html'
+ /usr/bin/install -c -m 644 'ov_time_seek.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_time_seek.html'
+ /usr/bin/install -c -m 644 'ov_time_seek_lap.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_time_seek_lap.html'
+ /usr/bin/install -c -m 644 'ov_time_seek_page.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_time_seek_page.html'
+ /usr/bin/install -c -m 644 'ov_time_seek_page_lap.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_time_seek_page_lap.html'
+ /usr/bin/install -c -m 644 'ov_time_tell.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_time_tell.html'
+ /usr/bin/install -c -m 644 'ov_time_total.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/ov_time_total.html'
+ /usr/bin/install -c -m 644 'overview.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/overview.html'
+ /usr/bin/install -c -m 644 'reference.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/reference.html'
+ /usr/bin/install -c -m 644 'return.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/return.html'
+ /usr/bin/install -c -m 644 'seekexample.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/seekexample.html'
+ /usr/bin/install -c -m 644 'seeking.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/seeking.html'
+ /usr/bin/install -c -m 644 'seeking_example_c.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/seeking_example_c.html'
+ /usr/bin/install -c -m 644 'seeking_test_c.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/seeking_test_c.html'
+ /usr/bin/install -c -m 644 'seekingexample.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/seekingexample.html'
+ /usr/bin/install -c -m 644 'style.css' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/style.css'
+ /usr/bin/install -c -m 644 'threads.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/threads.html'
+ /usr/bin/install -c -m 644 'vorbis_comment.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/vorbis_comment.html'
+ /usr/bin/install -c -m 644 'vorbis_info.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/vorbis_info.html'
+ /usr/bin/install -c -m 644 'vorbisfile_example_c.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisfile/vorbisfile_example_c.html'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc/vorbisfile'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc/vorbisfile'
+Making install in vorbisenc
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc/vorbisenc'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc/vorbisenc'
+make[4]: Nothing to be done for `install-exec-am'.
+test -z "/usr/share/doc/libvorbis-1.2.3/vorbisenc" || /bin/mkdir -p "/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisenc"
+ /usr/bin/install -c -m 644 'changes.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisenc/changes.html'
+ /usr/bin/install -c -m 644 'examples.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisenc/examples.html'
+ /usr/bin/install -c -m 644 'index.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisenc/index.html'
+ /usr/bin/install -c -m 644 'ov_ectl_ratemanage2_arg.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisenc/ov_ectl_ratemanage2_arg.html'
+ /usr/bin/install -c -m 644 'ov_ectl_ratemanage_arg.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisenc/ov_ectl_ratemanage_arg.html'
+ /usr/bin/install -c -m 644 'overview.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisenc/overview.html'
+ /usr/bin/install -c -m 644 'reference.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisenc/reference.html'
+ /usr/bin/install -c -m 644 'style.css' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisenc/style.css'
+ /usr/bin/install -c -m 644 'vorbis_encode_ctl.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisenc/vorbis_encode_ctl.html'
+ /usr/bin/install -c -m 644 'vorbis_encode_init.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisenc/vorbis_encode_init.html'
+ /usr/bin/install -c -m 644 'vorbis_encode_setup_init.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisenc/vorbis_encode_setup_init.html'
+ /usr/bin/install -c -m 644 'vorbis_encode_setup_managed.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisenc/vorbis_encode_setup_managed.html'
+ /usr/bin/install -c -m 644 'vorbis_encode_setup_vbr.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisenc/vorbis_encode_setup_vbr.html'
+ /usr/bin/install -c -m 644 'vorbis_info.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisenc/vorbis_info.html'
+ /usr/bin/install -c -m 644 'vorbis_encode_init_vbr.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisenc/vorbis_encode_init_vbr.html'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc/vorbisenc'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc/vorbisenc'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc'
+make[4]: Nothing to be done for `install-exec-am'.
+test -z "/usr/share/doc/libvorbis-1.2.3" || /bin/mkdir -p "/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3"
+ /usr/bin/install -c -m 644 'rfc5215.xml' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/rfc5215.xml'
+ /usr/bin/install -c -m 644 'rfc5215.txt' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/rfc5215.txt'
+ /usr/bin/install -c -m 644 'eightphase.png' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/eightphase.png'
+ /usr/bin/install -c -m 644 'evenlsp.png' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/evenlsp.png'
+ /usr/bin/install -c -m 644 'fish_xiph_org.png' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/fish_xiph_org.png'
+ /usr/bin/install -c -m 644 'floor1_inverse_dB_table.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/floor1_inverse_dB_table.html'
+ /usr/bin/install -c -m 644 'floorval.png' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/floorval.png'
+ /usr/bin/install -c -m 644 'fourphase.png' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/fourphase.png'
+ /usr/bin/install -c -m 644 'framing.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/framing.html'
+ /usr/bin/install -c -m 644 'helper.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/helper.html'
+ /usr/bin/install -c -m 644 'index.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/index.html'
+ /usr/bin/install -c -m 644 'lspmap.png' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/lspmap.png'
+ /usr/bin/install -c -m 644 'oddlsp.png' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/oddlsp.png'
+ /usr/bin/install -c -m 644 'oggstream.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/oggstream.html'
+ /usr/bin/install -c -m 644 'programming.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/programming.html'
+ /usr/bin/install -c -m 644 'squarepolar.png' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/squarepolar.png'
+ /usr/bin/install -c -m 644 'stereo.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/stereo.html'
+ /usr/bin/install -c -m 644 'stream.png' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/stream.png'
+ /usr/bin/install -c -m 644 'v-comment.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/v-comment.html'
+ /usr/bin/install -c -m 644 'vorbis-clip.txt' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbis-clip.txt'
+ /usr/bin/install -c -m 644 'vorbis-errors.txt' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbis-errors.txt'
+ /usr/bin/install -c -m 644 'vorbis-fidelity.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbis-fidelity.html'
+ /usr/bin/install -c -m 644 'vorbis.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbis.html'
+ /usr/bin/install -c -m 644 'vorbisword2.png' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/vorbisword2.png'
+ /usr/bin/install -c -m 644 'wait.png' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/wait.png'
+ /usr/bin/install -c -m 644 'white-xifish.png' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/doc/libvorbis-1.2.3/white-xifish.png'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/doc'
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3'
+make[3]: Nothing to be done for `install-exec-am'.
+test -z "/usr/share/aclocal" || /bin/mkdir -p "/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/aclocal"
+ /usr/bin/install -c -m 644 'vorbis.m4' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/aclocal/vorbis.m4'
+test -z "/usr/lib/pkgconfig" || /bin/mkdir -p "/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/pkgconfig"
+ /usr/bin/install -c -m 644 'vorbis.pc' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/pkgconfig/vorbis.pc'
+ /usr/bin/install -c -m 644 'vorbisenc.pc' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/pkgconfig/vorbisenc.pc'
+ /usr/bin/install -c -m 644 'vorbisfile.pc' '/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/pkgconfig/vorbisfile.pc'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3'
+make[1]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3'
+touch /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/.built
+mkdir -p /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg/libvorbis/CONTROL
+echo "Package: libvorbis" > /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg/libvorbis/CONTROL/control
+echo "Version: 1.2.3-1" >> /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg/libvorbis/CONTROL/control
+( DEPENDS=''; for depend in libogg; do DEPENDS=${DEPENDS:+$DEPENDS, }${depend##+}; done; echo "Depends: $DEPENDS"; echo "Provides: "; echo "Source: package/libvorbis"; echo "Section: libs"; echo "Priority: optional"; echo "Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>"; echo "Architecture: mipsel"; echo -n "Description: "; getvar V_Package_libvorbis_description | sed -e 's,^[[:space:]]*, ,g'; ) >> /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg/libvorbis/CONTROL/control
+chmod 644 /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg/libvorbis/CONTROL/control
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg/libvorbis/CONTROL; var2file "V_Package_libvorbis_conffiles" conffiles; var2file "V_Package_libvorbis_preinst" preinst; var2file "V_Package_libvorbis_postinst" postinst; var2file "V_Package_libvorbis_prerm" prerm; var2file "V_Package_libvorbis_postrm" postrm; )
+install -d -m0755 /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg/libvorbis/usr/lib/
+cp -fpR /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/*.so.* /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg/libvorbis/usr/lib/
+mkdir -p /home/chenhj/work/mr101n/bin/packages/mipsel
+find /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg/libvorbis -name 'CVS' -o -name '.svn' -o -name '.#*' | xargs -r rm -rf
+NM="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm" STRIP="/home/chenhj/work/mr101n/staging_dir/host/bin/sstrip" STRIP_KMOD="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip --strip-unneeded --remove-section=.comment" /home/chenhj/work/mr101n/scripts/rstrip.sh /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg/libvorbis
+rstrip.sh: /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg/libvorbis/usr/lib/libvorbis.so.0.4.3:shared object
+rstrip.sh: /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg/libvorbis/usr/lib/libvorbisfile.so.3.3.2:shared object
+rstrip.sh: /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg/libvorbis/usr/lib/libvorbisenc.so.2.0.6:shared object
+ipkg-build -c -o 0 -g 0 /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg/libvorbis /home/chenhj/work/mr101n/bin/packages/mipsel
+Packaged contents of /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg/libvorbis into /home/chenhj/work/mr101n/bin/packages/mipsel/libvorbis_1.2.3-1_mipsel.ipk
+make V=99  -j1 clean-staging
+make[1]: Entering directory `/home/chenhj/work/mr101n/package/libvorbis'
+rm -f /home/chenhj/work/mr101n/staging_dir/mipsel/stamp/.libvorbis_installed
+make[1]: Leaving directory `/home/chenhj/work/mr101n/package/libvorbis'
+rm -rf /home/chenhj/work/mr101n/tmp/stage-libvorbis
+mkdir -p /home/chenhj/work/mr101n/tmp/stage-libvorbis/host /home/chenhj/work/mr101n/staging_dir/mipsel/packages /home/chenhj/work/mr101n/staging_dir/host/packages
+install -d -m0755 /home/chenhj/work/mr101n/tmp/stage-libvorbis/usr/include/vorbis/
+install -m0644 /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/include/vorbis/* /home/chenhj/work/mr101n/tmp/stage-libvorbis/usr/include/vorbis/
+install -d -m0755 /home/chenhj/work/mr101n/tmp/stage-libvorbis/usr/lib/
+cp -fpR /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/*.{so*,a,la} /home/chenhj/work/mr101n/tmp/stage-libvorbis/usr/lib/
+install -d -m0755 /home/chenhj/work/mr101n/tmp/stage-libvorbis/usr/lib/pkgconfig/
+install -m0644 /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/lib/pkgconfig/* /home/chenhj/work/mr101n/tmp/stage-libvorbis/usr/lib/pkgconfig/
+install -d -m0755 /home/chenhj/work/mr101n/tmp/stage-libvorbis/usr/share/aclocal/
+install -m0644 /home/chenhj/work/mr101n/build_dir/mipsel/libvorbis-1.2.3/ipkg-install/usr/share/aclocal/* /home/chenhj/work/mr101n/tmp/stage-libvorbis/usr/share/aclocal/
+find /home/chenhj/work/mr101n/tmp/stage-libvorbis -name '*.la' | xargs -r /home/chenhj/work/mr101n/staging_dir/host/bin/sed -i -e "s,\(^libdir='\| \|-L\|^dependency_libs='\)/usr/lib,\1/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib,g"
+find /home/chenhj/work/mr101n/tmp/stage-libvorbis/host -name '*.la' | xargs -r /home/chenhj/work/mr101n/staging_dir/host/bin/sed -i -e "s,\(^libdir='\| \|-L\|^dependency_libs='\)/usr/lib,\1/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib,g" 
+if [ -d /home/chenhj/work/mr101n/tmp/stage-libvorbis ]; then (cd /home/chenhj/work/mr101n/tmp/stage-libvorbis; find ./ > /home/chenhj/work/mr101n/staging_dir/mipsel/packages/libvorbis.list); cp -fpR /home/chenhj/work/mr101n/tmp/stage-libvorbis/* /home/chenhj/work/mr101n/staging_dir/mipsel/; fi
+rm -rf /home/chenhj/work/mr101n/tmp/stage-libvorbis
+touch /home/chenhj/work/mr101n/staging_dir/mipsel/stamp/.libvorbis_installed
+make: Leaving directory `/home/chenhj/work/mr101n/package/libvorbis'

@@ -1,0 +1,12 @@
+--- linux-2.6.26/drivers/scsi/scsi.c	2010-01-26 21:06:54.165575419 +0800
++++ linux-2.6.26/drivers/scsi/scsi.c	2010-01-26 21:07:12.528941746 +0800
+@@ -686,7 +686,8 @@
+ 	 * AK: unlikely race here: for some reason the timer could
+ 	 * expire before the serial number is set up below.
+ 	 */
+-	scsi_add_timer(cmd, cmd->timeout_per_command, scsi_times_out);
++	/* EZP : increase the timeout duration by 32 times. */
++	scsi_add_timer(cmd, cmd->timeout_per_command << 5, scsi_times_out);
+ 
+ 	scsi_log_send(cmd);
+ 

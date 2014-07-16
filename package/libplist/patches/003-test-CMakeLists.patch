@@ -1,0 +1,14 @@
+--- ../test/CMakeLists.txt	2010-01-22 04:45:01.000000000 +0800
++++ ../test/CMakeLists.txt	2010-05-12 19:33:51.627332399 +0800
+@@ -7,9 +7,9 @@
+ SET(plist_cmp_SRC
+ 	plist_cmp.c)
+ ADD_EXECUTABLE(plist_test ${plist_test_SRC})
+-TARGET_LINK_LIBRARIES(plist_test plist)
++TARGET_LINK_LIBRARIES(plist_test plist glib-2.0 xml2 intl iconv gcrypt z gpg-error)
+ ADD_EXECUTABLE(plist_cmp ${plist_cmp_SRC})
+-TARGET_LINK_LIBRARIES(plist_cmp plist)
++TARGET_LINK_LIBRARIES(plist_cmp plist glib-2.0 xml2 intl iconv gcrypt z gpg-error)
+ 
+ INCLUDE(CTest)
+ 

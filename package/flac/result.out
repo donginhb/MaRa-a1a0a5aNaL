@@ -1,0 +1,1219 @@
++ pwd
+make: Entering directory `/home/chenhj/work/mr101n/package/flac'
+gzip -dc /home/dl/flac-1.2.1.tar.gz | /bin/tar -C /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/.. -xf -
+
+Applying ./patches/001-no-docs-and-examples.patch using plaintext: 
+patching file Makefile.am
+patching file Makefile.in
+patching file src/Makefile.am
+patching file src/Makefile.in
+
+Applying ./patches/002-no-utility.patch using plaintext: 
+patching file src/Makefile.am
+patching file src/Makefile.in
+touch /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/.prepared_1b906937d9c09c1f04e01549f9422c9f
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./libtool" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/bin/libtool" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./libtool; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/bin/libtool /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./; fi
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./ltmain.sh" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/share/libtool/ltmain.sh" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./ltmain.sh; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/share/libtool/ltmain.sh /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./; fi
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./libtool.m4" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/share/aclocal/libtool.m4" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./libtool.m4; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/share/aclocal/libtool.m4 /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./; fi
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./configure" ]; then /home/chenhj/work/mr101n/staging_dir/host/bin/sed -i -e 's,pardus_ltmain_version=.*,pardus_ltmain_version="$pardus_lt_version",' /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./configure; fi
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./; if [ -x ./configure ]; then /usr/bin/find /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ -name config.guess | xargs -r -n1 cp /home/chenhj/work/mr101n/scripts/config.guess; /usr/bin/find /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ -name config.sub | xargs -r -n1 cp /home/chenhj/work/mr101n/scripts/config.sub; AR=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar AS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -c -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts" LD=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld NM=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm CC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" GCC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" CXX="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++" RANLIB=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib STRIP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip OBJCOPY=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objcopy OBJDUMP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objdump SIZE=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-size CFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic " CXXFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic " CPPFLAGS="-I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " LDFLAGS="-L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib " PKG_CONFIG_PATH="/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/pkgconfig:/home/chenhj/work/mr101n/staging_dir/host/usr/lib/pkgconfig" PKG_CONFIG_LIBDIR="/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/pkgconfig"  ./configure --target=mipsel-linux --host=mipsel-linux --build=x86_64-linux-gnu --program-prefix="" --program-suffix="" --prefix=/usr --exec-prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin --libexecdir=/usr/lib --sysconfdir=/etc --datadir=/usr/share --localstatedir=/var --mandir=/usr/man --infodir=/usr/info --disable-nls  --disable-cpplibs --disable-sse --disable-3dnow --disable-altivec --disable-doxgen-docs --disable-local-xmms-plugin --disable-xmms-plugin --disable-ogg --disable-oggtest --disable-debug ; fi; )
+configure: loading site script /home/chenhj/work/mr101n/include/site/mipsel-linux-uclibc
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking for mipsel-linux-strip... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... mipsel-unknown-linux-gnu
+checking for style of include used by make... GNU
+checking for mipsel-linux-gcc... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... yes
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc accepts -g... yes
+checking for /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc option to accept ANSI C... none needed
+checking dependency style of /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc... gcc3
+checking for a sed that does not truncate output... /home/chenhj/work/mr101n/staging_dir/host/bin/sed
+checking for egrep... grep -E
+checking for ld used by /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld
+checking if the linker (/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld) is GNU ld... yes
+checking for /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld option to reload object files... -r
+checking for BSD-compatible nm... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm
+checking whether ln -s works... yes
+checking how to recognise dependent libraries... pass_all
+checking how to run the C preprocessor... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking for mipsel-linux-g++... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++
+checking whether we are using the GNU C++ compiler... yes
+checking whether /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ accepts -g... yes
+checking dependency style of /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++... gcc3
+checking how to run the C++ preprocessor... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ -E
+checking for mipsel-linux-g77... no
+checking for mipsel-linux-f77... no
+checking for mipsel-linux-xlf... no
+checking for mipsel-linux-frt... no
+checking for mipsel-linux-pgf77... no
+checking for mipsel-linux-fort77... no
+checking for mipsel-linux-fl32... no
+checking for mipsel-linux-af77... no
+checking for mipsel-linux-f90... no
+checking for mipsel-linux-xlf90... no
+checking for mipsel-linux-pgf90... no
+checking for mipsel-linux-epcf90... no
+checking for mipsel-linux-f95... no
+checking for mipsel-linux-fort... no
+checking for mipsel-linux-xlf95... no
+checking for mipsel-linux-ifc... no
+checking for mipsel-linux-efc... no
+checking for mipsel-linux-pgf95... no
+checking for mipsel-linux-lf95... no
+checking for mipsel-linux-gfortran... no
+checking for g77... no
+checking for f77... no
+checking for xlf... no
+checking for frt... no
+checking for pgf77... no
+checking for fort77... no
+checking for fl32... no
+checking for af77... no
+checking for f90... no
+checking for xlf90... no
+checking for pgf90... no
+checking for epcf90... no
+checking for f95... no
+checking for fort... no
+checking for xlf95... no
+checking for ifc... no
+checking for efc... no
+checking for pgf95... no
+checking for lf95... no
+checking for gfortran... no
+checking whether we are using the GNU Fortran 77 compiler... no
+checking whether  accepts -g... no
+checking the maximum length of command line arguments... 32768
+checking command to parse /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm output from /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc object... ok
+checking for objdir... .libs
+checking for mipsel-linux-ar... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar
+checking for mipsel-linux-ranlib... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib
+checking for mipsel-linux-strip... (cached) /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc static flag  works... yes
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc supports -fno-rtti -fno-exceptions... no
+checking for /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc option to produce PIC... -fPIC
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc PIC flag -fPIC works... yes
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc supports -c -o file.o... yes
+checking whether the /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc linker (/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+configure: creating libtool
+appending configuration tag "CXX" to libtool
+checking for ld used by /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld
+checking if the linker (/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld) is GNU ld... yes
+checking whether the /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ linker (/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld) supports shared libraries... yes
+checking for /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ option to produce PIC... -fPIC
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ PIC flag -fPIC works... yes
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ supports -c -o file.o... yes
+checking whether the /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ linker (/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld) supports shared libraries... yes
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+appending configuration tag "F77" to libtool
+checking for mipsel-linux-g++... (cached) /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++
+checking whether we are using the GNU C++ compiler... (cached) yes
+checking whether /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ accepts -g... (cached) yes
+checking dependency style of /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++... (cached) gcc3
+checking whether make sets $(MAKE)... (cached) yes
+checking for special C compiler options needed for large files... no
+checking for _FILE_OFFSET_BITS value needed for large files... 64
+checking for _LARGE_FILES value needed for large files... no
+checking for _LARGEFILE_SOURCE value needed for large files... 1
+checking for fseeko... yes
+checking for void*... yes
+checking size of void*... 4
+checking whether byte ordering is bigendian... (cached) no
+checking for socklen_t... yes
+checking for getopt_long... yes
+checking for doxygen... doxygen
+checking for ld used by GCC... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld
+checking if the linker (/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld) is GNU ld... yes
+checking for shared library run path origin... done
+checking for iconv... no, consider installing GNU libiconv
+checking for nl_langinfo and CODESET... yes
+checking for docbook-to-man... no
+checking for docbook2man... no
+checking for nasm... no
+checking for as... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -c -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts
+checking for gas... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating src/libFLAC/Makefile
+config.status: creating src/libFLAC/flac.pc
+config.status: creating src/libFLAC/ia32/Makefile
+config.status: creating src/libFLAC/ppc/Makefile
+config.status: creating src/libFLAC/ppc/as/Makefile
+config.status: creating src/libFLAC/ppc/gas/Makefile
+config.status: creating src/libFLAC/include/Makefile
+config.status: creating src/libFLAC/include/private/Makefile
+config.status: creating src/libFLAC/include/protected/Makefile
+config.status: creating src/libFLAC++/Makefile
+config.status: creating src/libFLAC++/flac++.pc
+config.status: creating src/flac/Makefile
+config.status: creating src/metaflac/Makefile
+config.status: creating src/monkeys_audio_utilities/Makefile
+config.status: creating src/monkeys_audio_utilities/flac_mac/Makefile
+config.status: creating src/monkeys_audio_utilities/flac_ren/Makefile
+config.status: creating src/plugin_common/Makefile
+config.status: creating src/plugin_winamp2/Makefile
+config.status: creating src/plugin_winamp2/include/Makefile
+config.status: creating src/plugin_winamp2/include/winamp2/Makefile
+config.status: creating src/plugin_xmms/Makefile
+config.status: creating src/share/Makefile
+config.status: creating src/share/getopt/Makefile
+config.status: creating src/share/grabbag/Makefile
+config.status: creating src/share/replaygain_analysis/Makefile
+config.status: creating src/share/replaygain_synthesis/Makefile
+config.status: creating src/share/replaygain_synthesis/include/Makefile
+config.status: creating src/share/replaygain_synthesis/include/private/Makefile
+config.status: creating src/share/utf8/Makefile
+config.status: creating src/test_grabbag/Makefile
+config.status: creating src/test_grabbag/cuesheet/Makefile
+config.status: creating src/test_grabbag/picture/Makefile
+config.status: creating src/test_libs_common/Makefile
+config.status: creating src/test_libFLAC/Makefile
+config.status: creating src/test_libFLAC++/Makefile
+config.status: creating src/test_seeking/Makefile
+config.status: creating src/test_streams/Makefile
+config.status: creating examples/Makefile
+config.status: creating examples/c/Makefile
+config.status: creating examples/c/decode/Makefile
+config.status: creating examples/c/decode/file/Makefile
+config.status: creating examples/c/encode/Makefile
+config.status: creating examples/c/encode/file/Makefile
+config.status: creating examples/cpp/Makefile
+config.status: creating examples/cpp/decode/Makefile
+config.status: creating examples/cpp/decode/file/Makefile
+config.status: creating examples/cpp/encode/Makefile
+config.status: creating examples/cpp/encode/file/Makefile
+config.status: creating include/Makefile
+config.status: creating include/FLAC/Makefile
+config.status: creating include/FLAC++/Makefile
+config.status: creating include/share/Makefile
+config.status: creating include/share/grabbag/Makefile
+config.status: creating include/test_libs_common/Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/html/Makefile
+config.status: creating doc/html/images/Makefile
+config.status: creating doc/html/images/hw/Makefile
+config.status: creating doc/html/ru/Makefile
+config.status: creating m4/Makefile
+config.status: creating man/Makefile
+config.status: creating test/Makefile
+config.status: creating test/cuesheets/Makefile
+config.status: creating test/flac-to-flac-metadata-test-files/Makefile
+config.status: creating test/metaflac-test-files/Makefile
+config.status: creating test/pictures/Makefile
+config.status: creating build/Makefile
+config.status: creating obj/Makefile
+config.status: creating obj/debug/Makefile
+config.status: creating obj/debug/bin/Makefile
+config.status: creating obj/debug/lib/Makefile
+config.status: creating obj/release/Makefile
+config.status: creating obj/release/bin/Makefile
+config.status: creating obj/release/lib/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./libtool" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/bin/libtool" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./libtool; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/bin/libtool /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./; fi
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./ltmain.sh" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/share/libtool/ltmain.sh" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./ltmain.sh; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/share/libtool/ltmain.sh /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./; fi
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./libtool.m4" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/share/aclocal/libtool.m4" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./libtool.m4; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/share/aclocal/libtool.m4 /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/./; fi
+touch /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/.configured
+CFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " CXXFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " LDFLAGS="-L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib " make -C /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/. AR=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar AS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -c -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts" LD=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld NM=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm CC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" GCC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" CXX="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++" RANLIB=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib STRIP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip OBJCOPY=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objcopy OBJDUMP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objdump SIZE=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-size CROSS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-" ARCH="mipsel" ;
+make[1]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1'
+make  all-recursive
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1'
+Making all in include
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include'
+Making all in FLAC
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/FLAC'
+make[4]: Nothing to be done for `all'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/FLAC'
+Making all in share
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/share'
+Making all in grabbag
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/share/grabbag'
+make[5]: Nothing to be done for `all'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/share/grabbag'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/share'
+make[5]: Nothing to be done for `all-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/share'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/share'
+Making all in test_libs_common
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/test_libs_common'
+make[4]: Nothing to be done for `all'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/test_libs_common'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include'
+make[4]: Nothing to be done for `all-am'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include'
+Making all in m4
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/m4'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/m4'
+Making all in src
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src'
+Making all in libFLAC
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC'
+Making all in include
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include'
+Making all in private
+make[6]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include/private'
+make[6]: Nothing to be done for `all'.
+make[6]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include/private'
+Making all in protected
+make[6]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include/protected'
+make[6]: Nothing to be done for `all'.
+make[6]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include/protected'
+make[6]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include'
+make[6]: Nothing to be done for `all-am'.
+make[6]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include'
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include'
+Making all in .
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC'
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT bitmath.lo -MD -MP -MF ".deps/bitmath.Tpo" \
+	  -c -o bitmath.lo `test -f 'bitmath.c' || echo './'`bitmath.c; \
+	then mv -f ".deps/bitmath.Tpo" ".deps/bitmath.Plo"; \
+	else rm -f ".deps/bitmath.Tpo"; exit 1; \
+	fi
+mkdir .libs
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT bitmath.lo -MD -MP -MF .deps/bitmath.Tpo -c bitmath.c  -fPIC -DPIC -o .libs/bitmath.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT bitmath.lo -MD -MP -MF .deps/bitmath.Tpo -c bitmath.c -o bitmath.o >/dev/null 2>&1
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT bitreader.lo -MD -MP -MF ".deps/bitreader.Tpo" \
+	  -c -o bitreader.lo `test -f 'bitreader.c' || echo './'`bitreader.c; \
+	then mv -f ".deps/bitreader.Tpo" ".deps/bitreader.Plo"; \
+	else rm -f ".deps/bitreader.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT bitreader.lo -MD -MP -MF .deps/bitreader.Tpo -c bitreader.c  -fPIC -DPIC -o .libs/bitreader.o
+bitreader.c: In function 'FLAC__bitreader_read_rice_signed_block':
+bitreader.c:179: warning: inlining failed in call to 'crc16_update_word_': --param max-inline-insns-single limit reached
+bitreader.c:1039: warning: called from here
+bitreader.c:179: warning: inlining failed in call to 'crc16_update_word_': --param max-inline-insns-single limit reached
+bitreader.c:1047: warning: called from here
+bitreader.c:179: warning: inlining failed in call to 'crc16_update_word_': --param max-inline-insns-single limit reached
+bitreader.c:1126: warning: called from here
+bitreader.c: In function 'FLAC__bitreader_read_unary_unsigned':
+bitreader.c:179: warning: inlining failed in call to 'crc16_update_word_': --param max-inline-insns-single limit reached
+bitreader.c:733: warning: called from here
+bitreader.c:179: warning: inlining failed in call to 'crc16_update_word_': --param max-inline-insns-single limit reached
+bitreader.c:741: warning: called from here
+bitreader.c: In function 'FLAC__bitreader_read_raw_uint32':
+bitreader.c:179: warning: inlining failed in call to 'crc16_update_word_': --param max-inline-insns-single limit reached
+bitreader.c:469: warning: called from here
+bitreader.c:179: warning: inlining failed in call to 'crc16_update_word_': --param max-inline-insns-single limit reached
+bitreader.c:488: warning: called from here
+bitreader.c: In function 'FLAC__bitreader_read_utf8_uint64':
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:1326: warning: called from here
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:1363: warning: called from here
+bitreader.c: In function 'FLAC__bitreader_read_utf8_uint32':
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:1271: warning: called from here
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:1304: warning: called from here
+bitreader.c: In function 'FLAC__bitreader_read_rice_signed':
+bitreader.c:717: warning: inlining failed in call to 'FLAC__bitreader_read_unary_unsigned': --param max-inline-insns-single limit reached
+bitreader.c:788: warning: called from here
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:792: warning: called from here
+bitreader.c: In function 'FLAC__bitreader_read_byte_block_aligned_no_crc':
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:651: warning: called from here
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:688: warning: called from here
+bitreader.c: In function 'FLAC__bitreader_skip_byte_block_aligned_no_crc':
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:616: warning: called from here
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:633: warning: called from here
+bitreader.c: In function 'FLAC__bitreader_skip_bits_no_crc':
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:587: warning: called from here
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:598: warning: called from here
+bitreader.c: In function 'FLAC__bitreader_read_uint32_little_endian':
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:552: warning: called from here
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:555: warning: called from here
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:559: warning: called from here
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:563: warning: called from here
+bitreader.c: In function 'FLAC__bitreader_read_raw_uint64':
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:530: warning: called from here
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:532: warning: called from here
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:539: warning: called from here
+bitreader.c: In function 'FLAC__bitreader_read_raw_int32':
+bitreader.c:436: warning: inlining failed in call to 'FLAC__bitreader_read_raw_uint32': --param max-inline-insns-single limit reached
+bitreader.c:517: warning: called from here
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT bitreader.lo -MD -MP -MF .deps/bitreader.Tpo -c bitreader.c -o bitreader.o >/dev/null 2>&1
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT bitwriter.lo -MD -MP -MF ".deps/bitwriter.Tpo" \
+	  -c -o bitwriter.lo `test -f 'bitwriter.c' || echo './'`bitwriter.c; \
+	then mv -f ".deps/bitwriter.Tpo" ".deps/bitwriter.Plo"; \
+	else rm -f ".deps/bitwriter.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT bitwriter.lo -MD -MP -MF .deps/bitwriter.Tpo -c bitwriter.c  -fPIC -DPIC -o .libs/bitwriter.o
+bitwriter.c: In function 'FLAC__bitwriter_write_utf8_uint64':
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:837: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:840: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:841: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:844: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:845: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:846: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:849: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:850: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:851: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:852: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:855: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:856: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:857: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:858: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:859: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:862: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:863: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:864: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:865: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:866: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:867: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:870: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:871: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:872: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:873: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:874: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:875: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:876: warning: called from here
+bitwriter.c: In function 'FLAC__bitwriter_write_utf8_uint32':
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:791: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:794: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:795: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:798: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:799: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:800: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:803: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:804: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:805: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:806: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:809: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:810: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:811: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:812: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:813: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:816: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:817: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:818: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:819: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:820: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:821: warning: called from here
+bitwriter.c: In function 'FLAC__bitwriter_write_byte_block':
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:422: warning: called from here
+bitwriter.c: In function 'FLAC__bitwriter_write_raw_uint32_little_endian':
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:404: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:406: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:408: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:410: warning: called from here
+bitwriter.c: In function 'FLAC__bitwriter_write_raw_uint64':
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:392: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:392: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:397: warning: called from here
+bitwriter.c: In function 'FLAC__bitwriter_write_raw_int32':
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:385: warning: called from here
+bitwriter.c: In function 'FLAC__bitwriter_zero_pad_to_byte_boundary':
+bitwriter.c:303: warning: inlining failed in call to 'FLAC__bitwriter_write_zeroes': --param max-inline-insns-single limit reached
+bitwriter.c:886: warning: called from here
+bitwriter.c: In function 'FLAC__bitwriter_write_rice_signed':
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:534: warning: called from here
+bitwriter.c:303: warning: inlining failed in call to 'FLAC__bitwriter_write_zeroes': --param max-inline-insns-single limit reached
+bitwriter.c:536: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:536: warning: called from here
+bitwriter.c: In function 'FLAC__bitwriter_write_unary_unsigned':
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:432: warning: called from here
+bitwriter.c:303: warning: inlining failed in call to 'FLAC__bitwriter_write_zeroes': --param max-inline-insns-single limit reached
+bitwriter.c:434: warning: called from here
+bitwriter.c:341: warning: inlining failed in call to 'FLAC__bitwriter_write_raw_uint32': --param max-inline-insns-single limit reached
+bitwriter.c:434: warning: called from here
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT bitwriter.lo -MD -MP -MF .deps/bitwriter.Tpo -c bitwriter.c -o bitwriter.o >/dev/null 2>&1
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT cpu.lo -MD -MP -MF ".deps/cpu.Tpo" \
+	  -c -o cpu.lo `test -f 'cpu.c' || echo './'`cpu.c; \
+	then mv -f ".deps/cpu.Tpo" ".deps/cpu.Plo"; \
+	else rm -f ".deps/cpu.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT cpu.lo -MD -MP -MF .deps/cpu.Tpo -c cpu.c  -fPIC -DPIC -o .libs/cpu.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT cpu.lo -MD -MP -MF .deps/cpu.Tpo -c cpu.c -o cpu.o >/dev/null 2>&1
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT crc.lo -MD -MP -MF ".deps/crc.Tpo" \
+	  -c -o crc.lo `test -f 'crc.c' || echo './'`crc.c; \
+	then mv -f ".deps/crc.Tpo" ".deps/crc.Plo"; \
+	else rm -f ".deps/crc.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT crc.lo -MD -MP -MF .deps/crc.Tpo -c crc.c  -fPIC -DPIC -o .libs/crc.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT crc.lo -MD -MP -MF .deps/crc.Tpo -c crc.c -o crc.o >/dev/null 2>&1
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT fixed.lo -MD -MP -MF ".deps/fixed.Tpo" \
+	  -c -o fixed.lo `test -f 'fixed.c' || echo './'`fixed.c; \
+	then mv -f ".deps/fixed.Tpo" ".deps/fixed.Plo"; \
+	else rm -f ".deps/fixed.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT fixed.lo -MD -MP -MF .deps/fixed.Tpo -c fixed.c  -fPIC -DPIC -o .libs/fixed.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT fixed.lo -MD -MP -MF .deps/fixed.Tpo -c fixed.c -o fixed.o >/dev/null 2>&1
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT float.lo -MD -MP -MF ".deps/float.Tpo" \
+	  -c -o float.lo `test -f 'float.c' || echo './'`float.c; \
+	then mv -f ".deps/float.Tpo" ".deps/float.Plo"; \
+	else rm -f ".deps/float.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT float.lo -MD -MP -MF .deps/float.Tpo -c float.c  -fPIC -DPIC -o .libs/float.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT float.lo -MD -MP -MF .deps/float.Tpo -c float.c -o float.o >/dev/null 2>&1
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT format.lo -MD -MP -MF ".deps/format.Tpo" \
+	  -c -o format.lo `test -f 'format.c' || echo './'`format.c; \
+	then mv -f ".deps/format.Tpo" ".deps/format.Plo"; \
+	else rm -f ".deps/format.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT format.lo -MD -MP -MF .deps/format.Tpo -c format.c  -fPIC -DPIC -o .libs/format.o
+format.c: In function 'FLAC__format_vorbiscomment_entry_value_is_legal':
+format.c:317: warning: inlining failed in call to 'utf8len_': --param max-inline-insns-single limit reached
+format.c:370: warning: called from here
+format.c:317: warning: inlining failed in call to 'utf8len_': --param max-inline-insns-single limit reached
+format.c:379: warning: called from here
+format.c: In function 'FLAC__format_vorbiscomment_entry_is_legal':
+format.c:317: warning: inlining failed in call to 'utf8len_': --param max-inline-insns-single limit reached
+format.c:404: warning: called from here
+format.c: In function 'FLAC__format_picture_is_legal':
+format.c:317: warning: inlining failed in call to 'utf8len_': --param max-inline-insns-single limit reached
+format.c:508: warning: called from here
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT format.lo -MD -MP -MF .deps/format.Tpo -c format.c -o format.o >/dev/null 2>&1
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT lpc.lo -MD -MP -MF ".deps/lpc.Tpo" \
+	  -c -o lpc.lo `test -f 'lpc.c' || echo './'`lpc.c; \
+	then mv -f ".deps/lpc.Tpo" ".deps/lpc.Plo"; \
+	else rm -f ".deps/lpc.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT lpc.lo -MD -MP -MF .deps/lpc.Tpo -c lpc.c  -fPIC -DPIC -o .libs/lpc.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT lpc.lo -MD -MP -MF .deps/lpc.Tpo -c lpc.c -o lpc.o >/dev/null 2>&1
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT md5.lo -MD -MP -MF ".deps/md5.Tpo" \
+	  -c -o md5.lo `test -f 'md5.c' || echo './'`md5.c; \
+	then mv -f ".deps/md5.Tpo" ".deps/md5.Plo"; \
+	else rm -f ".deps/md5.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT md5.lo -MD -MP -MF .deps/md5.Tpo -c md5.c  -fPIC -DPIC -o .libs/md5.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT md5.lo -MD -MP -MF .deps/md5.Tpo -c md5.c -o md5.o >/dev/null 2>&1
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT memory.lo -MD -MP -MF ".deps/memory.Tpo" \
+	  -c -o memory.lo `test -f 'memory.c' || echo './'`memory.c; \
+	then mv -f ".deps/memory.Tpo" ".deps/memory.Plo"; \
+	else rm -f ".deps/memory.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT memory.lo -MD -MP -MF .deps/memory.Tpo -c memory.c  -fPIC -DPIC -o .libs/memory.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT memory.lo -MD -MP -MF .deps/memory.Tpo -c memory.c -o memory.o >/dev/null 2>&1
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT metadata_iterators.lo -MD -MP -MF ".deps/metadata_iterators.Tpo" \
+	  -c -o metadata_iterators.lo `test -f 'metadata_iterators.c' || echo './'`metadata_iterators.c; \
+	then mv -f ".deps/metadata_iterators.Tpo" ".deps/metadata_iterators.Plo"; \
+	else rm -f ".deps/metadata_iterators.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT metadata_iterators.lo -MD -MP -MF .deps/metadata_iterators.Tpo -c metadata_iterators.c  -fPIC -DPIC -o .libs/metadata_iterators.o
+../../include/share/alloc.h: In function 'open_tempfile_':
+../../include/share/alloc.h:55: warning: inlining failed in call to 'safe_malloc_': --param max-inline-insns-single limit reached
+../../include/share/alloc.h:87: warning: called from here
+../../include/share/alloc.h:55: warning: inlining failed in call to 'safe_malloc_': --param max-inline-insns-single limit reached
+../../include/share/alloc.h:101: warning: called from here
+../../include/share/alloc.h: In function 'safe_malloc_add_2op_':
+../../include/share/alloc.h:55: warning: inlining failed in call to 'safe_malloc_': --param max-inline-insns-single limit reached
+../../include/share/alloc.h:76: warning: called from here
+metadata_iterators.c: In function 'read_metadata_block_data_picture_cstring_cb_':
+../../include/share/alloc.h:72: warning: inlining failed in call to 'safe_malloc_add_2op_': --param max-inline-insns-single limit reached
+metadata_iterators.c:2400: warning: called from here
+metadata_iterators.c: In function 'read_metadata_block_data_vorbis_comment_entry_cb_':
+../../include/share/alloc.h:72: warning: inlining failed in call to 'safe_malloc_add_2op_': --param max-inline-insns-single limit reached
+metadata_iterators.c:2225: warning: called from here
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT metadata_iterators.lo -MD -MP -MF .deps/metadata_iterators.Tpo -c metadata_iterators.c -o metadata_iterators.o >/dev/null 2>&1
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT metadata_object.lo -MD -MP -MF ".deps/metadata_object.Tpo" \
+	  -c -o metadata_object.lo `test -f 'metadata_object.c' || echo './'`metadata_object.c; \
+	then mv -f ".deps/metadata_object.Tpo" ".deps/metadata_object.Plo"; \
+	else rm -f ".deps/metadata_object.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT metadata_object.lo -MD -MP -MF .deps/metadata_object.Tpo -c metadata_object.c  -fPIC -DPIC -o .libs/metadata_object.o
+metadata_object.c: In function 'copy_track_':
+../../include/share/alloc.h:117: warning: inlining failed in call to 'safe_malloc_mul_2op_': --param max-inline-insns-single limit reached
+metadata_object.c:154: warning: called from here
+metadata_object.c: In function 'copy_bytes_':
+../../include/share/alloc.h:55: warning: inlining failed in call to 'safe_malloc_': --param max-inline-insns-single limit reached
+metadata_object.c:64: warning: called from here
+../../include/share/alloc.h: In function 'safe_malloc_add_2op_':
+../../include/share/alloc.h:55: warning: inlining failed in call to 'safe_malloc_': --param max-inline-insns-single limit reached
+../../include/share/alloc.h:76: warning: called from here
+metadata_object.c: In function 'copy_vcentry_':
+../../include/share/alloc.h:72: warning: inlining failed in call to 'safe_malloc_add_2op_': --param max-inline-insns-single limit reached
+metadata_object.c:136: warning: called from here
+metadata_object.c: In function 'vorbiscomment_set_entry_':
+metadata_object.c:278: warning: passing argument 1 of 'ensure_null_terminated_' discards qualifiers from pointer target type
+metadata_object.c: In function 'cuesheet_track_array_new_':
+../../include/share/alloc.h:63: warning: inlining failed in call to 'safe_calloc_': --param max-inline-insns-single limit reached
+metadata_object.c:355: warning: called from here
+metadata_object.c: In function 'FLAC__metadata_object_cuesheet_track_resize_indices':
+../../include/share/alloc.h:63: warning: inlining failed in call to 'safe_calloc_': --param max-inline-insns-single limit reached
+metadata_object.c:348: warning: called from here
+metadata_object.c: In function 'vorbiscomment_entry_array_new_':
+../../include/share/alloc.h:63: warning: inlining failed in call to 'safe_calloc_': --param max-inline-insns-single limit reached
+metadata_object.c:209: warning: called from here
+metadata_object.c: In function 'FLAC__metadata_object_vorbiscomment_entry_to_name_value_pair':
+../../include/share/alloc.h:72: warning: inlining failed in call to 'safe_malloc_add_2op_': --param max-inline-insns-single limit reached
+metadata_object.c:1353: warning: called from here
+../../include/share/alloc.h:72: warning: inlining failed in call to 'safe_malloc_add_2op_': --param max-inline-insns-single limit reached
+metadata_object.c:1355: warning: called from here
+../../include/share/alloc.h: In function 'FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair':
+../../include/share/alloc.h:55: warning: inlining failed in call to 'safe_malloc_': --param max-inline-insns-single limit reached
+../../include/share/alloc.h:101: warning: called from here
+metadata_object.c: In function 'FLAC__metadata_object_seektable_resize_points':
+../../include/share/alloc.h:117: warning: inlining failed in call to 'safe_malloc_mul_2op_': --param max-inline-insns-single limit reached
+metadata_object.c:176: warning: called from here
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT metadata_object.lo -MD -MP -MF .deps/metadata_object.Tpo -c metadata_object.c -o metadata_object.o >/dev/null 2>&1
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT stream_decoder.lo -MD -MP -MF ".deps/stream_decoder.Tpo" \
+	  -c -o stream_decoder.lo `test -f 'stream_decoder.c' || echo './'`stream_decoder.c; \
+	then mv -f ".deps/stream_decoder.Tpo" ".deps/stream_decoder.Plo"; \
+	else rm -f ".deps/stream_decoder.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT stream_decoder.lo -MD -MP -MF .deps/stream_decoder.Tpo -c stream_decoder.c  -fPIC -DPIC -o .libs/stream_decoder.o
+../../include/share/alloc.h: In function 'safe_malloc_add_2op_':
+../../include/share/alloc.h:55: warning: inlining failed in call to 'safe_malloc_': --param max-inline-insns-single limit reached
+../../include/share/alloc.h:76: warning: called from here
+../../include/share/alloc.h: In function 'read_frame_':
+../../include/share/alloc.h:117: warning: inlining failed in call to 'safe_malloc_mul_2op_': --param max-inline-insns-single limit reached
+../../include/share/alloc.h:156: warning: called from here
+stream_decoder.c: In function 'FLAC__stream_decoder_set_metadata_ignore_application':
+../../include/share/alloc.h:193: warning: inlining failed in call to 'safe_realloc_mul_2op_': --param max-inline-insns-single limit reached
+stream_decoder.c:847: warning: called from here
+stream_decoder.c: In function 'FLAC__stream_decoder_set_metadata_respond_application':
+../../include/share/alloc.h:193: warning: inlining failed in call to 'safe_realloc_mul_2op_': --param max-inline-insns-single limit reached
+stream_decoder.c:788: warning: called from here
+stream_decoder.c: In function 'read_metadata_':
+../../include/share/alloc.h:193: warning: inlining failed in call to 'safe_realloc_mul_2op_': --param max-inline-insns-single limit reached
+stream_decoder.c:1682: warning: called from here
+../../include/share/alloc.h:72: warning: inlining failed in call to 'safe_malloc_add_2op_': --param max-inline-insns-single limit reached
+stream_decoder.c:1721: warning: called from here
+../../include/share/alloc.h:117: warning: inlining failed in call to 'safe_malloc_mul_2op_': --param max-inline-insns-single limit reached
+stream_decoder.c:1739: warning: called from here
+../../include/share/alloc.h:72: warning: inlining failed in call to 'safe_malloc_add_2op_': --param max-inline-insns-single limit reached
+stream_decoder.c:1748: warning: called from here
+../../include/share/alloc.h:63: warning: inlining failed in call to 'safe_calloc_': --param max-inline-insns-single limit reached
+stream_decoder.c:1794: warning: called from here
+../../include/share/alloc.h:63: warning: inlining failed in call to 'safe_calloc_': --param max-inline-insns-single limit reached
+stream_decoder.c:1827: warning: called from here
+../../include/share/alloc.h:72: warning: inlining failed in call to 'safe_malloc_add_2op_': --param max-inline-insns-single limit reached
+stream_decoder.c:1864: warning: called from here
+../../include/share/alloc.h:72: warning: inlining failed in call to 'safe_malloc_add_2op_': --param max-inline-insns-single limit reached
+stream_decoder.c:1877: warning: called from here
+../../include/share/alloc.h:55: warning: inlining failed in call to 'safe_malloc_': --param max-inline-insns-single limit reached
+stream_decoder.c:1906: warning: called from here
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT stream_decoder.lo -MD -MP -MF .deps/stream_decoder.Tpo -c stream_decoder.c -o stream_decoder.o >/dev/null 2>&1
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT stream_encoder.lo -MD -MP -MF ".deps/stream_encoder.Tpo" \
+	  -c -o stream_encoder.lo `test -f 'stream_encoder.c' || echo './'`stream_encoder.c; \
+	then mv -f ".deps/stream_encoder.Tpo" ".deps/stream_encoder.Plo"; \
+	else rm -f ".deps/stream_encoder.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT stream_encoder.lo -MD -MP -MF .deps/stream_encoder.Tpo -c stream_encoder.c  -fPIC -DPIC -o .libs/stream_encoder.o
+stream_encoder.c: In function 'write_frame_':
+stream_encoder.c:2435: warning: unused parameter 'is_last_block'
+stream_encoder.c: In function 'find_best_partition_order_':
+stream_encoder.c:3932: warning: inlining failed in call to 'count_rice_bits_in_partition_': --param max-inline-insns-single limit reached
+stream_encoder.c:4012: warning: called from here
+stream_encoder.c:3932: warning: inlining failed in call to 'count_rice_bits_in_partition_': --param max-inline-insns-single limit reached
+stream_encoder.c:4088: warning: called from here
+stream_encoder.c: In function 'FLAC__stream_encoder_set_metadata':
+../../include/share/alloc.h:117: warning: inlining failed in call to 'safe_malloc_mul_2op_': --param max-inline-insns-single limit reached
+stream_encoder.c:1736: warning: called from here
+stream_encoder.c: In function 'init_stream_internal_':
+../../include/share/alloc.h:117: warning: inlining failed in call to 'safe_malloc_mul_2op_': --param max-inline-insns-single limit reached
+stream_encoder.c:997: warning: called from here
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT stream_encoder.lo -MD -MP -MF .deps/stream_encoder.Tpo -c stream_encoder.c -o stream_encoder.o >/dev/null 2>&1
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT stream_encoder_framing.lo -MD -MP -MF ".deps/stream_encoder_framing.Tpo" \
+	  -c -o stream_encoder_framing.lo `test -f 'stream_encoder_framing.c' || echo './'`stream_encoder_framing.c; \
+	then mv -f ".deps/stream_encoder_framing.Tpo" ".deps/stream_encoder_framing.Plo"; \
+	else rm -f ".deps/stream_encoder_framing.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT stream_encoder_framing.lo -MD -MP -MF .deps/stream_encoder_framing.Tpo -c stream_encoder_framing.c  -fPIC -DPIC -o .libs/stream_encoder_framing.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT stream_encoder_framing.lo -MD -MP -MF .deps/stream_encoder_framing.Tpo -c stream_encoder_framing.c -o stream_encoder_framing.o >/dev/null 2>&1
+if /bin/bash ../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../..   -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include     -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT window.lo -MD -MP -MF ".deps/window.Tpo" \
+	  -c -o window.lo `test -f 'window.c' || echo './'`window.c; \
+	then mv -f ".deps/window.Tpo" ".deps/window.Plo"; \
+	else rm -f ".deps/window.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT window.lo -MD -MP -MF .deps/window.Tpo -c window.c  -fPIC -DPIC -o .libs/window.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../.. -DFLaC__INLINE=__inline__ -DNDEBUG -I../.. -I./include -I../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT window.lo -MD -MP -MF .deps/window.Tpo -c window.c -o window.o >/dev/null 2>&1
+/bin/bash ../../libtool --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc    -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic   -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o libFLAC.la -rpath /usr/lib -version-info 10:0:2 -lm  bitmath.lo bitreader.lo bitwriter.lo cpu.lo crc.lo fixed.lo float.lo format.lo lpc.lo md5.lo memory.lo metadata_iterators.lo metadata_object.lo stream_decoder.lo stream_encoder.lo stream_encoder_framing.lo window.lo    
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -shared  .libs/bitmath.o .libs/bitreader.o .libs/bitwriter.o .libs/cpu.o .libs/crc.o .libs/fixed.o .libs/float.o .libs/format.o .libs/lpc.o .libs/md5.o .libs/memory.o .libs/metadata_iterators.o .libs/metadata_object.o .libs/stream_decoder.o .libs/stream_encoder.o .libs/stream_encoder_framing.o .libs/window.o  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib -lm  -mips32 -mtune=mips32 -Wl,-soname -Wl,libFLAC.so.8 -o .libs/libFLAC.so.8.2.0
+(cd .libs && rm -f libFLAC.so.8 && ln -s libFLAC.so.8.2.0 libFLAC.so.8)
+(cd .libs && rm -f libFLAC.so && ln -s libFLAC.so.8.2.0 libFLAC.so)
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar cru .libs/libFLAC.a  bitmath.o bitreader.o bitwriter.o cpu.o crc.o fixed.o float.o format.o lpc.o md5.o memory.o metadata_iterators.o metadata_object.o stream_decoder.o stream_encoder.o stream_encoder_framing.o window.o
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib .libs/libFLAC.a
+creating libFLAC.la
+(cd .libs && rm -f libFLAC.la && ln -s ../libFLAC.la libFLAC.la)
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC'
+Making all in share
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share'
+Making all in getopt
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/getopt'
+if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include/share  -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT getopt.o -MD -MP -MF ".deps/getopt.Tpo" \
+	  -c -o getopt.o `test -f 'getopt.c' || echo './'`getopt.c; \
+	then mv -f ".deps/getopt.Tpo" ".deps/getopt.Po"; \
+	else rm -f ".deps/getopt.Tpo"; exit 1; \
+	fi
+if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include/share  -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT getopt1.o -MD -MP -MF ".deps/getopt1.Tpo" \
+	  -c -o getopt1.o `test -f 'getopt1.c' || echo './'`getopt1.c; \
+	then mv -f ".deps/getopt1.Tpo" ".deps/getopt1.Po"; \
+	else rm -f ".deps/getopt1.Tpo"; exit 1; \
+	fi
+rm -f libgetopt.a
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar cru libgetopt.a getopt.o getopt1.o 
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib libgetopt.a
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/getopt'
+Making all in replaygain_analysis
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_analysis'
+if /bin/bash ../../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include/share  -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT replaygain_analysis.lo -MD -MP -MF ".deps/replaygain_analysis.Tpo" \
+	  -c -o replaygain_analysis.lo `test -f 'replaygain_analysis.c' || echo './'`replaygain_analysis.c; \
+	then mv -f ".deps/replaygain_analysis.Tpo" ".deps/replaygain_analysis.Plo"; \
+	else rm -f ".deps/replaygain_analysis.Tpo"; exit 1; \
+	fi
+mkdir .libs
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include/share -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT replaygain_analysis.lo -MD -MP -MF .deps/replaygain_analysis.Tpo -c replaygain_analysis.c  -fPIC -DPIC -o .libs/replaygain_analysis.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include/share -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT replaygain_analysis.lo -MD -MP -MF .deps/replaygain_analysis.Tpo -c replaygain_analysis.c -o replaygain_analysis.o >/dev/null 2>&1
+/bin/bash ../../../libtool --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc  -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic   -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o libreplaygain_analysis.la   replaygain_analysis.lo  
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar cru .libs/libreplaygain_analysis.a .libs/replaygain_analysis.o
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib .libs/libreplaygain_analysis.a
+creating libreplaygain_analysis.la
+(cd .libs && rm -f libreplaygain_analysis.la && ln -s ../libreplaygain_analysis.la libreplaygain_analysis.la)
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_analysis'
+Making all in replaygain_synthesis
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis'
+Making all in include
+make[6]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis/include'
+Making all in private
+make[7]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis/include/private'
+make[7]: Nothing to be done for `all'.
+make[7]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis/include/private'
+make[7]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis/include'
+make[7]: Nothing to be done for `all-am'.
+make[7]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis/include'
+make[6]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis/include'
+Making all in .
+make[6]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis'
+if /bin/bash ../../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include -I../../../include/share  -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT replaygain_synthesis.lo -MD -MP -MF ".deps/replaygain_synthesis.Tpo" \
+	  -c -o replaygain_synthesis.lo `test -f 'replaygain_synthesis.c' || echo './'`replaygain_synthesis.c; \
+	then mv -f ".deps/replaygain_synthesis.Tpo" ".deps/replaygain_synthesis.Plo"; \
+	else rm -f ".deps/replaygain_synthesis.Tpo"; exit 1; \
+	fi
+mkdir .libs
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include -I../../../include/share -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT replaygain_synthesis.lo -MD -MP -MF .deps/replaygain_synthesis.Tpo -c replaygain_synthesis.c  -fPIC -DPIC -o .libs/replaygain_synthesis.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include -I../../../include/share -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT replaygain_synthesis.lo -MD -MP -MF .deps/replaygain_synthesis.Tpo -c replaygain_synthesis.c -o replaygain_synthesis.o >/dev/null 2>&1
+/bin/bash ../../../libtool --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc  -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic   -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o libreplaygain_synthesis.la   replaygain_synthesis.lo  
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar cru .libs/libreplaygain_synthesis.a .libs/replaygain_synthesis.o
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib .libs/libreplaygain_synthesis.a
+creating libreplaygain_synthesis.la
+(cd .libs && rm -f libreplaygain_synthesis.la && ln -s ../libreplaygain_synthesis.la libreplaygain_synthesis.la)
+make[6]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis'
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis'
+Making all in grabbag
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/grabbag'
+if /bin/bash ../../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include  -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT cuesheet.lo -MD -MP -MF ".deps/cuesheet.Tpo" \
+	  -c -o cuesheet.lo `test -f 'cuesheet.c' || echo './'`cuesheet.c; \
+	then mv -f ".deps/cuesheet.Tpo" ".deps/cuesheet.Plo"; \
+	else rm -f ".deps/cuesheet.Tpo"; exit 1; \
+	fi
+mkdir .libs
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT cuesheet.lo -MD -MP -MF .deps/cuesheet.Tpo -c cuesheet.c  -fPIC -DPIC -o .libs/cuesheet.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT cuesheet.lo -MD -MP -MF .deps/cuesheet.Tpo -c cuesheet.c -o cuesheet.o >/dev/null 2>&1
+if /bin/bash ../../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include  -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT file.lo -MD -MP -MF ".deps/file.Tpo" \
+	  -c -o file.lo `test -f 'file.c' || echo './'`file.c; \
+	then mv -f ".deps/file.Tpo" ".deps/file.Plo"; \
+	else rm -f ".deps/file.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT file.lo -MD -MP -MF .deps/file.Tpo -c file.c  -fPIC -DPIC -o .libs/file.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT file.lo -MD -MP -MF .deps/file.Tpo -c file.c -o file.o >/dev/null 2>&1
+if /bin/bash ../../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include  -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT picture.lo -MD -MP -MF ".deps/picture.Tpo" \
+	  -c -o picture.lo `test -f 'picture.c' || echo './'`picture.c; \
+	then mv -f ".deps/picture.Tpo" ".deps/picture.Plo"; \
+	else rm -f ".deps/picture.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT picture.lo -MD -MP -MF .deps/picture.Tpo -c picture.c  -fPIC -DPIC -o .libs/picture.o
+../../../include/share/alloc.h: In function 'local__strndup_':
+../../../include/share/alloc.h:55: warning: inlining failed in call to 'safe_malloc_': --param max-inline-insns-single limit reached
+../../../include/share/alloc.h:76: warning: called from here
+picture.c: In function 'grabbag__picture_parse_specification':
+../../../include/share/alloc.h:55: warning: inlining failed in call to 'safe_malloc_': --param max-inline-insns-single limit reached
+picture.c:361: warning: called from here
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT picture.lo -MD -MP -MF .deps/picture.Tpo -c picture.c -o picture.o >/dev/null 2>&1
+if /bin/bash ../../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include  -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT replaygain.lo -MD -MP -MF ".deps/replaygain.Tpo" \
+	  -c -o replaygain.lo `test -f 'replaygain.c' || echo './'`replaygain.c; \
+	then mv -f ".deps/replaygain.Tpo" ".deps/replaygain.Plo"; \
+	else rm -f ".deps/replaygain.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT replaygain.lo -MD -MP -MF .deps/replaygain.Tpo -c replaygain.c  -fPIC -DPIC -o .libs/replaygain.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT replaygain.lo -MD -MP -MF .deps/replaygain.Tpo -c replaygain.c -o replaygain.o >/dev/null 2>&1
+if /bin/bash ../../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include  -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT seektable.lo -MD -MP -MF ".deps/seektable.Tpo" \
+	  -c -o seektable.lo `test -f 'seektable.c' || echo './'`seektable.c; \
+	then mv -f ".deps/seektable.Tpo" ".deps/seektable.Plo"; \
+	else rm -f ".deps/seektable.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT seektable.lo -MD -MP -MF .deps/seektable.Tpo -c seektable.c  -fPIC -DPIC -o .libs/seektable.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT seektable.lo -MD -MP -MF .deps/seektable.Tpo -c seektable.c -o seektable.o >/dev/null 2>&1
+/bin/bash ../../../libtool --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc  -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic   -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o libgrabbag.la   cuesheet.lo file.lo picture.lo replaygain.lo seektable.lo  
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar cru .libs/libgrabbag.a .libs/cuesheet.o .libs/file.o .libs/picture.o .libs/replaygain.o .libs/seektable.o
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib .libs/libgrabbag.a
+creating libgrabbag.la
+(cd .libs && rm -f libgrabbag.la && ln -s ../libgrabbag.la libgrabbag.la)
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/grabbag'
+Making all in utf8
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/utf8'
+if /bin/bash ../../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include/share  -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT charset.lo -MD -MP -MF ".deps/charset.Tpo" \
+	  -c -o charset.lo `test -f 'charset.c' || echo './'`charset.c; \
+	then mv -f ".deps/charset.Tpo" ".deps/charset.Plo"; \
+	else rm -f ".deps/charset.Tpo"; exit 1; \
+	fi
+mkdir .libs
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include/share -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT charset.lo -MD -MP -MF .deps/charset.Tpo -c charset.c  -fPIC -DPIC -o .libs/charset.o
+../../../include/share/alloc.h: In function 'charset_convert':
+../../../include/share/alloc.h:55: warning: inlining failed in call to 'safe_malloc_': --param max-inline-insns-single limit reached
+../../../include/share/alloc.h:142: warning: called from here
+../../../include/share/alloc.h:55: warning: inlining failed in call to 'safe_malloc_': --param max-inline-insns-single limit reached
+../../../include/share/alloc.h:76: warning: called from here
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include/share -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT charset.lo -MD -MP -MF .deps/charset.Tpo -c charset.c -o charset.o >/dev/null 2>&1
+if /bin/bash ../../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include/share  -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT iconvert.lo -MD -MP -MF ".deps/iconvert.Tpo" \
+	  -c -o iconvert.lo `test -f 'iconvert.c' || echo './'`iconvert.c; \
+	then mv -f ".deps/iconvert.Tpo" ".deps/iconvert.Plo"; \
+	else rm -f ".deps/iconvert.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include/share -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT iconvert.lo -MD -MP -MF .deps/iconvert.Tpo -c iconvert.c  -fPIC -DPIC -o .libs/iconvert.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include/share -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT iconvert.lo -MD -MP -MF .deps/iconvert.Tpo -c iconvert.c -o iconvert.o >/dev/null 2>&1
+if /bin/bash ../../../libtool --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include/share  -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -MT utf8.lo -MD -MP -MF ".deps/utf8.Tpo" \
+	  -c -o utf8.lo `test -f 'utf8.c' || echo './'`utf8.c; \
+	then mv -f ".deps/utf8.Tpo" ".deps/utf8.Plo"; \
+	else rm -f ".deps/utf8.Tpo"; exit 1; \
+	fi
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include/share -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT utf8.lo -MD -MP -MF .deps/utf8.Tpo -c utf8.c  -fPIC -DPIC -o .libs/utf8.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I. -I../../.. -I../../../include/share -DFLaC__INLINE=__inline__ -DNDEBUG -I../../.. -I./include -I../../../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -fpic -MT utf8.lo -MD -MP -MF .deps/utf8.Tpo -c utf8.c -o utf8.o >/dev/null 2>&1
+/bin/bash ../../../libtool --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc  -O3 -funroll-loops -finline-functions -Wall -W -Winline -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic   -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o libutf8.la   charset.lo iconvert.lo utf8.lo  
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar cru .libs/libutf8.a .libs/charset.o .libs/iconvert.o .libs/utf8.o
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib .libs/libutf8.a
+creating libutf8.la
+(cd .libs && rm -f libutf8.la && ln -s ../libutf8.la libutf8.la)
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/utf8'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share'
+make[5]: Nothing to be done for `all-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src'
+make[4]: Nothing to be done for `all-am'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src'
+Making all in build
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/build'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/build'
+Making all in obj
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj'
+Making all in debug
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug'
+Making all in bin
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug/bin'
+make[5]: Nothing to be done for `all'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug/bin'
+Making all in lib
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug/lib'
+make[5]: Nothing to be done for `all'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug/lib'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug'
+make[5]: Nothing to be done for `all-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug'
+Making all in release
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release'
+Making all in bin
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release/bin'
+make[5]: Nothing to be done for `all'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release/bin'
+Making all in lib
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release/lib'
+make[5]: Nothing to be done for `all'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release/lib'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release'
+make[5]: Nothing to be done for `all-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj'
+make[4]: Nothing to be done for `all-am'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1'
+make[3]: Nothing to be done for `all-am'.
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1'
+make[1]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1'
+CFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " CXXFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -fpic  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " LDFLAGS="-L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib " make -C /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/. AR=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar AS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -c -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts" LD=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld NM=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm CC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" GCC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" CXX="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++" RANLIB=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib STRIP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip OBJCOPY=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objcopy OBJDUMP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objdump SIZE=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-size CROSS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-" ARCH="mipsel" DESTDIR="/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install"  install;
+make[1]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1'
+Making install in include
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include'
+Making install in FLAC
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/FLAC'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/FLAC'
+make[4]: Nothing to be done for `install-exec-am'.
+/bin/bash ../../mkinstalldirs /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/include/FLAC
+mkdir -p -- /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/include/FLAC
+ /usr/bin/install -c -m 644 all.h /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/include/FLAC/all.h
+ /usr/bin/install -c -m 644 assert.h /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/include/FLAC/assert.h
+ /usr/bin/install -c -m 644 callback.h /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/include/FLAC/callback.h
+ /usr/bin/install -c -m 644 export.h /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/include/FLAC/export.h
+ /usr/bin/install -c -m 644 format.h /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/include/FLAC/format.h
+ /usr/bin/install -c -m 644 metadata.h /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/include/FLAC/metadata.h
+ /usr/bin/install -c -m 644 ordinals.h /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/include/FLAC/ordinals.h
+ /usr/bin/install -c -m 644 stream_decoder.h /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/include/FLAC/stream_decoder.h
+ /usr/bin/install -c -m 644 stream_encoder.h /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/include/FLAC/stream_encoder.h
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/FLAC'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/FLAC'
+Making install in share
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/share'
+Making install in grabbag
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/share/grabbag'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/share/grabbag'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/share/grabbag'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/share/grabbag'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/share'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/share'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/share'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/share'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/share'
+Making install in test_libs_common
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/test_libs_common'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/test_libs_common'
+make[4]: Nothing to be done for `install-exec-am'.
+make[4]: Nothing to be done for `install-data-am'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/test_libs_common'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include/test_libs_common'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include'
+make[4]: Nothing to be done for `install-exec-am'.
+make[4]: Nothing to be done for `install-data-am'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/include'
+Making install in m4
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/m4'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/m4'
+make[3]: Nothing to be done for `install-exec-am'.
+make[3]: Nothing to be done for `install-data-am'.
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/m4'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/m4'
+Making install in src
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src'
+Making install in libFLAC
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC'
+Making install in include
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include'
+Making install in private
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include/private'
+make[6]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include/private'
+make[6]: Nothing to be done for `install-exec-am'.
+make[6]: Nothing to be done for `install-data-am'.
+make[6]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include/private'
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include/private'
+Making install in protected
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include/protected'
+make[6]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include/protected'
+make[6]: Nothing to be done for `install-exec-am'.
+make[6]: Nothing to be done for `install-data-am'.
+make[6]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include/protected'
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include/protected'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include'
+make[6]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include'
+make[6]: Nothing to be done for `install-exec-am'.
+make[6]: Nothing to be done for `install-data-am'.
+make[6]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include'
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC/include'
+Making install in .
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC'
+/bin/bash ../../mkinstalldirs /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/lib
+mkdir -p -- /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/lib
+ /bin/bash ../../libtool --mode=install /usr/bin/install -c  libFLAC.la /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/lib/libFLAC.la
+/usr/bin/install -c .libs/libFLAC.so.8.2.0 /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/lib/libFLAC.so.8.2.0
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/lib && { ln -s -f libFLAC.so.8.2.0 libFLAC.so.8 || { rm -f libFLAC.so.8 && ln -s libFLAC.so.8.2.0 libFLAC.so.8; }; })
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/lib && { ln -s -f libFLAC.so.8.2.0 libFLAC.so || { rm -f libFLAC.so && ln -s libFLAC.so.8.2.0 libFLAC.so; }; })
+/usr/bin/install -c .libs/libFLAC.lai /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/lib/libFLAC.la
+/usr/bin/install -c .libs/libFLAC.a /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/lib/libFLAC.a
+chmod 644 /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/lib/libFLAC.a
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/lib/libFLAC.a
+libtool: install: warning: remember to run `libtool --finish /usr/lib'
+/bin/bash ../../mkinstalldirs /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/share/aclocal
+mkdir -p -- /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/share/aclocal
+ /usr/bin/install -c -m 644 libFLAC.m4 /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/share/aclocal/libFLAC.m4
+/bin/bash ../../mkinstalldirs /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/lib/pkgconfig
+mkdir -p -- /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/lib/pkgconfig
+ /usr/bin/install -c -m 644 flac.pc /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/lib/pkgconfig/flac.pc
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/libFLAC'
+Making install in share
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share'
+Making install in getopt
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/getopt'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/getopt'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/getopt'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/getopt'
+Making install in replaygain_analysis
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_analysis'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_analysis'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_analysis'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_analysis'
+Making install in replaygain_synthesis
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis'
+Making install in include
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis/include'
+Making install in private
+make[6]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis/include/private'
+make[7]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis/include/private'
+make[7]: Nothing to be done for `install-exec-am'.
+make[7]: Nothing to be done for `install-data-am'.
+make[7]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis/include/private'
+make[6]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis/include/private'
+make[6]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis/include'
+make[7]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis/include'
+make[7]: Nothing to be done for `install-exec-am'.
+make[7]: Nothing to be done for `install-data-am'.
+make[7]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis/include'
+make[6]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis/include'
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis/include'
+Making install in .
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis'
+make[6]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis'
+make[6]: Nothing to be done for `install-exec-am'.
+make[6]: Nothing to be done for `install-data-am'.
+make[6]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis'
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/replaygain_synthesis'
+Making install in grabbag
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/grabbag'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/grabbag'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/grabbag'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/grabbag'
+Making install in utf8
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/utf8'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/utf8'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/utf8'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share/utf8'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src/share'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src'
+make[4]: Nothing to be done for `install-exec-am'.
+make[4]: Nothing to be done for `install-data-am'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/src'
+Making install in build
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/build'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/build'
+make[3]: Nothing to be done for `install-exec-am'.
+make[3]: Nothing to be done for `install-data-am'.
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/build'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/build'
+Making install in obj
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj'
+Making install in debug
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug'
+Making install in bin
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug/bin'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug/bin'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug/bin'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug/bin'
+Making install in lib
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug/lib'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug/lib'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug/lib'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug/lib'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/debug'
+Making install in release
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release'
+Making install in bin
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release/bin'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release/bin'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release/bin'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release/bin'
+Making install in lib
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release/lib'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release/lib'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release/lib'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release/lib'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release'
+make[5]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release'
+make[5]: Nothing to be done for `install-exec-am'.
+make[5]: Nothing to be done for `install-data-am'.
+make[5]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj/release'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj'
+make[4]: Nothing to be done for `install-exec-am'.
+make[4]: Nothing to be done for `install-data-am'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/obj'
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1'
+make[3]: Nothing to be done for `install-exec-am'.
+make[3]: Nothing to be done for `install-data-am'.
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1'
+make[1]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1'
+touch /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/.built
+mkdir -p /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg/libflac/CONTROL
+echo "Package: libflac" > /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg/libflac/CONTROL/control
+echo "Version: 1.2.1-1" >> /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg/libflac/CONTROL/control
+( DEPENDS=''; for depend in ; do DEPENDS=${DEPENDS:+$DEPENDS, }${depend##+}; done; echo "Depends: $DEPENDS"; echo "Provides: "; echo "Source: package/flac"; echo "Section: libs"; echo "Priority: optional"; echo "Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>"; echo "Architecture: mipsel"; echo -n "Description: "; getvar V_Package_libflac_description | sed -e 's,^[[:space:]]*, ,g'; ) >> /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg/libflac/CONTROL/control
+chmod 644 /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg/libflac/CONTROL/control
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg/libflac/CONTROL; var2file "V_Package_libflac_conffiles" conffiles; var2file "V_Package_libflac_preinst" preinst; var2file "V_Package_libflac_postinst" postinst; var2file "V_Package_libflac_prerm" prerm; var2file "V_Package_libflac_postrm" postrm; )
+install -d -m0755 /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg/libflac/usr/lib
+cp -fpR /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/lib/libFLAC.so* /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg/libflac/usr/lib/
+mkdir -p /home/chenhj/work/mr101n/bin/packages/mipsel
+find /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg/libflac -name 'CVS' -o -name '.svn' -o -name '.#*' | xargs -r rm -rf
+NM="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm" STRIP="/home/chenhj/work/mr101n/staging_dir/host/bin/sstrip" STRIP_KMOD="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip --strip-unneeded --remove-section=.comment" /home/chenhj/work/mr101n/scripts/rstrip.sh /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg/libflac
+rstrip.sh: /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg/libflac/usr/lib/libFLAC.so.8.2.0:shared object
+ipkg-build -c -o 0 -g 0 /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg/libflac /home/chenhj/work/mr101n/bin/packages/mipsel
+Packaged contents of /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg/libflac into /home/chenhj/work/mr101n/bin/packages/mipsel/libflac_1.2.1-1_mipsel.ipk
+make V=99  -j1 clean-staging
+make[1]: Entering directory `/home/chenhj/work/mr101n/package/flac'
+rm -f /home/chenhj/work/mr101n/staging_dir/mipsel/stamp/.flac_installed
+make[1]: Leaving directory `/home/chenhj/work/mr101n/package/flac'
+rm -rf /home/chenhj/work/mr101n/tmp/stage-flac
+mkdir -p /home/chenhj/work/mr101n/tmp/stage-flac/host /home/chenhj/work/mr101n/staging_dir/mipsel/packages /home/chenhj/work/mr101n/staging_dir/host/packages
+install -d -m0755 /home/chenhj/work/mr101n/tmp/stage-flac/usr/include
+cp -fpR /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/include/FLAC /home/chenhj/work/mr101n/tmp/stage-flac/usr/include/
+install -d -m0755 /home/chenhj/work/mr101n/tmp/stage-flac/usr/lib/pkgconfig
+cp -fpR /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/lib/libFLAC.{a,so*,la} /home/chenhj/work/mr101n/tmp/stage-flac/usr/lib/
+install -m0644 /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/lib/pkgconfig/* /home/chenhj/work/mr101n/tmp/stage-flac/usr/lib/pkgconfig/
+install -d -m0755 /home/chenhj/work/mr101n/tmp/stage-flac/usr/share/aclocal/
+install -m0644 /home/chenhj/work/mr101n/build_dir/mipsel/flac-1.2.1/ipkg-install/usr/share/aclocal/* /home/chenhj/work/mr101n/tmp/stage-flac/usr/share/aclocal/
+find /home/chenhj/work/mr101n/tmp/stage-flac -name '*.la' | xargs -r /home/chenhj/work/mr101n/staging_dir/host/bin/sed -i -e "s,\(^libdir='\| \|-L\|^dependency_libs='\)/usr/lib,\1/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib,g"
+find /home/chenhj/work/mr101n/tmp/stage-flac/host -name '*.la' | xargs -r /home/chenhj/work/mr101n/staging_dir/host/bin/sed -i -e "s,\(^libdir='\| \|-L\|^dependency_libs='\)/usr/lib,\1/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib,g" 
+if [ -d /home/chenhj/work/mr101n/tmp/stage-flac ]; then (cd /home/chenhj/work/mr101n/tmp/stage-flac; find ./ > /home/chenhj/work/mr101n/staging_dir/mipsel/packages/flac.list); cp -fpR /home/chenhj/work/mr101n/tmp/stage-flac/* /home/chenhj/work/mr101n/staging_dir/mipsel/; fi
+rm -rf /home/chenhj/work/mr101n/tmp/stage-flac
+touch /home/chenhj/work/mr101n/staging_dir/mipsel/stamp/.flac_installed
+make: Leaving directory `/home/chenhj/work/mr101n/package/flac'

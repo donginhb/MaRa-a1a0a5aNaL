@@ -1,0 +1,22 @@
+--- a/drivers/net/Makefile	2008-07-14 05:51:29.000000000 +0800
++++ b/drivers/net/Makefile	2008-11-25 23:18:10.000000000 +0800
+@@ -4,6 +4,8 @@
+ 
+ obj-$(CONFIG_E1000) += e1000/
+ obj-$(CONFIG_E1000E) += e1000e/
++obj-$(CONFIG_RALINK_RDM) += rt_rdm/
++obj-$(CONFIG_RAETH) += raeth/
+ obj-$(CONFIG_IBM_EMAC) += ibm_emac/
+ obj-$(CONFIG_IBM_NEW_EMAC) += ibm_newemac/
+ obj-$(CONFIG_IGB) += igb/
+@@ -84,7 +87,9 @@
+ #
+ # end link order section
+ #
+-
++ifeq ($(CONFIG_RAETH_ROUTER),y)
++obj-$(CONFIG_RT2880_GMAC) += mii.o
++endif
+ obj-$(CONFIG_MII) += mii.o
+ obj-$(CONFIG_PHYLIB) += phy/
+ 

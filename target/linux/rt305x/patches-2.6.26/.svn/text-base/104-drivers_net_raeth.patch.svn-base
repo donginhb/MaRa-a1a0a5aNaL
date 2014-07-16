@@ -1,0 +1,553 @@
+diff -Nur linux-2.6.21.x/drivers/net/raeth/Kconfig linux-2.6.26/drivers/net/raeth/Kconfig
+--- linux-2.6.21.x/drivers/net/raeth/Kconfig	2012-09-17 17:11:09.000000000 +0800
++++ linux-2.6.26/drivers/net/raeth/Kconfig	2013-03-05 00:18:46.339041100 +0800
+@@ -207,6 +207,10 @@
+ 		bool "External_CPU (RvMII_MII)"
+ endchoice
+ 
++config  AR8316
++    bool "AR8316 giga switch support"
++    depends on RAETH_HAS_PORT5 && P5_RGMII_TO_MAC_MODE
++
+ config  MAC_TO_GIGAPHY_MODE_ADDR
+         hex "GE1 Phy Address"
+ 	default 0x1F
+diff -Nur linux-2.6.21.x/drivers/net/raeth/mii_mgr.c linux-2.6.26/drivers/net/raeth/mii_mgr.c
+--- linux-2.6.21.x/drivers/net/raeth/mii_mgr.c	2012-09-27 10:16:56.000000000 +0800
++++ linux-2.6.26/drivers/net/raeth/mii_mgr.c	2013-03-05 01:16:26.930771400 +0800
+@@ -309,8 +309,298 @@
+ 
+ #endif
+ 
++#ifdef CONFIG_AR8316
++//#define outw(address, value)    *((volatile uint32_t *)(address)) = cpu_to_le32(value)
++//#define inw(address)            le32_to_cpu(*(volatile u32 *)(address))
++uint32_t athrs16_reg_read(uint32_t reg_addr)
++{
++    	uint32_t reg_word_addr;
++    	uint32_t phy_addr, tmp_val, reg_val;
++    	uint32_t phy_val;
++    	uint32_t phy_reg;
++	//uint32_t mo_reg;
++
++    	/* change reg_addr to 16-bit word address, 32-bit aligned */
++    	reg_word_addr = (reg_addr & 0xfffffffc) >> 1;
++
++    	/* configure register high address */
++    	phy_addr = 0x18;
++    	phy_reg = 0x0;
++    	phy_val = ((reg_word_addr >> 8) & 0x3ff);  /* A18-A9 of reg address */
++    	//change P5 external PHY address before operation
++	//mo_reg = inw(0xb01100c8);
++	//mo_reg &= 0xe0ffffff;
++	//mo_reg |= (phy_addr << 24); 
++	//outw(0xb01100c8, mo_reg);
++    	mii_mgr_write(phy_addr, phy_reg, phy_val);
++
++    	/* For some registers such as MIBs, since it is read/clear, we should */
++    	/* read the lower 16-bit register then the higher one */
++
++    	/* read register in lower address */
++    	phy_addr = 0x10 | ((reg_word_addr >> 5) & 0x7); /* A8-A6 of reg address */
++   	phy_reg = (reg_word_addr & 0x1f);   /* A5-A1 of reg address */
++    	//change P5 external PHY address before operation
++	//mo_reg = inw(0xb01100c8);
++	//mo_reg &= 0xe0ffffff;
++	//mo_reg |= (phy_addr << 24); 
++	//outw(0xb01100c8, mo_reg);
++    	mii_mgr_read(phy_addr, phy_reg, &reg_val);
++
++    	/* read register in higher address */
++    	reg_word_addr++;
++    	phy_addr = 0x10 | ((reg_word_addr >> 5) & 0x7); /* A8-A6 of reg address */
++    	phy_reg = (reg_word_addr & 0x1f);   /* A5-A1 of reg address */
++    	//change P5 external PHY address before operation
++	//mo_reg = inw(0xb01100c8);
++	//mo_reg &= 0xe0ffffff;
++	//mo_reg |= (phy_addr << 24); 
++	//outw(0xb01100c8, mo_reg);
++    	mii_mgr_read(phy_addr, phy_reg, &tmp_val);
++    	reg_val |= (tmp_val << 16);
++
++    return reg_val;   
++}
++
++void athrs16_reg_write(uint32_t reg_addr, uint32_t reg_val)
++{
++    	uint32_t reg_word_addr;
++    	uint32_t phy_addr;
++    	uint32_t phy_val;
++    	uint32_t phy_reg;
++	//uint32_t mo_reg;
++    	
++	/* change reg_addr to 16-bit word address, 32-bit aligned */
++    	reg_word_addr = (reg_addr & 0xfffffffc) >> 1;
++
++    	/* configure register high address */
++    	phy_addr = 0x18;
++    	phy_reg = 0x0;
++    	phy_val = ((reg_word_addr >> 8) & 0x3ff);  /* A18-A9 of reg address */
++    	//change P5 external PHY address before operation
++	//mo_reg = inw(0xb01100c8);
++	//mo_reg &= 0xe0ffffff;
++	//mo_reg |= (phy_addr << 24); 
++	//outw(0xb01100c8, mo_reg);
++    	mii_mgr_write(phy_addr, phy_reg, phy_val);
++
++    	/* For some registers such as ARL and VLAN, since they include BUSY bit */
++    	/* in lower address, we should write the higher 16-bit register then the */
++    	/* lower one */
++
++    	/* read register in higher address */
++    	reg_word_addr++;
++    	phy_addr = 0x10 | ((reg_word_addr >> 5) & 0x7); /* A8-A6 of reg address */
++    	phy_reg = (reg_word_addr & 0x1f);   /* A5-A1 of reg address */
++    	phy_val = ((reg_val >> 16) & 0xffff);
++    	//change P5 external PHY address before operation
++	//mo_reg = inw(0xb01100c8);
++	//mo_reg &= 0xe0ffffff;
++	//mo_reg |= (phy_addr << 24); 
++	//outw(0xb01100c8, mo_reg);
++    	mii_mgr_write(phy_addr, phy_reg, phy_val);
++
++    	/* write register in lower address */
++    	reg_word_addr--;
++    	phy_addr = 0x10 | ((reg_word_addr >> 5) & 0x7); /* A8-A6 of reg address */
++    	phy_reg = (reg_word_addr & 0x1f);   /* A5-A1 of reg address */
++    	phy_val = (reg_val & 0xffff);
++    	//change P5 external PHY address before operation
++	//mo_reg = inw(0xb01100c8);
++	//mo_reg &= 0xe0ffffff;
++	//mo_reg |= (phy_addr << 24); 
++	//outw(0xb01100c8, mo_reg);
++    	mii_mgr_write(phy_addr, phy_reg, phy_val); 
++}
++
++void athrs16_init(void)
++{
++    	static int athr16_init_flag=0;
++    	uint32_t po_reg_val; 
++	/* if using header for register configuration, we have to     */
++    	/* configure s16 register after frame transmission is enabled */
++    	if (athr16_init_flag)
++        	return;
++
++    	/*Power on strip mode setup*/
++    	/*Configure the MAC0 RGMII PHY mode, and enable the input clock delay*/
++   	/*AR8316 only support RGMII MAC0 PHY mode. MACO in MAC mode is only supported when us GMII*/
++    	/*RT3052 only have RGMII interface, hence MAC0 of AR8316 is set to PHY mode in this case*/
++    	athrs16_reg_write(0x8, 0x012e1be2);
++    	/*The MAC0 speed/duplex is enabled by CPU. The link status of MAC1~MAC5 */
++    	/*are controlled by PHY0~PHY4*/
++    	athrs16_reg_write(0x100, 0x7e);
++    	athrs16_reg_write(0x200, 0x0270);
++    	athrs16_reg_write(0x300, 0x0270);
++    	athrs16_reg_write(0x400, 0x0270);
++    	athrs16_reg_write(0x500, 0x0270);
++    	athrs16_reg_write(0x600, 0x0270);
++    	/*unitcast and multicast flood destination port*/
++    	athrs16_reg_write(0x2c, 0x003f003f);
++        
++    	/*allow single vlan tag to be transmitted and received for all port*/
++    	/*Enable learning and forwarding*/
++    	athrs16_reg_write(0x104, 0x6004);
++    	athrs16_reg_write(0x204, 0x6004);
++    	athrs16_reg_write(0x304, 0x6004);
++    	athrs16_reg_write(0x404, 0x6004);
++    	athrs16_reg_write(0x504, 0x6004);    
++    	athrs16_reg_write(0x604, 0x6004);
++	
++	//get Power-On Strapping Reg Value to verify we indeed write the correct value.
++    	po_reg_val = athrs16_reg_read(0x8);
++	//printk("\n AR8316's Power-On Strapping Reg Value is 0x%08X \n", po_reg_val);
++	//printk("\n AR8316's MAC0 started as PHY mode in RGMII.\n");
++	printk("AR8316 Support!!\n");
++
++    	athr16_init_flag = 1;
++}
++void athrs16_LAN_WAN_Par(void)
++{
++//port arrangement is LLLLW, P1~P5    
++//port member for each port
++//P0:111110 = 0x3E
++//P1:011101 = 0x1D
++//P2:011011 = 0x1B
++//P3:010111 = 0x17
++//P4:001111 = 0x0F
++//P5:000001 = 0x01
++
++//PVID setting
++//P0:1
++//P1:1
++//P2:1
++//P3:1
++//P4:1
++//P5:2
++
++//Egress Port Tagging
++//P0:tag/unmodified
++//P1:untag
++//P2:untag
++//P3:untag
++//P4:untag
++//P5:untag
++
++//reg value for Port-based VLAN register(0x108,0x208,0x308,0x408,0x508,0x608)
++//0x108 = 0x003E0001
++//0x208 = 0x001D0001
++//0x308 = 0x001B0001
++//0x408 = 0x00170001
++//0x508 = 0x000F0001
++//0x608 = 0x00010002
++
++//reg value for Port Control register(0x104, 0x204, 0x304, 0x404, 0x504, 0x604)
++//the initial value for this is 00, means unmodifying the tag. So, we don't need to set this.
++
++    	athrs16_reg_write(0x108, 0x003e0001);
++    	athrs16_reg_write(0x208, 0x001d0001);
++    	athrs16_reg_write(0x308, 0x001b0001);
++    	athrs16_reg_write(0x408, 0x00170001);
++    	athrs16_reg_write(0x508, 0x000f0001);
++    	athrs16_reg_write(0x608, 0x00010002);
++    	
++
++	//P0 tag,
++    	athrs16_reg_write(0x104, 0x00006204);
++	//P1 untag
++    	athrs16_reg_write(0x204, 0x00006104);
++	//P2 untag
++    	athrs16_reg_write(0x304, 0x00006104);
++	//P3 untag
++    	athrs16_reg_write(0x404, 0x00006104);
++	//P4 untag
++    	athrs16_reg_write(0x504, 0x00006104);
++	//P5 untag
++    	athrs16_reg_write(0x604, 0x00006104);
++/*
++// check VT is busy
++    	u32 temp=0;
++	temp = athrs16_reg_read(0x0040);
++	temp = temp&0x00000004;
++	while (temp == 0x4){
++    	athrs16_reg_write(0x0044, 0x0000080e);
++    	athrs16_reg_write(0x0040, 0x0001000a);
++	}
++	temp = athrs16_reg_read(0x0040);
++	temp = temp&0x00000004;
++	while (temp == 0x4){
++    	athrs16_reg_write(0x0044, 0x00000818);
++    	athrs16_reg_write(0x0040, 0x0002000a);
++	}
++*/
++/*
++// This is a test !! We test the tag is outting from P3
++	u32 temp;
++
++	//P0: PVID=1, port_mem=(P0,P5), ingress=port_vlan, egress=untag
++    	athrs16_reg_write(0x108, 0x00200001);
++    	temp = athrs16_reg_read(0x108);
++	printf("\n Port Settin 0xn08 is %08x \n", temp);
++	
++	//P1: PVID=2, port_mem=(P1, P2, P3), ingress=port_vlan, egress=untag	
++    	athrs16_reg_write(0x208, 0x000c0002);
++    	temp = athrs16_reg_read(0x208);
++	printf("\n Port Settin 0xn08 is %08x \n", temp);
++	
++	//P2: PVID=2, port_mem=(P1, P2, P3), ingress=port_vlan, egress=untag
++    	athrs16_reg_write(0x308, 0x000a0002);
++    	temp = athrs16_reg_read(0x308);
++	printf("\n Port Settin 0xn08 is %08x \n", temp);
++
++	//P3: PVID=5, port_mem=(P1, P2, P3, P4), ingress=port_vlan, egress=tag
++    	athrs16_reg_write(0x408, 0x00160005);
++    	temp = athrs16_reg_read(0x408);
++	printf("\n Port Settin 0xn08 is %08x \n", temp);
++
++	//P4: PVID=3, port_mem=(P3, P4), ingress=port_vlan, egress=untag
++    	athrs16_reg_write(0x508, 0x00080003);
++    	temp = athrs16_reg_read(0x508);
++	printf("\n Port Settin 0xn08 is %08x \n", temp);
++
++	//P5: PVID=1, port_mem=(P0,P5), ingress=port_vlan, egress=untag
++    	athrs16_reg_write(0x608, 0x00010001);
++    	temp = athrs16_reg_read(0x608);
++	printf("\n Port Settin 0xn08 is %08x \n", temp);
++
++
++//force P3 add tag on egress to see if there is a tag exit
++	//P0 untag
++    	athrs16_reg_write(0x104, 0x00006104);
++    	temp = athrs16_reg_read(0x104);
++	printf("\n Port Settin 0xn04 is %08x \n", temp);
++	//P1 untag
++    	athrs16_reg_write(0x204, 0x00006104);
++    	temp = athrs16_reg_read(0x204);
++	printf("\n Port Settin 0xn04 is %08x \n", temp);
++	//P2 untag
++    	athrs16_reg_write(0x304, 0x00006104);
++    	temp = athrs16_reg_read(0x304);
++	printf("\n Port Settin 0xn04 is %08x \n", temp);
++	//P3 tag
++    	athrs16_reg_write(0x404, 0x00006304);
++    	temp = athrs16_reg_read(0x404);
++	printf("\n Port Settin 0xn04 is %08x \n", temp);
++	//P4 untag
++    	athrs16_reg_write(0x504, 0x00006104);
++    	temp = athrs16_reg_read(0x504);
++	printf("\n Port Settin 0xn04 is %08x \n", temp);
++	//P5 untag
++    	athrs16_reg_write(0x604, 0x00006104);
++    	temp = athrs16_reg_read(0x604);
++	printf("\n Port Settin 0xn04 is %08x \n", temp);
++
++	printf("\n AR8316 VLAN Support Now.\n");
++
++*/
++}
++#endif
+ 
+ 
+ 
+ EXPORT_SYMBOL(mii_mgr_write);
+ EXPORT_SYMBOL(mii_mgr_read);
++#ifdef CONFIG_AR8316
++EXPORT_SYMBOL(athrs16_reg_write);
++EXPORT_SYMBOL(athrs16_reg_read);
++#endif
+diff -Nur linux-2.6.21.x/drivers/net/raeth/raether.c linux-2.6.26/drivers/net/raeth/raether.c
+--- linux-2.6.21.x/drivers/net/raeth/raether.c	2012-09-28 13:30:41.000000000 +0800
++++ linux-2.6.26/drivers/net/raeth/raether.c	2013-03-05 01:16:00.100758104 +0800
+@@ -1386,7 +1386,7 @@
+ 	return &ei_local->stat;
+ }
+ 
+-#if defined (CONFIG_RT_3052_ESW)
++#if defined (CONFIG_RT_3052_ESW) && defined (CONFIG_EZP)
+ void kill_sig_workq(struct work_struct *work)
+ {
+ 	struct file *fp;
+@@ -1742,7 +1742,9 @@
+ #endif
+ 			goto out;
+ 
++#ifdef EZP
+ 		schedule_work(&ei_local->kill_sig_wq);
++#endif
+ out:
+ 		stat = stat_curr;
+ 	}
+@@ -1984,11 +1986,17 @@
+ 
+ #endif
+ 
++#define _ESW_REG(x)	(*((volatile u32 *)(RALINK_ETH_SW_BASE + x)))
+ int ei_ioctl(struct net_device *dev, struct ifreq *ifr, int cmd)
+ {
++/* EZP: Although we use AR8316 as external GigaSW, we still need to config ESW of RT3052 sometimes.*/
+ #if defined(CONFIG_RT_3052_ESW)
+ 	esw_reg reg;
+ #endif
++#if defined(CONFIG_AR8316)
++	esw_reg ext_reg;
++    ra_mii_ioctl_data rgmii;
++#endif
+ #if defined(CONFIG_RALINK_RT3352) || defined(CONFIG_RALINK_RT5350) || \
+     defined (CONFIG_RALINK_RT6855) || defined(CONFIG_RALINK_RT6855A) || \
+     defined(CONFIG_RALINK_MT7620)
+@@ -2001,7 +2009,10 @@
+ 
+ 	ra_mii_ioctl_data mii;
+ 	switch (cmd) {
++		/* EZP: to read/write the RT3052's ESW PHY register */
+ 		case RAETH_MII_READ:
++			/* EZP: change to embedded phy address */
++			_ESW_REG(0xc8) |= 0x1f000000;
+ 			copy_from_user(&mii, ifr->ifr_data, sizeof(mii));
+ 			mii_mgr_read(mii.phy_id, mii.reg_num, &mii.val_out);
+ 			//printk("phy %d, reg %d, val 0x%x\n", mii.phy_id, mii.reg_num, mii.val_out);
+@@ -2009,13 +2020,33 @@
+ 			break;
+ 
+ 		case RAETH_MII_WRITE:
++			/* EZP: change to embedded phy address */
++			_ESW_REG(0xc8) |= 0x1f000000;
+ 			copy_from_user(&mii, ifr->ifr_data, sizeof(mii));
+ 			//printk("phy %d, reg %d, val 0x%x\n", mii.phy_id, mii.reg_num, mii.val_in);
+ 			mii_mgr_write(mii.phy_id, mii.reg_num, mii.val_in);
+ 			break;
++		#if defined(CONFIG_AR8316)
++		/*EZP: to read/write the external switch's PHY register */
++		case RAETH_RGMII_READ:
++			/* EZP: change to external phy address */
++			_ESW_REG(0xc8) &= 0xe0ffffff;
++			copy_from_user(&rgmii, ifr->ifr_data, sizeof(rgmii));
++			mii_mgr_read(rgmii.phy_id, rgmii.reg_num, &rgmii.val_out);
++			copy_to_user(ifr->ifr_data, &rgmii, sizeof(rgmii));
++			break;
++
++		case RAETH_RGMII_WRITE:
++			/* EZP: change to external phy address */
++			_ESW_REG(0xc8) &= 0xe0ffffff;
++			copy_from_user(&rgmii, ifr->ifr_data, sizeof(rgmii));
++			mii_mgr_write(rgmii.phy_id, rgmii.reg_num, rgmii.val_in);
++			break;
++		#endif
+ #if defined(CONFIG_RT_3052_ESW)
+-#define _ESW_REG(x)	(*((volatile u32 *)(RALINK_ETH_SW_BASE + x)))
+ 		case RAETH_ESW_REG_READ:
++			/* EZP: change to embedded phy address */
++			_ESW_REG(0xc8) |= 0x1f000000;
+ 			copy_from_user(&reg, ifr->ifr_data, sizeof(reg));
+ 			if (reg.off > REG_ESW_MAX)
+ 				return -EINVAL;
+@@ -2024,13 +2055,37 @@
+ 			copy_to_user(ifr->ifr_data, &reg, sizeof(reg));
+ 			break;
+ 		case RAETH_ESW_REG_WRITE:
++			/* EZP: change to embedded phy address */
++			_ESW_REG(0xc8) |= 0x1f000000;
+ 			copy_from_user(&reg, ifr->ifr_data, sizeof(reg));
+ 			if (reg.off > REG_ESW_MAX)
+ 				return -EINVAL;
+ 			_ESW_REG(reg.off) = reg.val;
+ 			//printk("write reg off:%x val:%x\n", reg.off, reg.val);
+ 			break;
++		/* EZP: the follow code is for AR8316 support */
++		#if defined(CONFIG_AR8316) 
++		case RAETH_EXT_SW_REG_READ:
++			/* EZP: change to external phy address */
++			_ESW_REG(0xc8) &= 0xe0ffffff;
++			copy_from_user(&ext_reg, ifr->ifr_data, sizeof(ext_reg));
++			if (ext_reg.off > REG_EXT_SW_MAX)
++				return -EINVAL;
++			ext_reg.val = athrs16_reg_read(ext_reg.off);
++			copy_to_user(ifr->ifr_data, &ext_reg, sizeof(ext_reg));
++			break;
++		case RAETH_EXT_SW_REG_WRITE:
++			/* EZP: change to external phy address */
++			_ESW_REG(0xc8) &= 0xe0ffffff;
++			copy_from_user(&ext_reg, ifr->ifr_data, sizeof(ext_reg));
++			if (ext_reg.off > REG_EXT_SW_MAX)
++				return -EINVAL;
++			athrs16_reg_write(ext_reg.off, ext_reg.val);
++			break;
++		#endif
+ 		case RAETH_ESW_PHY_DUMP:
++			/* EZP: change to external phy address */
++			_ESW_REG(0xc8) &= 0xe0ffffff;
+ 			copy_from_user(&reg, ifr->ifr_data, sizeof(reg));
+ #if defined (CONFIG_RALINK_RT3052) || defined (CONFIG_RALINK_RT3352) || defined (CONFIG_RALINK_RT5350)
+ 			if (reg.val ==32 ) {//dump all phy register
+@@ -2289,7 +2344,8 @@
+ 	dev->change_mtu		= ei_change_mtu;
+ 	dev->mtu		= 1500;
+ 	dev->do_ioctl		= ei_ioctl;
+-//	dev->tx_timeout		= ei_tx_timeout;
++    /* EZP: enable timeout */
++	dev->tx_timeout		= ei_tx_timeout;
+ 
+ #ifdef CONFIG_RAETH_NAPI
+         dev->poll = &raeth_clean;
+@@ -2339,6 +2395,8 @@
+ {
+ 	struct net_device *dev = dev_raether;
+ 
++    /* EZP */
++    printk("raeth reset due to tx timeout\n");
+ 	ei_close(dev);
+ 	ei_open(dev);
+ 
+@@ -2811,7 +2869,9 @@
+ #if defined (CONFIG_RT_3052_ESW)
+ 	*((volatile u32 *)(RALINK_INTCL_BASE + 0x34)) = (1<<17);
+ 	*((volatile u32 *)(ESW_IMR)) &= ~(ESW_INT_ALL);
++#ifdef EZP
+ 	INIT_WORK(&ei_local->kill_sig_wq, kill_sig_workq);
++#endif
+ 	err = request_irq(SURFBOARDINT_ESW, esw_interrupt, IRQF_DISABLED, "Ralink_ESW", dev);
+ 	
+ 	if (err)
+@@ -3479,6 +3539,9 @@
+         *(unsigned long *)(RALINK_ETH_SW_BASE+0x00C8) &= ~(1<<29); //disable port 5 auto-polling
+         *(unsigned long *)(RALINK_ETH_SW_BASE+0x00C8) |= 0x3fff; //force 1000M full duplex
+         *(unsigned long *)(RALINK_ETH_SW_BASE+0x00C8) &= ~(0xf<<20); //rxclk_skew, txclk_skew = 0
++#ifdef CONFIG_AR8316
++        *(unsigned long *)(0xb0110098) = 0x00007f1f; //EZP:set P5 vlan packet tagged
++#endif
+ #elif defined (CONFIG_P5_MII_TO_MAC_MODE)
+ 	*(unsigned long *)(0xb0000060) &= ~(1 << 9); //set RGMII to Normal mode
+         *(unsigned long *)(RALINK_ETH_SW_BASE+0x00C8) &= ~(1<<29); //disable port 5 auto-polling
+@@ -3862,6 +3925,16 @@
+ 	rt6855A_gsw_init();
+ #else
+ 	rt305x_esw_init();
++	/* if we use AR8316 GigaSW and connect to P5 */
++	#if defined (CONFIG_AR8316)
++	/* first, we need to set the external of P5 to 0x0 */
++        *(unsigned long *)(0xb01100C8) &= 0xe0ffffff;
++        /* call initial function of AR8316 GigaSW */
++	athrs16_init();
++	printk("AR8316 Giga Switch support \n");
++	athrs16_LAN_WAN_Par();
++	printk("AR8316 VLAN support \n");
++	#endif
+ #endif
+ #endif 
+ 	// Case4:  RT288x/RT388x GE1 + GigaSW
+diff -Nur linux-2.6.21.x/drivers/net/raeth/raether.h linux-2.6.26/drivers/net/raeth/raether.h
+--- linux-2.6.21.x/drivers/net/raeth/raether.h	2012-04-16 16:59:23.000000000 +0800
++++ linux-2.6.26/drivers/net/raeth/raether.h	2013-03-05 01:15:09.050733674 +0800
+@@ -89,4 +89,11 @@
+ u32 mii_mgr_write(u32 phy_addr, u32 phy_register, u32 write_data);
+ void fe_sw_init(void);
+ 
++#ifdef CONFIG_AR8316
++uint32_t athrs16_reg_read(uint32_t reg_addr);
++void athrs16_reg_write(uint32_t reg_addr, uint32_t reg_val);
++void athrs16_init(void);
++void athrs16_LAN_WAN_Par(void);
++#endif
++
+ #endif
+diff -Nur linux-2.6.21.x/drivers/net/raeth/ra_ioctl.h linux-2.6.26/drivers/net/raeth/ra_ioctl.h
+--- linux-2.6.21.x/drivers/net/raeth/ra_ioctl.h	2012-09-17 16:36:46.000000000 +0800
++++ linux-2.6.26/drivers/net/raeth/ra_ioctl.h	2013-03-05 01:14:24.620711654 +0800
+@@ -10,6 +10,13 @@
+ #define RAETH_ESW_EGRESS_RATE		0x89F6
+ #define RAETH_ESW_PHY_DUMP		0x89F7
+ 
++#ifdef CONFIG_AR8316
++#define RAETH_EXT_SW_REG_READ       0x89FA
++#define RAETH_EXT_SW_REG_WRITE      0x89FB
++#define RAETH_RGMII_READ        0x89FC
++#define RAETH_RGMII_WRITE       0x89FD
++#endif
++
+ 
+ #if defined (CONFIG_RALINK_RT6855) || defined(CONFIG_RALINK_RT6855A) || \
+     defined (CONFIG_RALINK_MT7620)
+@@ -65,6 +72,10 @@
+ #define REG_ESW_MAX			0xFC
+ #endif
+ 
++/* AR8316 ethernet switch register */
++#if defined (CONFIG_AR8316)
++    #define REG_EXT_SW_MAX          0x1000
++#endif
+ 
+ typedef struct rt3052_esw_reg {
+ 	unsigned int off;
+diff -Nur linux-2.6.21.x/drivers/net/raeth/ra_mac.c linux-2.6.26/drivers/net/raeth/ra_mac.c
+--- linux-2.6.21.x/drivers/net/raeth/ra_mac.c	2012-09-18 11:34:12.000000000 +0800
++++ linux-2.6.26/drivers/net/raeth/ra_mac.c	2013-03-05 00:54:41.010118438 +0800
+@@ -35,7 +35,9 @@
+ #include <linux/proc_fs.h>
+ #include <asm/uaccess.h>
+ 
+-#include "../../../../config/autoconf.h"
++/* EZP read setting CONFIG_USER_SNMPD from autoconf.h
++ * #include "../../../../config/autoconf.h"
++ */
+ 
+ #if defined(CONFIG_USER_SNMPD)
+ #include <linux/seq_file.h>

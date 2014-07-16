@@ -1,0 +1,107 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2008 OpenWrt.org
+CONF="/var/samba/smb.conf.$$"
+R_CONF=/var/samba/smb.conf
+. /etc/functions.sh
+
+USBSTORAGE=95
+log_msg="SAMBA-server"
+
+smb_header() {
+    local name=$(nvram show smbd_rule 0 name)
+    local workgroup=$(nvram show smbd_rule 0 workgroup)
+    local description=$(nvram show smbd_rule 0 description)
+    local enable=$(nvram show smbd_rule 0 enable)
+    local guest_ok=$(nvram show smbd_rule 0 guest_ok)
+    local ext_access=$(nvram show smbd_rule 0 ext_access)
+    local codepage=$(nvram show smbd_rule 0 codepage)
+    local dev=$(nvram show storage_state_rule 0 dev_name)
+
+    [ -z "$name" ] && name="AXIMCOM"
+    [ -z "$workgroup" ] && workgroup="AXIMCOM"
+    [ -z "$description" ] && description="AXIMCOM file server" 
+    [ "$enable" = 0 -o -z "$dev" ] && exit
+    mkdir -p /var/samba
+    cp /etc/samba/smb.conf.template $CONF
+    if [ "$ext_access" = "0" ]; then
+        echo -e "interfaces = br0" >> $CONF
+        echo -e "bind interfaces only = yes" >> $CONF
+    fi
+    if [ "$guest_ok" = "0" ]; then
+        security="user"
+    else
+        security="share"
+    fi
+
+    sed -i "s/|NAME|/$name/g" $CONF
+    sed -i "s/|WORKGROUP|/$workgroup/g" $CONF
+    sed -i "s/|DESCRIPTION|/$description/g" $CONF
+    sed -i "s/|SECURITY|/$security/g" $CONF
+}
+
+
+smb_add_share() {
+	local name=$(nvram show smbd_rule 0 share_name)
+	local path=$(nvram show smbd_rule 0 share_path)
+    local read_only=$(nvram show smbd_rule 0 read_only)
+	local guest_ok=$(nvram show smbd_rule 0 guest_ok)
+    local create_mask=$(nvram show smbd_rule 0 create_mask)
+    local dir_mask=$(nvram show smbd_rule 0 dir_mask)
+    local passwd=$(nvram show smbd_user_rule 0 passwd)
+
+	[ -z "$name" -o -z "$path" ] && exit
+    touch /var/samba/smbpasswd
+	
+    for mount_path in $(mount | grep $path | awk '{print $3}');do
+        local mount_point="$(echo "$mount_path" | awk -F $path/ '{print $2}')"
+        echo -e "\n[$mount_point]\n\tpath = /tmp/$path/$mount_point" >> $CONF
+        if [ "$read_only" = "1" ]; then 
+            echo -e "\tread only = yes" >> $CONF
+        else 
+            echo -e "\tread only = no" >> $CONF
+        fi
+        if [ "$guest_ok" = "1" ]; then 
+            echo -e "\tguest ok = yes" >> $CONF
+        else
+            echo -e "\tguest ok = no" >> $CONF
+            echo -e "\tvalid users = admin" >> $CONF
+            smbpasswd admin $passwd
+        fi
+        [ -n "$create_mask" ] && echo -e "\tcreate mask = $create_mask" >> $CONF
+        [ -n "$dir_mask" ] && echo -e "\tdirectory mask = $dir_mask" >> $CONF
+    done
+}
+
+start() {
+    local ext_enable=$(nvram show storage_rule 0 ext_enable)
+    # If use external storage, samba do not start
+    [ "$ext_enable" = "1" ] && exit 
+    [ -n "$(pidof smbd)" ] && stop
+	smb_header
+	smb_add_share
+    mv $CONF $R_CONF
+    smbd -D -s $R_CONF
+    nmbd -D -s $R_CONF
+}
+
+stop() {
+    local pid=$(pidof smbd)
+    [ -z "$pid" ] && exit
+	killall smbd
+	killall nmbd
+    for p in $pid
+    do
+        local count=0 
+        while [ -d "/proc/$p"  ]
+        do
+            sleep 2
+            count=$(($count + 1))
+            [ "$count" -gt "10" ] && {
+                err=1
+                return
+            }
+        done
+    done
+    rm $R_CONF
+    [ -f "/var/samba/smbpasswd" ] && rm /var/samba/smbpasswd
+}

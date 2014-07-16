@@ -1,0 +1,38 @@
+#!/bin/sh
+. /etc/arch.sh
+product="$(echo $PRODUCT | sed 's/\/.*$//g')"
+[ "$product" != "5ac" ] && exit
+[ "$(nvram show appmgr_rule 0 iphone)" != "1" ] && exit
+case "$ACTION" in
+        add)
+# Prevent multiple entry
+        [ -e /var/run/ifuse.pid -o -e "/tmp/ifuse.chk" ] && exit
+        lock /tmp/ifuse.lock
+        [ -e /var/run/ifuse.pid -o -e "/tmp/ifuse.chk" ] && {
+            lock -u /tmp/ifuse.lock
+            exit
+        }
+        if mkdir -p /tmp/ifuse.chk
+        then
+            lock /tmp/usbmuxd.lock
+            while [ -z "$(pidof usbmuxd)" ]
+            do
+                /usr/sbin/usbmuxd -vv
+                sleep 5
+            done
+            [ -d /tmp/mnt ] || mkdir -p /tmp/mnt
+            /usr/sbin/ifuse /tmp/mnt -o allow_other
+            [ "$(nvram show drive_rule 0 enable)" = "1" ] && sh /etc/rc.common /etc/init.d/lighttpd start 
+            lock -u /tmp/usbmuxd.lock
+        fi
+        lock -u /tmp/ifuse.lock
+        ;;
+        remove)
+        sh /etc/rc.common /etc/init.d/lighttpd stop
+        PID=$(pidof ifuse)
+        [ -n "$PID" ] && kill -9 $PID
+        umount /tmp/mnt
+        /usr/sbin/usbmuxd -X
+        rm -rf /tmp/ifuse.chk
+        ;;
+esac

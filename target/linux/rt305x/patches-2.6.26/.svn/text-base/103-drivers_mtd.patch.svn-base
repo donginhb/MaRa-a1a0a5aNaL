@@ -1,0 +1,341 @@
+--- a/drivers/mtd/chips/cfi_cmdset_0002.c	2008-11-25 21:45:19.000000000 +0800
++++ b/drivers/mtd/chips/cfi_cmdset_0002.c	2008-11-25 21:12:21.000000000 +0800
+@@ -1338,7 +1338,7 @@
+ 
+ 	INVALIDATE_CACHE_UDELAY(map, chip,
+ 				adr, map_bankwidth(map),
+-				chip->word_write_time);
++				chip->buffer_write_time*5);
+ 
+ 	timeo = jiffies + uWriteTimeout;
+ 
+@@ -1530,8 +1530,16 @@
+ 			chip->erase_suspended = 0;
+ 		}
+ 
+-		if (chip_ready(map, adr))
+-			break;
++		if (chip_ready(map, adr)) {
++
++		    /* We have to make sure sector erease is successful because
++		     * Spansion will report wrong status - FIXME */ 
++		    if(!chip_good(map, adr, map_word_ff(map))) {
++			continue;
++		    }
++
++		    break;
++		}
+ 
+ 		if (time_after(jiffies, timeo)) {
+ 			printk(KERN_WARNING "MTD %s(): software timeout\n",
+@@ -1619,8 +1627,15 @@
+ 		}
+ 
+ 		if (chip_ready(map, adr)) {
+-			xip_enable(map, chip, adr);
+-			break;
++		   
++		    /* We have to make sure sector erease is successful because
++		     * Spansion will report wrong status - FIXME */ 
++		    if(!chip_good(map, adr, map_word_ff(map))) {
++			continue;
++		    }
++
++		    xip_enable(map, chip, adr);
++		    break;
+ 		}
+ 
+ 		if (time_after(jiffies, timeo)) {
+--- a/drivers/mtd/chips/cfi_probe.c	2008-11-25 21:12:35.000000000 +0800
++++ b/drivers/mtd/chips/cfi_probe.c	2008-11-25 21:12:21.000000000 +0800
+@@ -31,6 +31,9 @@
+ 
+ struct mtd_info *cfi_probe(struct map_info *map);
+ 
++int cfi_isSST(struct map_info *map,struct cfi_private *cfi, __u32 base);
++static int isSST;
++
+ #ifdef CONFIG_MTD_XIP
+ 
+ /* only needed for short periods, so this is rather simple */
+@@ -67,6 +70,8 @@
+ 
+ #endif
+ 
++
++
+ /* check for QRY.
+    in: interleave,type,mode
+    ret: table index, <0 for error
+@@ -119,7 +124,21 @@
+ 	xip_disable();
+ 	cfi_send_gen_cmd(0xF0, 0, base, map, cfi, cfi->device_type, NULL);
+ 	cfi_send_gen_cmd(0xFF, 0, base, map, cfi, cfi->device_type, NULL);
+-	cfi_send_gen_cmd(0x98, 0x55, base, map, cfi, cfi->device_type, NULL);
++
++
++	/* SST Flash on board ? */
++	isSST=cfi_isSST(map,cfi,base);
++
++	if(isSST)
++        {
++                cfi_send_gen_cmd(0xAA, 0x5555, base, map, cfi, cfi->device_type, NULL);
++                cfi_send_gen_cmd(0x55, 0x2AAA, base, map, cfi, cfi->device_type, NULL);
++                cfi_send_gen_cmd(0x98, 0x5555, base, map, cfi, cfi->device_type, NULL);
++        }
++	else
++	{
++		cfi_send_gen_cmd(0x98, 0x55, base, map, cfi, cfi->device_type, NULL);
++	}
+ 
+ 	if (!qry_present(map,base,cfi)) {
+ 		xip_enable(base, map, cfi);
+@@ -252,6 +271,12 @@
+ 	cfi->cfiq->InterfaceDesc = le16_to_cpu(cfi->cfiq->InterfaceDesc);
+ 	cfi->cfiq->MaxBufWriteSize = le16_to_cpu(cfi->cfiq->MaxBufWriteSize);
+ 
++	// for SST,the NumEraseRegion 2 explain to Block Information,
++        // NumEraseRegion 1 explain to sector
++        if(isSST){
++                cfi->cfiq->NumEraseRegions = 1;
++        }
++
+ #ifdef DEBUG_CFI
+ 	/* Dump the information therein */
+ 	print_cfi_ident(cfi->cfiq);
+--- a/drivers/mtd/chips/cfi_util.c	2008-11-25 21:12:36.000000000 +0800
++++ b/drivers/mtd/chips/cfi_util.c	2008-11-25 21:12:21.000000000 +0800
+@@ -27,13 +27,33 @@
+ #include <linux/mtd/cfi.h>
+ #include <linux/mtd/compatmac.h>
+ 
++
++int cfi_isSST(struct map_info *map,struct cfi_private *cfi, __u32 base)
++{
++	int man_id;
++
++        cfi_send_gen_cmd(0xAA, 0x5555, base, map, cfi, cfi->device_type, NULL);
++        cfi_send_gen_cmd(0x55, 0x2AAA, base, map, cfi, cfi->device_type, NULL);
++        cfi_send_gen_cmd(0x90, 0x5555, base, map, cfi, cfi->device_type, NULL);
++        man_id = cfi_read_query(map, base);
++
++        /* SST manufacture id = 0xBF */
++        if(man_id==CFI_MFR_SST){
++                return 1;
++        }else{
++                return 0;
++        }
++
++}
++
++
+ struct cfi_extquery *
+ __xipram cfi_read_pri(struct map_info *map, __u16 adr, __u16 size, const char* name)
+ {
+ 	struct cfi_private *cfi = map->fldrv_priv;
+ 	__u32 base = 0; // cfi->chips[0].start;
+ 	int ofs_factor = cfi->interleave * cfi->device_type;
+-	int i;
++	int i, isSST;
+ 	struct cfi_extquery *extp = NULL;
+ 
+ 	printk(" %s Extended Query Table at 0x%4.4X\n", name, adr);
+@@ -50,8 +70,18 @@
+ 	local_irq_disable();
+ #endif
+ 
+-	/* Switch it into Query Mode */
+-	cfi_send_gen_cmd(0x98, 0x55, base, map, cfi, cfi->device_type, NULL);
++	isSST=cfi_isSST(map,cfi,base);
++
++        if(isSST)
++        {
++                cfi_send_gen_cmd(0xAA, 0x5555, base, map, cfi, cfi->device_type, NULL);
++                cfi_send_gen_cmd(0x55, 0x2AAA, base, map, cfi, cfi->device_type, NULL);
++                cfi_send_gen_cmd(0x98, 0x5555, base, map, cfi, cfi->device_type, NULL);
++        }
++	else 
++	{
++		cfi_send_gen_cmd(0x98, 0x55, base, map, cfi, cfi->device_type, NULL);
++	}
+ 
+ 	/* Read in the Extended Query Table */
+ 	for (i=0; i<size; i++) {
+@@ -100,11 +130,13 @@
+ 	int i, first;
+ 	struct mtd_erase_region_info *regions = mtd->eraseregions;
+ 
+-	if (ofs > mtd->size)
++	if (ofs > mtd->size) {
+ 		return -EINVAL;
++	}
+ 
+-	if ((len + ofs) > mtd->size)
++	if ((len + ofs) > mtd->size) {
+ 		return -EINVAL;
++	}
+ 
+ 	/* Check that both start and end of the requested erase are
+ 	 * aligned with the erasesize at the appropriate addresses.
+@@ -128,8 +160,9 @@
+ 	   effect here.
+ 	*/
+ 
+-	if (ofs & (regions[i].erasesize-1))
++	if (ofs & (regions[i].erasesize-1)){
+ 		return -EINVAL;
++	}
+ 
+ 	/* Remember the erase region we start on */
+ 	first = i;
+@@ -146,8 +179,9 @@
+ 	*/
+ 	i--;
+ 
+-	if ((ofs + len) & (regions[i].erasesize-1))
++	if ((ofs + len) & (regions[i].erasesize-1)){
+ 		return -EINVAL;
++	}
+ 
+ 	chipnum = ofs >> cfi->chipshift;
+ 	adr = ofs - (chipnum << cfi->chipshift);
+@@ -159,8 +193,9 @@
+ 
+ 		ret = (*frob)(map, &cfi->chips[chipnum], adr, size, thunk);
+ 
+-		if (ret)
++		if (ret){
+ 			return ret;
++		}
+ 
+ 		adr += size;
+ 		ofs += size;
+--- a/drivers/mtd/chips/gen_probe.c	2008-11-25 21:12:36.000000000 +0800
++++ b/drivers/mtd/chips/gen_probe.c	2008-11-25 21:12:21.000000000 +0800
+@@ -199,6 +199,7 @@
+ extern cfi_cmdset_fn_t cfi_cmdset_0001;
+ extern cfi_cmdset_fn_t cfi_cmdset_0002;
+ extern cfi_cmdset_fn_t cfi_cmdset_0020;
++extern cfi_cmdset_fn_t cfi_cmdset_0701;
+ 
+ static inline struct mtd_info *cfi_cmdset_unknown(struct map_info *map,
+ 						  int primary)
+@@ -256,6 +257,10 @@
+         case 0x0020:
+ 		return cfi_cmdset_0020(map, primary);
+ #endif
++#ifdef CONFIG_MTD_CFI_SSTSTD
++	case 0x0701:
++		return cfi_cmdset_0701(map, primary);
++#endif
+ 	default:
+ 		return cfi_cmdset_unknown(map, primary);
+ 	}
+--- a/drivers/mtd/chips/Kconfig	2008-11-25 21:12:37.000000000 +0800
++++ b/drivers/mtd/chips/Kconfig	2008-11-25 21:12:21.000000000 +0800
+@@ -205,6 +205,11 @@
+ 	  sets which a CFI-compliant chip may claim to implement. This code
+ 	  provides support for one of those command sets.
+ 
++config MTD_CFI_SSTSTD
++	tristate "Support for SST flash chips"
++	depends on MTD_GEN_PROBE
++	select MTD_CFI_UTIL
++
+ config MTD_CFI_UTIL
+ 	tristate
+ 
+--- a/drivers/mtd/chips/Makefile	2008-11-25 21:12:37.000000000 +0800
++++ b/drivers/mtd/chips/Makefile	2008-11-25 21:12:21.000000000 +0800
+@@ -8,6 +8,7 @@
+ obj-$(CONFIG_MTD_CFI_STAA)	+= cfi_cmdset_0020.o
+ obj-$(CONFIG_MTD_CFI_AMDSTD)	+= cfi_cmdset_0002.o
+ obj-$(CONFIG_MTD_CFI_INTELEXT)	+= cfi_cmdset_0001.o
++obj-$(CONFIG_MTD_CFI_SSTSTD)    += cfi_cmdset_0701.o
+ obj-$(CONFIG_MTD_GEN_PROBE)	+= gen_probe.o
+ obj-$(CONFIG_MTD_JEDECPROBE)	+= jedec_probe.o
+ obj-$(CONFIG_MTD_RAM)		+= map_ram.o
+--- a/drivers/mtd/maps/Kconfig	2008-11-25 21:12:38.000000000 +0800
++++ b/drivers/mtd/maps/Kconfig	2008-11-25 21:12:21.000000000 +0800
+@@ -1,9 +1,13 @@
+ # drivers/mtd/maps/Kconfig
+-# $Id: Kconfig,v 1.61 2005/11/07 11:14:26 gleixner Exp $
++# $Id: Kconfig,v 1.7 2008-05-12 02:54:24 steven Exp $
+ 
+ menu "Mapping drivers for chip access"
+ 	depends on MTD!=n
+ 
++config MTD_RALINK
++       bool "Ralink MTD support"
++       depends on MTD
++
+ config MTD_COMPLEX_MAPPINGS
+ 	bool "Support non-linear mappings of flash chips"
+ 	help
+--- a/drivers/mtd/maps/Makefile	2008-11-25 21:36:39.000000000 +0800
++++ b/drivers/mtd/maps/Makefile	2008-11-25 22:10:33.000000000 +0800
+@@ -66,4 +66,5 @@
+ obj-$(CONFIG_MTD_PLATRAM)	+= plat-ram.o
+ obj-$(CONFIG_MTD_OMAP_NOR)	+= omap_nor.o
+ obj-$(CONFIG_MTD_MTX1)		+= mtx-1_flash.o
++obj-$(CONFIG_MTD_RALINK)        += ralink-flash.o
+ obj-$(CONFIG_MTD_INTEL_VR_NOR)	+= intel_vr_nor.o
+--- a/include/linux/mtd/cfi.h	2008-07-14 05:51:29.000000000 +0800
++++ b/include/linux/mtd/cfi.h	2008-11-25 21:12:45.000000000 +0800
+@@ -222,6 +222,27 @@
+ 
+ /* Vendor-Specific PRI for Atmel chips (command set 0x0002) */
+ 
++/* Vendor-Specific PRI for SST Extended Command Set (0x0701) */
++
++struct cfi_pri_sststd {
++	uint8_t  pri[3];
++	uint8_t  MajorVersion;
++	uint8_t  MinorVersion;
++	uint8_t  SiliconRevision; /* bits 1-0: Address Sensitive Unlock */
++	uint8_t  EraseSuspend;
++	uint8_t  BlkProt;
++	uint8_t  TmpBlkUnprotect;
++	uint8_t  BlkProtUnprot;
++	uint8_t  SimultaneousOps;
++	uint8_t  BurstMode;
++	uint8_t  PageMode;
++	uint8_t  VppMin;
++	uint8_t  VppMax;
++	uint8_t  TopBottom;
++} __attribute__((packed));
++
++/* Vendor-Specific PRI for SST chips (command set 0x0701) */
++
+ struct cfi_pri_atmel {
+ 	uint8_t pri[3];
+ 	uint8_t MajorVersion;
+@@ -499,6 +520,7 @@
+ #define CFI_MFR_AMD 0x0001
+ #define CFI_MFR_ATMEL 0x001F
+ #define CFI_MFR_ST  0x0020 	/* STMicroelectronics */
++#define CFI_MFR_SST 0x00BF
+ 
+ void cfi_fixup(struct mtd_info *mtd, struct cfi_fixup* fixups);
+ 
+--- a/drivers/mtd/Makefile	2008-11-25 21:36:39.000000000 +0800
++++ b/drivers/mtd/Makefile	2008-11-25 22:10:33.000000000 +0800
+@@ -29,6 +29,6 @@
+ nftl-objs		:= nftlcore.o nftlmount.o
+ inftl-objs		:= inftlcore.o inftlmount.o
+ 
+-obj-y		+= chips/ maps/ devices/ nand/ onenand/
++obj-y		+= chips/ maps/ devices/ nand/ onenand/ ralink/
+ 
+ obj-$(CONFIG_MTD_UBI)		+= ubi/
+--- a/drivers/mtd/Kconfig	2010-06-22 17:48:03.692511086 +0800
++++ b/drivers/mtd/Kconfig	2010-06-22 17:48:19.747712520 +0800
+@@ -323,6 +323,8 @@
+ 
+ source "drivers/mtd/onenand/Kconfig"
+ 
++source "drivers/mtd/ralink/Kconfig"
++
+ source "drivers/mtd/ubi/Kconfig"
+ 
+ endif # MTD

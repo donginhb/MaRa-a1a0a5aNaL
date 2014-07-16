@@ -1,0 +1,119 @@
+10
+
+dir
+39
+svn://10.1.1.252/share/svn/ezp/branches/squirt/tools
+svn://10.1.1.252/share/svn/ezp
+
+
+
+2014-07-01T10:59:42.780744Z
+23
+chenhj
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+e312dddf-68fe-4d5c-8447-00546c441c28
+
+ipkg-utils
+dir
+
+squashfs
+dir
+
+quilt
+dir
+
+lzma
+dir
+
+genext2fs
+dir
+
+ccache
+dir
+
+automake
+dir
+
+patch-cmdline
+dir
+
+bison
+dir
+
+dtc
+dir
+
+mkimage
+dir
+
+firmware-utils
+dir
+
+sed
+dir
+
+Makefile
+file
+
+
+
+
+2014-07-02T03:30:12.137326Z
+0ab4a685fa590422def595a85c0a7d8c
+2014-07-01T10:59:42.780744Z
+23
+chenhj
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1737
+
+autoconf
+dir
+
+lua
+dir
+
+mtd-utils
+dir
+
+include
+dir
+
+sstrip
+dir
+
+pkg-config
+dir
+

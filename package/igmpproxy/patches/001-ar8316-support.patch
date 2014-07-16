@@ -1,0 +1,293 @@
+--- igmpproxy-0.1/src/igmpproxy.h	2009-10-06 02:19:26.000000000 +0800
++++ igmpproxy-0.1/src/igmpproxy.h	2010-09-28 08:55:36.960130895 +0800
+@@ -57,6 +57,7 @@
+ 
+ #include "os.h"
+ #include "config.h"
++#include "ezp-lib.h"
+ 
+ /*
+  * Limit on length of route data
+--- igmpproxy-0.1/src/igmp.c	2009-05-14 03:43:18.000000000 +0800
++++ igmpproxy-0.1/src/igmp.c	2010-09-28 09:12:29.111012897 +0800
+@@ -94,6 +94,239 @@
+     }
+ }
+ 
++static void strip_mac(char *mac)
++{
++	char *pos = mac, *strip = mac;
++	while(*pos != '\0'){
++		if(*pos == ':')
++			pos++;
++		else{
++			*strip = *pos;
++			strip++;
++			pos++;
++		}
++	}
++	*strip = '\0';
++}
++
++static int arpLookUp(char *ip, char *arp)
++{
++	char buf[256];
++	FILE *fp = fopen("/proc/net/arp", "r");
++	if(!fp){
++		my_log(LOG_ERR, 0, "*** RT3052: no proc fs!");
++		return -1;
++	}
++
++	while(fgets(buf, sizeof(buf), fp)){
++		char ip_entry[32], hw_type[8],flags[8], hw_address[32];
++		sscanf(buf, "%s %s %s %s", ip_entry, hw_type, flags, hw_address);
++		if(!strcmp(ip, ip_entry)){
++			strcpy(arp, hw_address);
++			fclose(fp);
++			return 0;
++		}
++	}
++
++	fclose(fp);
++	return -1;
++}
++
++/*
++ * send a udp packet to target if its mac address can't be found.
++ */
++static void sendUDP(char *ip)
++{
++	int socket_fd;
++	struct sockaddr_in user_addr;
++	char buf[16];
++
++	memset(&user_addr, 0, sizeof(struct sockaddr_in));
++	user_addr.sin_family	= AF_INET;
++	user_addr.sin_port		= htons(53);
++	user_addr.sin_addr.s_addr = inet_addr(ip);
++
++	if((socket_fd = socket(AF_INET,SOCK_DGRAM, 0)) == -1) {
++		my_log(LOG_WARNING, 0, "*** RT3052: socket error");
++		return;
++	}
++	strcpy(buf, "arp please");
++	sendto(socket_fd, buf, strlen(buf), 0, (struct sockaddr *)&user_addr, sizeof(user_addr));
++	close(socket_fd);
++
++	return ;
++}
++
++struct rt3052_esw_reg {
++	unsigned int off;
++	unsigned int val;
++} reg;
++static struct ifreq		ifr;
++static int 				esw_fd = -1;
++
++static void regctl_init(void) {
++    esw_fd = socket(AF_INET, SOCK_DGRAM, 0);
++    if (esw_fd < 0) {
++        perror("socket");
++        return;
++    }
++    strncpy(ifr.ifr_name, "eth2", 5);
++    ifr.ifr_data = (char*)&reg;
++}
++
++static void regctl_fini(void) {
++    close(esw_fd);
++}
++
++#define RAETH_EXT_SW_REG_READ		0x89F7
++#define RAETH_EXT_SW_REG_WRITE		0x89F8
++static inline int greg_read(int offset, int *value)
++{
++    if (value == NULL)
++        return -1;
++    reg.off = offset;
++    if (-1 == ioctl(esw_fd, RAETH_EXT_SW_REG_READ, &ifr)) {
++        perror("ioctl");
++        close(esw_fd);
++        exit(0);
++    }
++    *value = reg.val;
++    return 0;
++}
++
++static inline int greg_write(int offset, int value)
++{
++    reg.off = offset;
++    reg.val = value;
++    if (-1 == ioctl(esw_fd, RAETH_EXT_SW_REG_WRITE, &ifr)) {
++        perror("ioctl");
++        close(esw_fd);
++        exit(0);
++    }
++    return 0;
++}
++
++static int portLookUpByMac(char *mac)
++{
++	unsigned int value = 0, mac1, mac2, i = 0, status, port_map;
++    char entry_mac[20];
++
++/* AT operation and MAC 5,6 */
++#define REG_AR8316_ATFR0    0x50
++/* MAC 1~4 */
++#define REG_AR8316_ATFR1    0x54
++/* Status */
++#define REG_AR8316_ATFR2    0x58
++#define REG_AR8316_ATFR0_BUSY       0x00000008
++#define REG_AR8316_ATFR2_STATUS     0x000F0000
++#define REG_AR8316_AT_READ_NEXT     value = (value & 0xfffffff0) | 0x0000000E; greg_write(REG_AR8316_ATFR0, value)
++
++    /* Set ar8316 address table to search from first AT entry. */
++    greg_write(REG_AR8316_ATFR1, 0);
++    greg_write(REG_AR8316_ATFR2, 0);
++    /* Get next entry */
++    REG_AR8316_AT_READ_NEXT;
++	while( i < 0x3fe) {
++        greg_read(REG_AR8316_ATFR0, &value);
++		/*reg_read(REG_ESW_TABLE_STATUS0, &value);*/
++		if (!(value & REG_AR8316_ATFR0_BUSY)) { /* AT operation complete*/
++            greg_read(REG_AR8316_ATFR2, &status);
++            /* read mac bytes 0~3 */
++			if ((status & REG_AR8316_ATFR2_STATUS) == 0) {
++                /* my_log(LOG_WARNING, 0, "*** RT3052: end of table. line:%d %d", __LINE__, i); */
++				return -1;
++			}
++            /* Get mac address */
++            /* Bytes 1,2,3,4 */
++			greg_read(REG_AR8316_ATFR1, &mac1);
++            /* Bytes 5,6 */
++            mac2 = value >> 16;
++#define GET_MAC_BYTE(Mac,Pos) ((Mac >> Pos) & 0x000000ff)
++            sprintf(entry_mac, "%02x%02x%02x%02x%02x%02x", 
++                    GET_MAC_BYTE(mac1, 24), GET_MAC_BYTE(mac1, 16), GET_MAC_BYTE(mac1, 8) , GET_MAC_BYTE(mac1, 0),
++                    GET_MAC_BYTE(mac2, 8) , GET_MAC_BYTE(mac2, 0));
++            /* Get portmap */
++			port_map = (status & 0x0000003f);
++            /* my_log(LOG_WARNING, 0, "i:%d mac:%s entry_mac:%s portmap:%x\n", i, mac, entry_mac, port_map); */
++            if(!strcmp(mac, entry_mac)) {
++                /* my_log(LOG_WARNING, 0, "Get it ~~~~~~~~~ i:%d mac:%s entry_mac:%s portmap:%x\n", i, mac, entry_mac, port_map); */
++                return port_map;
++            }
++
++            REG_AR8316_AT_READ_NEXT;
++			i++;
++		} else {
++			usleep(2000);
++        }
++	}
++    return -1;
++}
++
++static int portLookUpByIP(char *ip)
++{
++	char mac[32];
++	if( arpLookUp(ip, mac) == -1){
++		// send an udp then wait.
++		sendUDP(ip);
++		usleep(20000);	
++		if(arpLookUp(ip, mac) == -1){
++			// means flooding.
++			return -1;
++		}
++	}
++	strip_mac(mac);
++	return portLookUpByMac(mac);
++}
++#define SNOOP_ENABLE snoop_port[0]
++#define SNOOP_P1 snoop_port[1]
++#define SNOOP_P2 snoop_port[2]
++#define SNOOP_P3 snoop_port[3]
++#define SNOOP_P4 snoop_port[4]
++static int snoop_port[5];
++static void buildsnoop_port(void) {
++    char snoop_porttr[3];
++    ezplib_get_attr_val("igmp_snoop_rule", 0, "enable", 
++            snoop_porttr, sizeof(snoop_porttr), EZPLIB_USE_CLI);
++    SNOOP_ENABLE = 0;
++    if (snoop_porttr[0] == '1') {
++        SNOOP_ENABLE = 1;
++    }
++    ezplib_get_attr_val("igmp_snoop_rule", 0, "p4", 
++            snoop_porttr, sizeof(snoop_porttr), EZPLIB_USE_CLI);
++    SNOOP_P1 = 0;
++    if (snoop_porttr[0] == '1') {
++        SNOOP_P1 = 1;
++    }
++    ezplib_get_attr_val("igmp_snoop_rule", 0, "p3", 
++            snoop_porttr, sizeof(snoop_porttr), EZPLIB_USE_CLI);
++    SNOOP_P2 = 0;
++    if (snoop_porttr[0] == '1') {
++        SNOOP_P2 = 1;
++    }
++    ezplib_get_attr_val("igmp_snoop_rule", 0, "p2", 
++            snoop_porttr, sizeof(snoop_porttr), EZPLIB_USE_CLI);
++    SNOOP_P3 = 0;
++    if (snoop_porttr[0] == '1') {
++        SNOOP_P3 = 1;
++    }
++    ezplib_get_attr_val("igmp_snoop_rule", 0, "p1", 
++            snoop_porttr, sizeof(snoop_porttr), EZPLIB_USE_CLI);
++    SNOOP_P4 = 0;
++    if (snoop_porttr[0] == '1') {
++        SNOOP_P4 = 1;
++    }
++}
++
++#define SNOOP_CHECK(PORTMAP, POS) ((PORTMAP & (0x01 << POS)) && snoop_port[POS]) /* POS:1 ==> mask 0x02 */
++static int snoopcheck(int portmap) {
++    /* my_log(LOG_WARNING, 0, "check portmap:%x with snoop enable:%d p1:%d p2:%d p3:%d p4:%d\n",portmap, SNOOP_ENABLE, SNOOP_P1, SNOOP_P2, SNOOP_P3, SNOOP_P4); */
++    if (!SNOOP_ENABLE || (portmap == -1)) return 0;
++    if (SNOOP_CHECK(portmap, 1) || SNOOP_CHECK(portmap, 2) || 
++        SNOOP_CHECK(portmap, 3) || SNOOP_CHECK(portmap, 4)) {
++        return 1;
++    }
++    return 0;
++}
+ 
+ /**
+  * Process a newly received IGMP packet that is sitting in the input
+@@ -104,6 +336,7 @@
+     struct ip *ip;
+     struct igmp *igmp;
+     int ipdatalen, iphdrlen, igmpdatalen;
++    char ipstr[20];
+ 
+     if (recvlen < sizeof(struct ip)) {
+         my_log(LOG_WARNING, 0,
+@@ -114,7 +347,6 @@
+     ip        = (struct ip *)recv_buf;
+     src       = ip->ip_src.s_addr;
+     dst       = ip->ip_dst.s_addr;
+-
+     /* 
+      * this is most likely a message from the kernel indicating that
+      * a new src grp pair message has arrived and so, it would be 
+@@ -153,7 +385,6 @@
+         }
+         return;
+     }
+-
+     iphdrlen  = ip->ip_hl << 2;
+     ipdatalen = ip_data_len(ip);
+ 
+@@ -177,6 +408,16 @@
+     my_log(LOG_NOTICE, 0, "RECV %s from %-15s to %s",
+         igmpPacketKind(igmp->igmp_type, igmp->igmp_code),
+         inetFmt(src, s1), inetFmt(dst, s2) );
++    sprintf(ipstr, "%u.%u.%u.%u", GET_MAC_BYTE(src, 0), GET_MAC_BYTE(src, 8), GET_MAC_BYTE(src, 16), GET_MAC_BYTE(src, 24));
++    /* my_log(LOG_WARNING, 0, "ip:%x ipstr:%s\n",src,ipstr); */
++    regctl_init();
++    buildsnoop_port();
++    if(snoopcheck(portLookUpByIP(ipstr))) {
++        acceptLeaveMessage(src, group);
++        my_log(LOG_WARNING, 0, "%s is on snoop port\n", ipstr);
++        return;
++    }
++    regctl_fini();
+ 
+     switch (igmp->igmp_type) {
+     case IGMP_V1_MEMBERSHIP_REPORT:

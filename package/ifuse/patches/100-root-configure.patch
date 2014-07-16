@@ -1,0 +1,12 @@
+--- ../configure	2010-03-22 01:03:32.000000000 +0800
++++ ../configure	2010-05-10 18:00:27.589195000 +0800
+@@ -3983,7 +3983,8 @@
+ 
+ 
+ 
+-if test $pkg_failed = yes; then
++# EZP: For compiling issue we ignore the error checking and configuration continue on.
++if false ; then
+ 
+ if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+         _pkg_short_errors_supported=yes

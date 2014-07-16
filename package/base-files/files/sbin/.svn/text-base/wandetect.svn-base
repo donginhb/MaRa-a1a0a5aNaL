@@ -1,0 +1,34 @@
+#!/bin/sh
+. /etc/network.sh
+
+LOCK=/tmp/wandetect.$1.lock
+local num=${1#wan}
+# detect wan interface connection status
+mkdir $LOCK
+local ret=$?
+[ "$ret" != "0" ] && {
+    return
+}
+to_log "detect $1"
+local state="$(nvram show wan_status_rule $num state)"
+case $state in
+    2|3|4)
+        # We done do ipsec 
+        [ "$(nvram get brand)" = "PROX" -a "$(nvram get ipsec_enable)" == 1 -a "$(nvram get ipsec_split_tunnel_state)" == "initiator" ] && {
+            [ "$state" = "2" ] && \
+                nvram replace attr wan_status_rule $num state "3"
+        } || {
+            iface_detect $1 
+            ret=$?
+            to_log "$1 detect reault is $ret"
+            [ "$ret" = "2" ] && {
+                nvram replace attr wan_status_rule $num trycount "9999"
+            } || {
+                [ "$state" = "2" ] && {
+	                nvram replace attr wan_status_rule $num state "3"
+                }
+            }
+        }
+    ;;
+esac
+rm -rf $LOCK

@@ -1,0 +1,11 @@
+--- ../plutil/CMakeLists.txt	2010-01-22 04:45:01.000000000 +0800
++++ ../plutil/CMakeLists.txt	2010-05-12 19:28:15.960071638 +0800
+@@ -3,6 +3,6 @@
+ 	plutil.c)
+ 
+ ADD_EXECUTABLE(plutil ${plutil_SRC})
+-TARGET_LINK_LIBRARIES(plutil plist)
++TARGET_LINK_LIBRARIES(plutil plist glib-2.0 xml2 intl iconv gcrypt z gpg-error)
+ SET_TARGET_PROPERTIES( plutil PROPERTIES VERSION ${PLUTIL_VERSION} )
+ 
+INSTALL( TARGETS plutil RUNTIME DESTINATION bin COMPONENT plutil )

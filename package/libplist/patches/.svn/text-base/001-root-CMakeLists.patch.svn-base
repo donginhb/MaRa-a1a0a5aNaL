@@ -1,0 +1,10 @@
+--- ../CMakeLists.txt	2010-01-22 04:45:01.000000000 +0800
++++ ../CMakeLists.txt	2010-05-12 19:25:40.573079795 +0800
+@@ -27,6 +27,7 @@
+ ENDIF(ENABLE_PYTHON)
+ 
+ INCLUDE_DIRECTORIES( "${CMAKE_CURRENT_SOURCE_DIR}/include" )
++LINK_DIRECTORIES( "${CMAKE_CURRENT_SOURCE_DIR}/../../../staging_dir/mipsel/usr/lib" )
+ 
+ ENABLE_TESTING()
+ 

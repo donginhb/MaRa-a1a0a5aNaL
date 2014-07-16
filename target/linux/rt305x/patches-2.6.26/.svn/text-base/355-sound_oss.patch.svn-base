@@ -1,0 +1,27 @@
+diff -Nur old/sound/oss/Kconfig new/sound/oss/Kconfig
+--- old/sound/oss/Kconfig	2007-04-26 11:08:32.000000000 +0800
++++ new/sound/oss/Kconfig	2008-10-24 14:20:14.000000000 +0800
+@@ -94,6 +94,13 @@
+ 	select SND_AC97_CODEC
+ 	depends on SOUND_PRIME && (SOC_AU1550 || SOC_AU1200)
+ 
++config SOUND_AU1550_I2S
++	tristate "Au1550 I2S Sound"
++	depends on SOUND_PRIME && SOC_AU1550
++	# Weird I2S driver needs I2C driver to talk to the codec...
++	select I2C
++	select I2C_AU1550
++
+ config SOUND_TRIDENT
+ 	tristate "Trident 4DWave DX/NX, SiS 7018 or ALi 5451 PCI Audio Core"
+ 	depends on SOUND_PRIME && PCI
+diff -Nur old/sound/oss/Makefile new/sound/oss/Makefile
+--- old/sound/oss/Makefile	2007-04-26 11:08:32.000000000 +0800
++++ new/sound/oss/Makefile	2008-10-24 14:20:14.000000000 +0800
+@@ -29,6 +29,7 @@
+ obj-$(CONFIG_SOUND_MSNDPIN)	+= msnd.o msnd_pinnacle.o
+ obj-$(CONFIG_SOUND_VWSND)	+= vwsnd.o
+ obj-$(CONFIG_SOUND_AU1550_AC97)	+= au1550_ac97.o ac97_codec.o
++obj-$(CONFIG_SOUND_AU1550_I2S) += au1550_i2s.o
+ obj-$(CONFIG_SOUND_TRIDENT)	+= trident.o ac97_codec.o
+ obj-$(CONFIG_SOUND_BCM_CS4297A)	+= swarm_cs4297a.o

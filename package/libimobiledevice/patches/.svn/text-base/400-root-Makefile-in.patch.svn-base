@@ -1,0 +1,11 @@
+--- libimobiledevice-1.0.4/Makefile.in	2010-11-29 14:22:37.480394569 +0800
++++ libimobiledevice-1.0.4/Makefile.in.new	2010-11-29 14:44:11.340392142 +0800
+@@ -297,7 +297,7 @@
+ top_srcdir = @top_srcdir@
+ AUTOMAKE_OPTIONS = foreign
+ ACLOCAL_AMFLAGS = -I m4
+-SUBDIRS = src include swig dev tools docs
++SUBDIRS = src include dev tools docs
+ DISTCHECK_CONFIGURE_FLAGS = --enable-dev-tools
+ pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = libimobiledevice-1.0.pc

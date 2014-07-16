@@ -1,0 +1,115 @@
++ pwd
+make: Entering directory `/home/chenhj/work/mr101n/package/l2tpd'
+gzip -dc /home/dl/l2tpd_0.70-pre20031121.orig.tar.gz | /bin/tar -C /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/.. -xf -
+
+Applying ./patches/001-debian-2.patch using plaintext: 
+patching file Makefile
+patching file control.c
+patching file misc.h
+patching file avp.h
+patching file network.c
+patching file aaa.c
+patching file l2tpd.c
+patching file misc.c
+patching file avp.c
+patching file avpsend.c
+
+Applying ./patches/002-debian-2-pty-rev.patch using plaintext: 
+patching file l2tpd.c
+
+Applying ./patches/003-jacco-pty.patch using plaintext: 
+patching file l2tpd.c
+patching file l2tpd.c.orig
+
+Applying ./patches/004-gcc4.patch using plaintext: 
+patching file aaa.c
+
+Applying ./patches/004-nonblock.patch using plaintext: 
+patching file l2tpd.c
+
+Applying ./patches/005-df-disable.patch using plaintext: 
+patching file network.c
+
+Applying ./patches/006-ezp-l2tpd-max-session-and-mod-iface.patch using plaintext: 
+patching file call.c
+patching file control.c
+patching file md5.h
+Hunk #1 succeeded at 9 (offset 4 lines).
+rm: cannot remove `/home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/': Is a directory
+touch /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/.prepared_e3cb61ba2f9fb08d67be5d74411bd0b8
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/./; if [ -x ./configure ]; then /usr/bin/find /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ -name config.guess | xargs -r -n1 cp /home/chenhj/work/mr101n/scripts/config.guess; /usr/bin/find /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ -name config.sub | xargs -r -n1 cp /home/chenhj/work/mr101n/scripts/config.sub; AR=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar AS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -c -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts" LD=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld NM=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm CC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" GCC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" CXX="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++" RANLIB=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib STRIP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip OBJCOPY=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objcopy OBJDUMP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objdump SIZE=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-size CFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts " CXXFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts " CPPFLAGS="-I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " LDFLAGS="-L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib " PKG_CONFIG_PATH="/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/pkgconfig:/home/chenhj/work/mr101n/staging_dir/host/usr/lib/pkgconfig" PKG_CONFIG_LIBDIR="/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/pkgconfig"  ./configure --target=mipsel-linux --host=mipsel-linux --build=x86_64-linux-gnu --program-prefix="" --program-suffix="" --prefix=/usr --exec-prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin --libexecdir=/usr/lib --sysconfdir=/etc --datadir=/usr/share --localstatedir=/var --mandir=/usr/man --infodir=/usr/info --disable-nls ; fi; )
+touch /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/.configured
+CFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " CXXFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " LDFLAGS="-L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib " make -C /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/. AR=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar AS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -c -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts" LD=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld NM=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm CC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" GCC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" CXX="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++" RANLIB=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib STRIP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip OBJCOPY=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objcopy OBJDUMP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objdump SIZE=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-size CROSS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-" ARCH="mipsel"  CFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -DNVRAM_MMAP=1 -DCONFIG_EZP_ARCH_RT305X -DWAN_NUM="1" -DLAN_NUM="1" -DWL_NUM="1" -DEZP_PROD_CAT="U" -DEZP_PROD_CAT_"U" -DEZP_PROD_SUBCAT="0" -DEZP_PROD_SUBSUBCAT_"" -DEZP_PROD_SUBSUBCAT="" -DEZP_PROD_BRAND_"AXIM" -DEZP_PROD_VERSION="2.0.6" -I /home/chenhj/work/mr101n/package/ezp-nvram/src -I /home/chenhj/work/mr101n/package/ezp-nvram/include -I. -DLINUX -DSANITY -DIP_ALLOCATION" ;
+make[1]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig'
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -DNVRAM_MMAP=1 -DCONFIG_EZP_ARCH_RT305X -DWAN_NUM=1 -DLAN_NUM=1 -DWL_NUM=1 -DEZP_PROD_CAT=U -DEZP_PROD_CAT_U -DEZP_PROD_SUBCAT=0 -DEZP_PROD_SUBSUBCAT_ -DEZP_PROD_SUBSUBCAT= -DEZP_PROD_BRAND_AXIM -DEZP_PROD_VERSION=2.0.6 -I /home/chenhj/work/mr101n/package/ezp-nvram/src -I /home/chenhj/work/mr101n/package/ezp-nvram/include -I. -DLINUX -DSANITY -DIP_ALLOCATION   -c -o l2tpd.o l2tpd.c
+In file included from l2tp.h:30,
+                 from l2tpd.c:46:
+misc.h:69: warning: conflicting types for built-in function 'log'
+l2tpd.c: In function 'start_pppd':
+l2tpd.c:360: warning: assignment makes pointer from integer without a cast
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -DNVRAM_MMAP=1 -DCONFIG_EZP_ARCH_RT305X -DWAN_NUM=1 -DLAN_NUM=1 -DWL_NUM=1 -DEZP_PROD_CAT=U -DEZP_PROD_CAT_U -DEZP_PROD_SUBCAT=0 -DEZP_PROD_SUBSUBCAT_ -DEZP_PROD_SUBSUBCAT= -DEZP_PROD_BRAND_AXIM -DEZP_PROD_VERSION=2.0.6 -I /home/chenhj/work/mr101n/package/ezp-nvram/src -I /home/chenhj/work/mr101n/package/ezp-nvram/include -I. -DLINUX -DSANITY -DIP_ALLOCATION   -c -o pty.o pty.c
+In file included from l2tp.h:30,
+                 from pty.c:19:
+misc.h:69: warning: conflicting types for built-in function 'log'
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -DNVRAM_MMAP=1 -DCONFIG_EZP_ARCH_RT305X -DWAN_NUM=1 -DLAN_NUM=1 -DWL_NUM=1 -DEZP_PROD_CAT=U -DEZP_PROD_CAT_U -DEZP_PROD_SUBCAT=0 -DEZP_PROD_SUBSUBCAT_ -DEZP_PROD_SUBSUBCAT= -DEZP_PROD_BRAND_AXIM -DEZP_PROD_VERSION=2.0.6 -I /home/chenhj/work/mr101n/package/ezp-nvram/src -I /home/chenhj/work/mr101n/package/ezp-nvram/include -I. -DLINUX -DSANITY -DIP_ALLOCATION   -c -o misc.o misc.c
+In file included from l2tp.h:30,
+                 from misc.c:32:
+misc.h:69: warning: conflicting types for built-in function 'log'
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -DNVRAM_MMAP=1 -DCONFIG_EZP_ARCH_RT305X -DWAN_NUM=1 -DLAN_NUM=1 -DWL_NUM=1 -DEZP_PROD_CAT=U -DEZP_PROD_CAT_U -DEZP_PROD_SUBCAT=0 -DEZP_PROD_SUBSUBCAT_ -DEZP_PROD_SUBSUBCAT= -DEZP_PROD_BRAND_AXIM -DEZP_PROD_VERSION=2.0.6 -I /home/chenhj/work/mr101n/package/ezp-nvram/src -I /home/chenhj/work/mr101n/package/ezp-nvram/include -I. -DLINUX -DSANITY -DIP_ALLOCATION   -c -o control.o control.c
+In file included from l2tp.h:30,
+                 from control.c:25:
+misc.h:69: warning: conflicting types for built-in function 'log'
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -DNVRAM_MMAP=1 -DCONFIG_EZP_ARCH_RT305X -DWAN_NUM=1 -DLAN_NUM=1 -DWL_NUM=1 -DEZP_PROD_CAT=U -DEZP_PROD_CAT_U -DEZP_PROD_SUBCAT=0 -DEZP_PROD_SUBSUBCAT_ -DEZP_PROD_SUBSUBCAT= -DEZP_PROD_BRAND_AXIM -DEZP_PROD_VERSION=2.0.6 -I /home/chenhj/work/mr101n/package/ezp-nvram/src -I /home/chenhj/work/mr101n/package/ezp-nvram/include -I. -DLINUX -DSANITY -DIP_ALLOCATION   -c -o avp.o avp.c
+In file included from l2tp.h:30,
+                 from avp.c:24:
+misc.h:69: warning: conflicting types for built-in function 'log'
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -DNVRAM_MMAP=1 -DCONFIG_EZP_ARCH_RT305X -DWAN_NUM=1 -DLAN_NUM=1 -DWL_NUM=1 -DEZP_PROD_CAT=U -DEZP_PROD_CAT_U -DEZP_PROD_SUBCAT=0 -DEZP_PROD_SUBSUBCAT_ -DEZP_PROD_SUBSUBCAT= -DEZP_PROD_BRAND_AXIM -DEZP_PROD_VERSION=2.0.6 -I /home/chenhj/work/mr101n/package/ezp-nvram/src -I /home/chenhj/work/mr101n/package/ezp-nvram/include -I. -DLINUX -DSANITY -DIP_ALLOCATION   -c -o call.o call.c
+In file included from l2tp.h:30,
+                 from call.c:29:
+misc.h:69: warning: conflicting types for built-in function 'log'
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -DNVRAM_MMAP=1 -DCONFIG_EZP_ARCH_RT305X -DWAN_NUM=1 -DLAN_NUM=1 -DWL_NUM=1 -DEZP_PROD_CAT=U -DEZP_PROD_CAT_U -DEZP_PROD_SUBCAT=0 -DEZP_PROD_SUBSUBCAT_ -DEZP_PROD_SUBSUBCAT= -DEZP_PROD_BRAND_AXIM -DEZP_PROD_VERSION=2.0.6 -I /home/chenhj/work/mr101n/package/ezp-nvram/src -I /home/chenhj/work/mr101n/package/ezp-nvram/include -I. -DLINUX -DSANITY -DIP_ALLOCATION   -c -o network.o network.c
+In file included from l2tp.h:30,
+                 from network.c:27:
+misc.h:69: warning: conflicting types for built-in function 'log'
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -DNVRAM_MMAP=1 -DCONFIG_EZP_ARCH_RT305X -DWAN_NUM=1 -DLAN_NUM=1 -DWL_NUM=1 -DEZP_PROD_CAT=U -DEZP_PROD_CAT_U -DEZP_PROD_SUBCAT=0 -DEZP_PROD_SUBSUBCAT_ -DEZP_PROD_SUBSUBCAT= -DEZP_PROD_BRAND_AXIM -DEZP_PROD_VERSION=2.0.6 -I /home/chenhj/work/mr101n/package/ezp-nvram/src -I /home/chenhj/work/mr101n/package/ezp-nvram/include -I. -DLINUX -DSANITY -DIP_ALLOCATION   -c -o avpsend.o avpsend.c
+In file included from l2tp.h:30,
+                 from avpsend.c:21:
+misc.h:69: warning: conflicting types for built-in function 'log'
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -DNVRAM_MMAP=1 -DCONFIG_EZP_ARCH_RT305X -DWAN_NUM=1 -DLAN_NUM=1 -DWL_NUM=1 -DEZP_PROD_CAT=U -DEZP_PROD_CAT_U -DEZP_PROD_SUBCAT=0 -DEZP_PROD_SUBSUBCAT_ -DEZP_PROD_SUBSUBCAT= -DEZP_PROD_BRAND_AXIM -DEZP_PROD_VERSION=2.0.6 -I /home/chenhj/work/mr101n/package/ezp-nvram/src -I /home/chenhj/work/mr101n/package/ezp-nvram/include -I. -DLINUX -DSANITY -DIP_ALLOCATION   -c -o scheduler.o scheduler.c
+In file included from l2tp.h:30,
+                 from scheduler.c:21:
+misc.h:69: warning: conflicting types for built-in function 'log'
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -DNVRAM_MMAP=1 -DCONFIG_EZP_ARCH_RT305X -DWAN_NUM=1 -DLAN_NUM=1 -DWL_NUM=1 -DEZP_PROD_CAT=U -DEZP_PROD_CAT_U -DEZP_PROD_SUBCAT=0 -DEZP_PROD_SUBSUBCAT_ -DEZP_PROD_SUBSUBCAT= -DEZP_PROD_BRAND_AXIM -DEZP_PROD_VERSION=2.0.6 -I /home/chenhj/work/mr101n/package/ezp-nvram/src -I /home/chenhj/work/mr101n/package/ezp-nvram/include -I. -DLINUX -DSANITY -DIP_ALLOCATION   -c -o file.o file.c
+In file included from l2tp.h:30,
+                 from file.c:28:
+misc.h:69: warning: conflicting types for built-in function 'log'
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -DNVRAM_MMAP=1 -DCONFIG_EZP_ARCH_RT305X -DWAN_NUM=1 -DLAN_NUM=1 -DWL_NUM=1 -DEZP_PROD_CAT=U -DEZP_PROD_CAT_U -DEZP_PROD_SUBCAT=0 -DEZP_PROD_SUBSUBCAT_ -DEZP_PROD_SUBSUBCAT= -DEZP_PROD_BRAND_AXIM -DEZP_PROD_VERSION=2.0.6 -I /home/chenhj/work/mr101n/package/ezp-nvram/src -I /home/chenhj/work/mr101n/package/ezp-nvram/include -I. -DLINUX -DSANITY -DIP_ALLOCATION   -c -o aaa.o aaa.c
+In file included from l2tp.h:30,
+                 from aaa.c:24:
+misc.h:69: warning: conflicting types for built-in function 'log'
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts -DNVRAM_MMAP=1 -DCONFIG_EZP_ARCH_RT305X -DWAN_NUM=1 -DLAN_NUM=1 -DWL_NUM=1 -DEZP_PROD_CAT=U -DEZP_PROD_CAT_U -DEZP_PROD_SUBCAT=0 -DEZP_PROD_SUBSUBCAT_ -DEZP_PROD_SUBSUBCAT= -DEZP_PROD_BRAND_AXIM -DEZP_PROD_VERSION=2.0.6 -I /home/chenhj/work/mr101n/package/ezp-nvram/src -I /home/chenhj/work/mr101n/package/ezp-nvram/include -I. -DLINUX -DSANITY -DIP_ALLOCATION   -c -o md5.o md5.c
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -o l2tpd -ggdb -Wall -DDEBUG_PPPD -DDEBUG_CONTROL -DDEBUG_ENTROPY l2tpd.o pty.o misc.o control.o avp.o call.o network.o avpsend.o scheduler.o file.o aaa.o md5.o  
+make[1]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig'
+touch /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/.built
+mkdir -p /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd/CONTROL
+echo "Package: l2tpd" > /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd/CONTROL/control
+echo "Version: 0.70pre-4.1" >> /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd/CONTROL/control
+( DEPENDS=''; for depend in ; do DEPENDS=${DEPENDS:+$DEPENDS, }${depend##+}; done; echo "Depends: $DEPENDS"; echo "Provides: "; echo "Source: package/l2tpd"; echo "Section: net"; echo "Priority: optional"; echo "Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>"; echo "Architecture: mipsel"; echo -n "Description: "; getvar V_Package_l2tpd_description | sed -e 's,^[[:space:]]*, ,g'; ) >> /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd/CONTROL/control
+chmod 644 /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd/CONTROL/control
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd/CONTROL; var2file "V_Package_l2tpd_conffiles" conffiles; var2file "V_Package_l2tpd_preinst" preinst; var2file "V_Package_l2tpd_postinst" postinst; var2file "V_Package_l2tpd_prerm" prerm; var2file "V_Package_l2tpd_postrm" postrm; )
+install -d -m0755 /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd/usr/sbin
+install -m0755 /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/l2tpd /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd/usr/sbin/
+install -d -m0755 /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd/etc/l2tpd
+ln -sf /tmp/l2tpd.conf /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd/etc/l2tpd/l2tpd.conf
+install -d -m0755 /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd/etc/ppp
+ln -sf /tmp/options.l2tpd /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd/etc/ppp/options.l2tpd
+ln -sf /tmp/chap-secrets /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd/etc/ppp/chap-secrets
+install -d -m0755 /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd/etc/init.d
+install -m0755 ./files/l2tpd.init /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd/etc/init.d/l2tpd
+mkdir -p /home/chenhj/work/mr101n/bin/packages/mipsel
+find /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd -name 'CVS' -o -name '.svn' -o -name '.#*' | xargs -r rm -rf
+NM="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm" STRIP="/home/chenhj/work/mr101n/staging_dir/host/bin/sstrip" STRIP_KMOD="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip --strip-unneeded --remove-section=.comment" /home/chenhj/work/mr101n/scripts/rstrip.sh /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd
+rstrip.sh: /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd/usr/sbin/l2tpd:executable
+ipkg-build -c -o 0 -g 0 /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd /home/chenhj/work/mr101n/bin/packages/mipsel
+Packaged contents of /home/chenhj/work/mr101n/build_dir/mipsel/l2tpd-0.70-pre20031121.orig/ipkg/l2tpd into /home/chenhj/work/mr101n/bin/packages/mipsel/l2tpd_0.70pre-4.1_mipsel.ipk
+make: Leaving directory `/home/chenhj/work/mr101n/package/l2tpd'

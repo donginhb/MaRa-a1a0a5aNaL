@@ -1,0 +1,392 @@
++ pwd
+make: Entering directory `/home/chenhj/work/mr101n/package/libogg'
+WARNING: skipping libogg -- package not selected
+gzip -dc /home/dl/libogg-1.1.4.tar.gz | /bin/tar -C /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/.. -xf -
+ls: cannot access ./patches: No such file or directory
+touch /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/.prepared_a91e0fe67054ae31d41df5ed063c3fcb
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./libtool" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/bin/libtool" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./libtool; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/bin/libtool /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./; fi
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./ltmain.sh" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/share/libtool/ltmain.sh" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./ltmain.sh; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/share/libtool/ltmain.sh /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./; fi
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./libtool.m4" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/share/aclocal/libtool.m4" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./libtool.m4; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/share/aclocal/libtool.m4 /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./; fi
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./configure" ]; then /home/chenhj/work/mr101n/staging_dir/host/bin/sed -i -e 's,pardus_ltmain_version=.*,pardus_ltmain_version="$pardus_lt_version",' /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./configure; fi
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./; if [ -x ./configure ]; then /usr/bin/find /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ -name config.guess | xargs -r -n1 cp /home/chenhj/work/mr101n/scripts/config.guess; /usr/bin/find /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ -name config.sub | xargs -r -n1 cp /home/chenhj/work/mr101n/scripts/config.sub; AR=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar AS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -c -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts" LD=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld NM=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm CC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" GCC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" CXX="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++" RANLIB=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib STRIP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip OBJCOPY=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objcopy OBJDUMP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objdump SIZE=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-size CFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts " CXXFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts " CPPFLAGS="-I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " LDFLAGS="-L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib " PKG_CONFIG_PATH="/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/pkgconfig:/home/chenhj/work/mr101n/staging_dir/host/usr/lib/pkgconfig" PKG_CONFIG_LIBDIR="/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib/pkgconfig"  ./configure --target=mipsel-linux --host=mipsel-linux --build=x86_64-linux-gnu --program-prefix="" --program-suffix="" --prefix=/usr --exec-prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin --libexecdir=/usr/lib --sysconfdir=/etc --datadir=/usr/share --localstatedir=/var --mandir=/usr/man --infodir=/usr/info --disable-nls ; fi; )
+configure: loading site script /home/chenhj/work/mr101n/include/site/mipsel-linux-uclibc
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking for mipsel-linux-strip... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for mipsel-linux-gcc... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... yes
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc accepts -g... yes
+checking for /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc option to accept ISO C89... none needed
+checking for style of include used by make... GNU
+checking dependency style of /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc... gcc3
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... mipsel-unknown-linux-gnu
+checking for a sed that does not truncate output... /home/chenhj/work/mr101n/staging_dir/host/bin/sed
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ld used by /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld
+checking if the linker (/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld) is GNU ld... yes
+checking for /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld option to reload object files... -r
+checking for BSD-compatible nm... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm
+checking whether ln -s works... yes
+checking how to recognize dependent libraries... pass_all
+checking how to run the C preprocessor... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking whether we are using the GNU C++ compiler... yes
+checking whether /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ accepts -g... yes
+checking dependency style of /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++... gcc3
+checking how to run the C++ preprocessor... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ -E
+checking for mipsel-linux-g77... no
+checking for mipsel-linux-xlf... no
+checking for mipsel-linux-f77... no
+checking for mipsel-linux-frt... no
+checking for mipsel-linux-pgf77... no
+checking for mipsel-linux-cf77... no
+checking for mipsel-linux-fort77... no
+checking for mipsel-linux-fl32... no
+checking for mipsel-linux-af77... no
+checking for mipsel-linux-xlf90... no
+checking for mipsel-linux-f90... no
+checking for mipsel-linux-pgf90... no
+checking for mipsel-linux-pghpf... no
+checking for mipsel-linux-epcf90... no
+checking for mipsel-linux-gfortran... no
+checking for mipsel-linux-g95... no
+checking for mipsel-linux-xlf95... no
+checking for mipsel-linux-f95... no
+checking for mipsel-linux-fort... no
+checking for mipsel-linux-ifort... no
+checking for mipsel-linux-ifc... no
+checking for mipsel-linux-efc... no
+checking for mipsel-linux-pgf95... no
+checking for mipsel-linux-lf95... no
+checking for mipsel-linux-ftn... no
+checking for g77... no
+checking for xlf... no
+checking for f77... no
+checking for frt... no
+checking for pgf77... no
+checking for cf77... no
+checking for fort77... no
+checking for fl32... no
+checking for af77... no
+checking for xlf90... no
+checking for f90... no
+checking for pgf90... no
+checking for pghpf... no
+checking for epcf90... no
+checking for gfortran... no
+checking for g95... no
+checking for xlf95... no
+checking for f95... no
+checking for fort... no
+checking for ifort... no
+checking for ifc... no
+checking for efc... no
+checking for pgf95... no
+checking for lf95... no
+checking for ftn... no
+checking whether we are using the GNU Fortran 77 compiler... no
+checking whether  accepts -g... no
+checking the maximum length of command line arguments... 3458764513820540925
+checking command to parse /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm output from /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc object... ok
+checking for objdir... .libs
+checking for mipsel-linux-ar... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar
+checking for mipsel-linux-ranlib... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib
+checking for mipsel-linux-strip... (cached) /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc supports -fno-rtti -fno-exceptions... no
+checking for /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc option to produce PIC... -fPIC
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc PIC flag -fPIC works... yes
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc static flag -static works... yes
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc supports -c -o file.o... yes
+checking whether the /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc linker (/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+configure: creating libtool
+appending configuration tag "CXX" to libtool
+checking for ld used by /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++... /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld
+checking if the linker (/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld) is GNU ld... yes
+checking whether the /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ linker (/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld) supports shared libraries... yes
+checking for /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ option to produce PIC... -fPIC
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ PIC flag -fPIC works... yes
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ static flag -static works... yes
+checking if /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ supports -c -o file.o... yes
+checking whether the /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++ linker (/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld) supports shared libraries... yes
+checking dynamic linker characteristics... GNU/Linux ld.so
+(cached) (cached) checking how to hardcode library paths into programs... immediate
+appending configuration tag "F77" to libtool
+checking whether /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc and cc understand -c and -o together... yes
+checking for ANSI C header files... (cached) yes
+checking for an ANSI C-conforming const... yes
+checking for int16_t... no
+checking for int32_t... no
+checking for uint32_t... no
+checking for uint16_t... no
+checking for u_int32_t... no
+checking for u_int16_t... no
+checking for int64_t... no
+checking for short... yes
+checking size of short... (cached) 2
+checking for int... yes
+checking size of int... (cached) 4
+checking for long... yes
+checking size of long... (cached) 4
+checking for long long... yes
+checking size of long long... (cached) 8
+checking for working memcmp... (cached) yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/libogg/Makefile
+config.status: creating include/Makefile
+config.status: creating include/ogg/Makefile
+config.status: creating include/ogg/config_types.h
+config.status: creating libogg.spec
+config.status: creating ogg.pc
+config.status: creating ogg-uninstalled.pc
+config.status: creating config.h
+config.status: executing depfiles commands
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./libtool" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/bin/libtool" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./libtool; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/bin/libtool /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./; fi
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./ltmain.sh" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/share/libtool/ltmain.sh" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./ltmain.sh; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/share/libtool/ltmain.sh /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./; fi
+if [ -f "/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./libtool.m4" -a -e "/home/chenhj/work/mr101n/staging_dir/mipsel/host/share/aclocal/libtool.m4" ]; then rm -f /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./libtool.m4; ln -s /home/chenhj/work/mr101n/staging_dir/mipsel/host/share/aclocal/libtool.m4 /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/./; fi
+touch /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/.configured
+CFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " CXXFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " LDFLAGS="-L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib " make -C /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/. AR=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar AS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -c -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts" LD=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld NM=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm CC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" GCC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" CXX="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++" RANLIB=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib STRIP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip OBJCOPY=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objcopy OBJDUMP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objdump SIZE=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-size CROSS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-" ARCH="mipsel" ;
+make[1]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4'
+make  all-recursive
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4'
+Making all in src
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/src'
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I../include  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -ffast-math -fsigned-char -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -MT framing.lo -MD -MP -MF .deps/framing.Tpo -c -o framing.lo framing.c
+mkdir .libs
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -ffast-math -fsigned-char -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -MT framing.lo -MD -MP -MF .deps/framing.Tpo -c framing.c  -fPIC -DPIC -o .libs/framing.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -ffast-math -fsigned-char -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -MT framing.lo -MD -MP -MF .deps/framing.Tpo -c framing.c -o framing.o >/dev/null 2>&1
+mv -f .deps/framing.Tpo .deps/framing.Plo
+/bin/bash ../libtool --tag=CC   --mode=compile /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I../include  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include   -O20 -ffast-math -fsigned-char -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -MT bitwise.lo -MD -MP -MF .deps/bitwise.Tpo -c -o bitwise.lo bitwise.c
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -ffast-math -fsigned-char -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -MT bitwise.lo -MD -MP -MF .deps/bitwise.Tpo -c bitwise.c  -fPIC -DPIC -o .libs/bitwise.o
+ /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I../include -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include -O20 -ffast-math -fsigned-char -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -MT bitwise.lo -MD -MP -MF .deps/bitwise.Tpo -c bitwise.c -o bitwise.o >/dev/null 2>&1
+mv -f .deps/bitwise.Tpo .deps/bitwise.Plo
+/bin/bash ../libtool --tag=CC   --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc  -O20 -ffast-math -fsigned-char -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -no-undefined -version-info 6:0:6 -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o libogg.la -rpath /usr/lib framing.lo bitwise.lo  
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -shared  .libs/framing.o .libs/bitwise.o  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -mips32 -mtune=mips32 -Wl,-soname -Wl,libogg.so.0 -o .libs/libogg.so.0.6.0
+(cd .libs && rm -f libogg.so.0 && ln -s libogg.so.0.6.0 libogg.so.0)
+(cd .libs && rm -f libogg.so && ln -s libogg.so.0.6.0 libogg.so)
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar cru .libs/libogg.a  framing.o bitwise.o
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib .libs/libogg.a
+creating libogg.la
+(cd .libs && rm -f libogg.la && ln -s ../libogg.la libogg.la)
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I../include  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include  -D_V_SELFTEST -O20 -ffast-math -fsigned-char -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -MT test_bitwise-bitwise.o -MD -MP -MF .deps/test_bitwise-bitwise.Tpo -c -o test_bitwise-bitwise.o `test -f 'bitwise.c' || echo './'`bitwise.c
+mv -f .deps/test_bitwise-bitwise.Tpo .deps/test_bitwise-bitwise.Po
+/bin/bash ../libtool --tag=CC   --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -D_V_SELFTEST -O20 -ffast-math -fsigned-char -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts   -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o test_bitwise test_bitwise-bitwise.o  
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -D_V_SELFTEST -O20 -ffast-math -fsigned-char -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -o test_bitwise test_bitwise-bitwise.o  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -DHAVE_CONFIG_H -I. -I.. -I../include -I../include  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include  -D_V_SELFTEST -O20 -ffast-math -fsigned-char -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -MT test_framing-framing.o -MD -MP -MF .deps/test_framing-framing.Tpo -c -o test_framing-framing.o `test -f 'framing.c' || echo './'`framing.c
+mv -f .deps/test_framing-framing.Tpo .deps/test_framing-framing.Po
+/bin/bash ../libtool --tag=CC   --mode=link /opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -D_V_SELFTEST -O20 -ffast-math -fsigned-char -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts   -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  -o test_framing test_framing-framing.o  
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -D_V_SELFTEST -O20 -ffast-math -fsigned-char -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time -fhonour-copts -o test_framing test_framing-framing.o  -L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib  
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/src'
+Making all in include
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/include'
+Making all in ogg
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/include/ogg'
+make[4]: Nothing to be done for `all'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/include/ogg'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/include'
+make[4]: Nothing to be done for `all-am'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/include'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/include'
+Making all in doc
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/doc'
+Making all in libogg
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/doc/libogg'
+make[4]: Nothing to be done for `all'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/doc/libogg'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/doc'
+make[4]: Nothing to be done for `all-am'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/doc'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/doc'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4'
+make[1]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4'
+CFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " CXXFLAGS="-Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts  -I/home/chenhj/work/mr101n/staging_dir/mipsel/usr/include -I/home/chenhj/work/mr101n/staging_dir/mipsel/include " LDFLAGS="-L/opt/toolchain-mipsel_gcc4.2.4/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib -L/home/chenhj/work/mr101n/staging_dir/mipsel/lib " make -C /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/. AR=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ar AS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc -c -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time  -fhonour-copts" LD=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ld NM=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-nm CC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" GCC="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-gcc" CXX="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-g++" RANLIB=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib STRIP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-strip OBJCOPY=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objcopy OBJDUMP=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-objdump SIZE=/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-size CROSS="/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-" ARCH="mipsel" DESTDIR="/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install"  install;
+make[1]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4'
+Making install in src
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/src'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/src'
+test -z "/usr/lib" || /bin/mkdir -p "/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/lib"
+ /bin/bash ../libtool   --mode=install /usr/bin/install -c  'libogg.la' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/lib/libogg.la'
+/usr/bin/install -c .libs/libogg.so.0.6.0 /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/lib/libogg.so.0.6.0
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/lib && { ln -s -f libogg.so.0.6.0 libogg.so.0 || { rm -f libogg.so.0 && ln -s libogg.so.0.6.0 libogg.so.0; }; })
+(cd /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/lib && { ln -s -f libogg.so.0.6.0 libogg.so || { rm -f libogg.so && ln -s libogg.so.0.6.0 libogg.so; }; })
+/usr/bin/install -c .libs/libogg.lai /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/lib/libogg.la
+/usr/bin/install -c .libs/libogg.a /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/lib/libogg.a
+chmod 644 /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/lib/libogg.a
+/opt/toolchain-mipsel_gcc4.2.4/bin/mipsel-linux-ranlib /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/lib/libogg.a
+libtool: install: warning: remember to run `libtool --finish /usr/lib'
+make[3]: Nothing to be done for `install-data-am'.
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/src'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/src'
+Making install in include
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/include'
+Making install in ogg
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/include/ogg'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/include/ogg'
+make[4]: Nothing to be done for `install-exec-am'.
+test -z "/usr/include/ogg" || /bin/mkdir -p "/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/include/ogg"
+ /usr/bin/install -c -m 644 'config_types.h' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/include/ogg/config_types.h'
+test -z "/usr/include/ogg" || /bin/mkdir -p "/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/include/ogg"
+ /usr/bin/install -c -m 644 'ogg.h' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/include/ogg/ogg.h'
+ /usr/bin/install -c -m 644 'os_types.h' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/include/ogg/os_types.h'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/include/ogg'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/include/ogg'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/include'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/include'
+make[4]: Nothing to be done for `install-exec-am'.
+make[4]: Nothing to be done for `install-data-am'.
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/include'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/include'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/include'
+Making install in doc
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/doc'
+Making install in libogg
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/doc/libogg'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/doc/libogg'
+make[4]: Nothing to be done for `install-exec-am'.
+test -z "/usr/share/doc/libogg-1.1.4/ogg" || /bin/mkdir -p "/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg"
+ /usr/bin/install -c -m 644 'bitpacking.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/bitpacking.html'
+ /usr/bin/install -c -m 644 'datastructures.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/datastructures.html'
+ /usr/bin/install -c -m 644 'decoding.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/decoding.html'
+ /usr/bin/install -c -m 644 'encoding.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/encoding.html'
+ /usr/bin/install -c -m 644 'general.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/general.html'
+ /usr/bin/install -c -m 644 'index.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/index.html'
+ /usr/bin/install -c -m 644 'ogg_packet.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_packet.html'
+ /usr/bin/install -c -m 644 'ogg_packet_clear.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_packet_clear.html'
+ /usr/bin/install -c -m 644 'ogg_page.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_page.html'
+ /usr/bin/install -c -m 644 'ogg_page_bos.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_page_bos.html'
+ /usr/bin/install -c -m 644 'ogg_page_checksum_set.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_page_checksum_set.html'
+ /usr/bin/install -c -m 644 'ogg_page_continued.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_page_continued.html'
+ /usr/bin/install -c -m 644 'ogg_page_eos.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_page_eos.html'
+ /usr/bin/install -c -m 644 'ogg_page_granulepos.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_page_granulepos.html'
+ /usr/bin/install -c -m 644 'ogg_page_packets.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_page_packets.html'
+ /usr/bin/install -c -m 644 'ogg_page_pageno.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_page_pageno.html'
+ /usr/bin/install -c -m 644 'ogg_page_serialno.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_page_serialno.html'
+ /usr/bin/install -c -m 644 'ogg_page_version.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_page_version.html'
+ /usr/bin/install -c -m 644 'ogg_stream_clear.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_stream_clear.html'
+ /usr/bin/install -c -m 644 'ogg_stream_destroy.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_stream_destroy.html'
+ /usr/bin/install -c -m 644 'ogg_stream_eos.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_stream_eos.html'
+ /usr/bin/install -c -m 644 'ogg_stream_flush.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_stream_flush.html'
+ /usr/bin/install -c -m 644 'ogg_stream_init.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_stream_init.html'
+ /usr/bin/install -c -m 644 'ogg_stream_packetin.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_stream_packetin.html'
+ /usr/bin/install -c -m 644 'ogg_stream_packetout.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_stream_packetout.html'
+ /usr/bin/install -c -m 644 'ogg_stream_packetpeek.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_stream_packetpeek.html'
+ /usr/bin/install -c -m 644 'ogg_stream_pagein.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_stream_pagein.html'
+ /usr/bin/install -c -m 644 'ogg_stream_pageout.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_stream_pageout.html'
+ /usr/bin/install -c -m 644 'ogg_stream_reset.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_stream_reset.html'
+ /usr/bin/install -c -m 644 'ogg_stream_reset_serialno.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_stream_reset_serialno.html'
+ /usr/bin/install -c -m 644 'ogg_stream_state.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_stream_state.html'
+ /usr/bin/install -c -m 644 'ogg_sync_buffer.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_sync_buffer.html'
+ /usr/bin/install -c -m 644 'ogg_sync_clear.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_sync_clear.html'
+ /usr/bin/install -c -m 644 'ogg_sync_destroy.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_sync_destroy.html'
+ /usr/bin/install -c -m 644 'ogg_sync_init.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_sync_init.html'
+ /usr/bin/install -c -m 644 'ogg_sync_pageout.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_sync_pageout.html'
+ /usr/bin/install -c -m 644 'ogg_sync_pageseek.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_sync_pageseek.html'
+ /usr/bin/install -c -m 644 'ogg_sync_reset.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_sync_reset.html'
+ /usr/bin/install -c -m 644 'ogg_sync_state.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_sync_state.html'
+ /usr/bin/install -c -m 644 'ogg_sync_wrote.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/ogg_sync_wrote.html'
+ /usr/bin/install -c -m 644 'oggpack_adv.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_adv.html'
+ /usr/bin/install -c -m 644 'oggpack_adv1.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_adv1.html'
+ /usr/bin/install -c -m 644 'oggpack_bits.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_bits.html'
+ /usr/bin/install -c -m 644 'oggpack_buffer.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_buffer.html'
+ /usr/bin/install -c -m 644 'oggpack_bytes.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_bytes.html'
+ /usr/bin/install -c -m 644 'oggpack_get_buffer.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_get_buffer.html'
+ /usr/bin/install -c -m 644 'oggpack_look.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_look.html'
+ /usr/bin/install -c -m 644 'oggpack_look1.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_look1.html'
+ /usr/bin/install -c -m 644 'oggpack_read.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_read.html'
+ /usr/bin/install -c -m 644 'oggpack_read1.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_read1.html'
+ /usr/bin/install -c -m 644 'oggpack_readinit.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_readinit.html'
+ /usr/bin/install -c -m 644 'oggpack_reset.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_reset.html'
+ /usr/bin/install -c -m 644 'oggpack_write.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_write.html'
+ /usr/bin/install -c -m 644 'oggpack_writealign.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_writealign.html'
+ /usr/bin/install -c -m 644 'oggpack_writeclear.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_writeclear.html'
+ /usr/bin/install -c -m 644 'oggpack_writecopy.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_writecopy.html'
+ /usr/bin/install -c -m 644 'oggpack_writeinit.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_writeinit.html'
+ /usr/bin/install -c -m 644 'oggpack_writetrunc.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/oggpack_writetrunc.html'
+ /usr/bin/install -c -m 644 'overview.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/overview.html'
+ /usr/bin/install -c -m 644 'reference.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/reference.html'
+ /usr/bin/install -c -m 644 'style.css' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg/style.css'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/doc/libogg'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/doc/libogg'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/doc'
+make[4]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/doc'
+make[4]: Nothing to be done for `install-exec-am'.
+test -z "/usr/share/doc/libogg-1.1.4" || /bin/mkdir -p "/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4"
+ /usr/bin/install -c -m 644 'framing.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/framing.html'
+ /usr/bin/install -c -m 644 'index.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/index.html'
+ /usr/bin/install -c -m 644 'oggstream.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/oggstream.html'
+ /usr/bin/install -c -m 644 'ogg-multiplex.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/ogg-multiplex.html'
+ /usr/bin/install -c -m 644 'stream.png' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/stream.png'
+ /usr/bin/install -c -m 644 'vorbisword2.png' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/vorbisword2.png'
+ /usr/bin/install -c -m 644 'white-ogg.png' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/white-ogg.png'
+ /usr/bin/install -c -m 644 'white-xifish.png' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/white-xifish.png'
+ /usr/bin/install -c -m 644 'rfc3533.txt' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/rfc3533.txt'
+ /usr/bin/install -c -m 644 'rfc5334.txt' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/rfc5334.txt'
+ /usr/bin/install -c -m 644 'skeleton.html' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/doc/libogg-1.1.4/skeleton.html'
+make[4]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/doc'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/doc'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/doc'
+make[2]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4'
+make[3]: Entering directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4'
+make[3]: Nothing to be done for `install-exec-am'.
+test -z "/usr/share/aclocal" || /bin/mkdir -p "/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/aclocal"
+ /usr/bin/install -c -m 644 'ogg.m4' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/aclocal/ogg.m4'
+test -z "/usr/lib/pkgconfig" || /bin/mkdir -p "/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/lib/pkgconfig"
+ /usr/bin/install -c -m 644 'ogg.pc' '/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/lib/pkgconfig/ogg.pc'
+make[3]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4'
+make[2]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4'
+make[1]: Leaving directory `/home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4'
+touch /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/.built
+make V=99  -j1 clean-staging
+make[1]: Entering directory `/home/chenhj/work/mr101n/package/libogg'
+rm -f /home/chenhj/work/mr101n/staging_dir/mipsel/stamp/.libogg_installed
+make[1]: Leaving directory `/home/chenhj/work/mr101n/package/libogg'
+rm -rf /home/chenhj/work/mr101n/tmp/stage-libogg
+mkdir -p /home/chenhj/work/mr101n/tmp/stage-libogg/host /home/chenhj/work/mr101n/staging_dir/mipsel/packages /home/chenhj/work/mr101n/staging_dir/host/packages
+install -d -m0755 /home/chenhj/work/mr101n/tmp/stage-libogg/usr/include/ogg/
+install -m0644 /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/include/ogg/* /home/chenhj/work/mr101n/tmp/stage-libogg/usr/include/ogg/
+install -d -m0755 /home/chenhj/work/mr101n/tmp/stage-libogg/usr/lib/
+cp -fpR /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/lib/*.{so*,a,la} /home/chenhj/work/mr101n/tmp/stage-libogg/usr/lib/
+install -d -m0755 /home/chenhj/work/mr101n/tmp/stage-libogg/usr/lib/pkgconfig/
+install -m0644 /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/lib/pkgconfig/* /home/chenhj/work/mr101n/tmp/stage-libogg/usr/lib/pkgconfig/
+install -d -m0755 /home/chenhj/work/mr101n/tmp/stage-libogg/usr/share/aclocal/
+install -m0644 /home/chenhj/work/mr101n/build_dir/mipsel/libogg-1.1.4/ipkg-install/usr/share/aclocal/* /home/chenhj/work/mr101n/tmp/stage-libogg/usr/share/aclocal/
+find /home/chenhj/work/mr101n/tmp/stage-libogg -name '*.la' | xargs -r /home/chenhj/work/mr101n/staging_dir/host/bin/sed -i -e "s,\(^libdir='\| \|-L\|^dependency_libs='\)/usr/lib,\1/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib,g"
+find /home/chenhj/work/mr101n/tmp/stage-libogg/host -name '*.la' | xargs -r /home/chenhj/work/mr101n/staging_dir/host/bin/sed -i -e "s,\(^libdir='\| \|-L\|^dependency_libs='\)/usr/lib,\1/home/chenhj/work/mr101n/staging_dir/mipsel/usr/lib,g" 
+if [ -d /home/chenhj/work/mr101n/tmp/stage-libogg ]; then (cd /home/chenhj/work/mr101n/tmp/stage-libogg; find ./ > /home/chenhj/work/mr101n/staging_dir/mipsel/packages/libogg.list); cp -fpR /home/chenhj/work/mr101n/tmp/stage-libogg/* /home/chenhj/work/mr101n/staging_dir/mipsel/; fi
+rm -rf /home/chenhj/work/mr101n/tmp/stage-libogg
+touch /home/chenhj/work/mr101n/staging_dir/mipsel/stamp/.libogg_installed
+make: Leaving directory `/home/chenhj/work/mr101n/package/libogg'

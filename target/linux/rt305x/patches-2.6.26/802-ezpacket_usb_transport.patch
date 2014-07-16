@@ -1,0 +1,442 @@
+--- linux-2.6.26.old/drivers/usb/storage/transport.c	2008-07-14 05:51:29.000000000 +0800
++++ linux-2.6.26.new/drivers/usb/storage/transport.c	2009-10-13 11:46:48.728874958 +0800
+@@ -52,6 +52,7 @@
+ #include <scsi/scsi.h>
+ #include <scsi/scsi_eh.h>
+ #include <scsi/scsi_device.h>
++#include <scsi/sd.h>
+ 
+ #include "usb.h"
+ #include "transport.h"
+@@ -247,8 +248,7 @@
+ 
+ 	/* reset the endpoint toggle */
+ 	if (result >= 0)
+-		usb_settoggle(us->pusb_dev, usb_pipeendpoint(pipe),
+-				usb_pipeout(pipe), 0);
++		usb_reset_endpoint(us->pusb_dev, endp);
+ 
+ 	US_DEBUGP("%s: result = %d\n", __func__, result);
+ 	return result;
+@@ -513,6 +513,80 @@
+  * Transport routines
+  ***********************************************************************/
+ 
++/* There are so many devices that report the capacity incorrectly,
++ * this routine was written to counteract some of the resulting
++ * problems.
++ */
++static void last_sector_hacks(struct us_data *us, struct scsi_cmnd *srb)
++{
++	struct gendisk *disk;
++	struct scsi_disk *sdkp;
++	u32 sector;
++
++	/* To Report "Medium Error: Record Not Found */
++	static unsigned char record_not_found[18] = {
++		[0]	= 0x70,			/* current error */
++		[2]	= MEDIUM_ERROR,		/* = 0x03 */
++		[7]	= 0x0a,			/* additional length */
++		[12]	= 0x14			/* Record Not Found */
++	};
++
++	/* If last-sector problems can't occur, whether because the
++	 * capacity was already decremented or because the device is
++	 * known to report the correct capacity, then we don't need
++	 * to do anything.
++	 */
++	if (!us->use_last_sector_hacks)
++		return;
++
++	/* Was this command a READ(10) or a WRITE(10)? */
++	if (srb->cmnd[0] != READ_10 && srb->cmnd[0] != WRITE_10)
++		goto done;
++
++	/* Did this command access the last sector? */
++	sector = (srb->cmnd[2] << 24) | (srb->cmnd[3] << 16) |
++			(srb->cmnd[4] << 8) | (srb->cmnd[5]);
++	disk = srb->request->rq_disk;
++	if (!disk)
++		goto done;
++	sdkp = scsi_disk(disk);
++	if (!sdkp)
++		goto done;
++	if (sector + 1 != sdkp->capacity)
++		goto done;
++
++	if (srb->result == SAM_STAT_GOOD && scsi_get_resid(srb) == 0) {
++
++		/* The command succeeded.  We know this device doesn't
++		 * have the last-sector bug, so stop checking it.
++		 */
++		us->use_last_sector_hacks = 0;
++
++	} else {
++		/* The command failed.  Allow up to 3 retries in case this
++		 * is some normal sort of failure.  After that, assume the
++		 * capacity is wrong and we're trying to access the sector
++		 * beyond the end.  Replace the result code and sense data
++		 * with values that will cause the SCSI core to fail the
++		 * command immediately, instead of going into an infinite
++		 * (or even just a very long) retry loop.
++		 */
++		if (++us->last_sector_retries < 3)
++			return;
++		srb->result = SAM_STAT_CHECK_CONDITION;
++		memcpy(srb->sense_buffer, record_not_found,
++				sizeof(record_not_found));
++	}
++
++ done:
++	/* Don't reset the retry counter for TEST UNIT READY commands,
++	 * because they get issued after device resets which might be
++	 * caused by a failed last-sector access.
++	 */
++	if (srb->cmnd[0] != TEST_UNIT_READY)
++		us->last_sector_retries = 0;
++}
++
+ /* Invoke the transport and basic error-handling/recovery methods
+  *
+  * This is used by the protocol layers to actually send the message to
+@@ -546,6 +620,7 @@
+ 	/* if the transport provided its own sense data, don't auto-sense */
+ 	if (result == USB_STOR_TRANSPORT_NO_SENSE) {
+ 		srb->result = SAM_STAT_CHECK_CONDITION;
++		last_sector_hacks(us, srb);
+ 		return;
+ 	}
+ 
+@@ -581,6 +656,20 @@
+ 	}
+ 
+ 	/*
++	 * Determine if this device is SAT by seeing if the
++	 * command executed successfully.  Otherwise we'll have
++	 * to wait for at least one CHECK_CONDITION to determine
++	 * SANE_SENSE support
++	 */
++	if ((srb->cmnd[0] == ATA_16 || srb->cmnd[0] == ATA_12) &&
++	    result == USB_STOR_TRANSPORT_GOOD &&
++	    !(us->flags & US_FL_SANE_SENSE) &&
++	    !(srb->cmnd[2] & 0x20)) {
++		US_DEBUGP("-- SAT supported, increasing auto-sense\n");
++		us->flags |= US_FL_SANE_SENSE;
++	}
++
++	/*
+ 	 * A short transfer on a command where we don't expect it
+ 	 * is unusual, but it doesn't mean we need to auto-sense.
+ 	 */
+@@ -597,10 +686,15 @@
+ 	if (need_auto_sense) {
+ 		int temp_result;
+ 		struct scsi_eh_save ses;
++		int sense_size = US_SENSE_SIZE;
++
++		/* device supports and needs bigger sense buffer */
++		if (us->flags & US_FL_SANE_SENSE)
++			sense_size = ~0;
+ 
+ 		US_DEBUGP("Issuing auto-REQUEST_SENSE\n");
+ 
+-		scsi_eh_prep_cmnd(srb, &ses, NULL, 0, US_SENSE_SIZE);
++		scsi_eh_prep_cmnd(srb, &ses, NULL, 0, sense_size);
+ 
+ 		/* FIXME: we must do the protocol translation here */
+ 		if (us->subclass == US_SC_RBC || us->subclass == US_SC_SCSI ||
+@@ -634,6 +728,25 @@
+ 			return;
+ 		}
+ 
++		/* If the sense data returned is larger than 18-bytes then we
++		 * assume this device supports requesting more in the future.
++		 * The response code must be 70h through 73h inclusive.
++		 */
++		if (srb->sense_buffer[7] > (US_SENSE_SIZE - 8) &&
++		    !(us->flags & US_FL_SANE_SENSE) &&
++		    (srb->sense_buffer[0] & 0x7C) == 0x70) {
++			US_DEBUGP("-- SANE_SENSE support enabled\n");
++			us->flags |= US_FL_SANE_SENSE;
++
++			/* Indicate to the user that we truncated their sense
++			 * because we didn't know it supported larger sense.
++			 */
++			US_DEBUGP("-- Sense data truncated to %i from %i\n",
++			          US_SENSE_SIZE,
++			          srb->sense_buffer[7] + 8);
++			srb->sense_buffer[7] = (US_SENSE_SIZE - 8);
++		}
++
+ 		US_DEBUGP("-- Result from auto-sense is %d\n", temp_result);
+ 		US_DEBUGP("-- code: 0x%x, key: 0x%x, ASC: 0x%x, ASCQ: 0x%x\n",
+ 			  srb->sense_buffer[0],
+@@ -665,10 +778,11 @@
+ 	}
+ 
+ 	/* Did we transfer less than the minimum amount required? */
+-	if (srb->result == SAM_STAT_GOOD &&
++	if ((srb->result == SAM_STAT_GOOD || srb->sense_buffer[2] == 0) &&
+ 			scsi_bufflen(srb) - scsi_get_resid(srb) < srb->underflow)
+ 		srb->result = (DID_ERROR << 16) | (SUGGEST_RETRY << 24);
+ 
++	last_sector_hacks(us, srb);
+ 	return;
+ 
+ 	/* Error and abort processing: try to resynchronize with the device
+@@ -696,6 +810,7 @@
+ 		us->transport_reset(us);
+ 	}
+ 	clear_bit(US_FLIDX_RESETTING, &us->flags);
++	last_sector_hacks(us, srb);
+ }
+ 
+ /* Stop the current URB transfer */
+@@ -883,7 +998,7 @@
+ 				 US_BULK_GET_MAX_LUN, 
+ 				 USB_DIR_IN | USB_TYPE_CLASS | 
+ 				 USB_RECIP_INTERFACE,
+-				 0, us->ifnum, us->iobuf, 1, HZ);
++				 0, us->ifnum, us->iobuf, 1, 10*HZ);
+ 
+ 	US_DEBUGP("GetMaxLUN command result is %d, data is %d\n", 
+ 		  result, us->iobuf[0]);
+@@ -1034,8 +1149,21 @@
+ 
+ 	/* try to compute the actual residue, based on how much data
+ 	 * was really transferred and what the device tells us */
+-	if (residue) {
+-		if (!(us->flags & US_FL_IGNORE_RESIDUE)) {
++	if (residue && !(us->flags & US_FL_IGNORE_RESIDUE)) {
++
++		/* Heuristically detect devices that generate bogus residues
++		 * by seeing what happens with INQUIRY and READ CAPACITY
++		 * commands.
++		 */
++		if (bcs->Status == US_BULK_STAT_OK &&
++				scsi_get_resid(srb) == 0 &&
++					((srb->cmnd[0] == INQUIRY &&
++						transfer_length == 36) ||
++					(srb->cmnd[0] == READ_CAPACITY &&
++						transfer_length == 8))) {
++			us->flags |= US_FL_IGNORE_RESIDUE;
++
++		} else {
+ 			residue = min(residue, transfer_length);
+ 			scsi_set_resid(srb, max(scsi_get_resid(srb),
+ 			                                       (int) residue));
+--- linux-2.6.26.old/drivers/usb/storage/usb.h	2008-07-14 05:51:29.000000000 +0800
++++ linux-2.6.26.new/drivers/usb/storage/usb.h	2009-10-12 13:46:54.000000000 +0800
+@@ -158,6 +158,10 @@
+ #ifdef CONFIG_PM
+ 	pm_hook			suspend_resume_hook;
+ #endif
++
++	/* hacks for READ CAPACITY bug handling */
++	int			use_last_sector_hacks;
++	int			last_sector_retries;
+ };
+ 
+ /* Convert between us_data and the corresponding Scsi_Host */
+--- linux-2.6.26.old/drivers/usb/core/hcd.h	2008-07-14 05:51:29.000000000 +0800
++++ linux-2.6.26.new/drivers/usb/core/hcd.h	2009-10-12 16:33:48.000000000 +0800
+@@ -169,6 +169,8 @@
+ #define	HCD_LOCAL_MEM	0x0002		/* HC needs local memory */
+ #define	HCD_USB11	0x0010		/* USB 1.1 */
+ #define	HCD_USB2	0x0020		/* USB 2.0 */
++#define	HCD_USB3	0x0040		/* USB 3.0 */
++#define	HCD_MASK	0x0070
+ 
+ 	/* called to init HCD and root hub */
+ 	int	(*reset) (struct usb_hcd *hcd);
+@@ -202,6 +204,11 @@
+ 	void 	(*endpoint_disable)(struct usb_hcd *hcd,
+ 			struct usb_host_endpoint *ep);
+ 
++	/* (optional) reset any endpoint state such as sequence number
++	   and current window */
++	void 	(*endpoint_reset)(struct usb_hcd *hcd,
++			struct usb_host_endpoint *ep);
++
+ 	/* root hub support */
+ 	int	(*hub_status_data) (struct usb_hcd *hcd, char *buf);
+ 	int	(*hub_control) (struct usb_hcd *hcd,
+@@ -232,6 +239,9 @@
+ 		struct usb_host_endpoint *ep);
+ extern void usb_hcd_disable_endpoint(struct usb_device *udev,
+ 		struct usb_host_endpoint *ep);
++extern void usb_hcd_reset_endpoint(struct usb_device *udev,
++		struct usb_host_endpoint *ep);
++extern void usb_hcd_synchronize_unlinks(struct usb_device *udev);
+ extern int usb_hcd_get_frame_number(struct usb_device *udev);
+ 
+ extern struct usb_hcd *usb_create_hcd(const struct hc_driver *driver,
+--- linux-2.6.26.old/drivers/usb/core/hcd.c	2009-10-13 10:48:30.970126425 +0800
++++ linux-2.6.26.new/drivers/usb/core/hcd.c	2009-10-12 16:36:15.000000000 +0800
+@@ -102,6 +102,9 @@
+ /* used when updating an endpoint's URB list */
+ static DEFINE_SPINLOCK(hcd_urb_list_lock);
+ 
++/* used to protect against unlinking URBs after the device is gone */
++static DEFINE_SPINLOCK(hcd_urb_unlink_lock);
++
+ /* wait queue for synchronous unlinks */
+ DECLARE_WAIT_QUEUE_HEAD(usb_kill_urb_queue);
+ 
+@@ -1535,6 +1538,43 @@
+ 		hcd->driver->endpoint_disable(hcd, ep);
+ }
+ 
++/**
++ * usb_hcd_reset_endpoint - reset host endpoint state
++ * @udev: USB device.
++ * @ep:   the endpoint to reset.
++ *
++ * Resets any host endpoint state such as the toggle bit, sequence
++ * number and current window.
++ */
++void usb_hcd_reset_endpoint(struct usb_device *udev,
++			    struct usb_host_endpoint *ep)
++{
++	struct usb_hcd *hcd = bus_to_hcd(udev->bus);
++
++	if (hcd->driver->endpoint_reset)
++		hcd->driver->endpoint_reset(hcd, ep);
++	else {
++		int epnum = usb_endpoint_num(&ep->desc);
++		int is_out = usb_endpoint_dir_out(&ep->desc);
++		int is_control = usb_endpoint_xfer_control(&ep->desc);
++
++		usb_settoggle(udev, epnum, is_out, 0);
++		if (is_control)
++			usb_settoggle(udev, epnum, !is_out, 0);
++	}
++}
++
++/* Protect against drivers that try to unlink URBs after the device
++ * is gone, by waiting until all unlinks for @udev are finished.
++ * Since we don't currently track URBs by device, simply wait until
++ * nothing is running in the locked region of usb_hcd_unlink_urb().
++ */
++void usb_hcd_synchronize_unlinks(struct usb_device *udev)
++{
++	spin_lock_irq(&hcd_urb_unlink_lock);
++	spin_unlock_irq(&hcd_urb_unlink_lock);
++}
++
+ /*-------------------------------------------------------------------------*/
+ 
+ /* called in any context */
+--- linux-2.6.26.old/drivers/usb/core/message.c	2009-10-13 10:48:30.970126425 +0800
++++ linux-2.6.26.new/drivers/usb/core/message.c	2009-10-12 18:07:52.000000000 +0800
+@@ -1040,6 +1040,30 @@
+ }
+ 
+ /**
++ * usb_reset_endpoint - Reset an endpoint's state.
++ * @dev: the device whose endpoint is to be reset
++ * @epaddr: the endpoint's address.  Endpoint number for output,
++ *	endpoint number + USB_DIR_IN for input
++ *
++ * Resets any host-side endpoint state such as the toggle bit,
++ * sequence number or current window.
++ */
++void usb_reset_endpoint(struct usb_device *dev, unsigned int epaddr)
++{
++	unsigned int epnum = epaddr & USB_ENDPOINT_NUMBER_MASK;
++	struct usb_host_endpoint *ep;
++
++	if (usb_endpoint_out(epaddr))
++		ep = dev->ep_out[epnum];
++	else
++		ep = dev->ep_in[epnum];
++	if (ep)
++		usb_hcd_reset_endpoint(dev, ep);
++}
++EXPORT_SYMBOL_GPL(usb_reset_endpoint);
++
++
++/**
+  * usb_disable_interface -- Disable all endpoints for an interface
+  * @dev: the device whose interface is being disabled
+  * @intf: pointer to the interface descriptor
+--- linux-2.6.26.old/drivers/scsi/sd.c	2008-07-14 05:51:29.000000000 +0800
++++ linux-2.6.26.new/drivers/scsi/sd.c	2009-10-12 16:05:27.000000000 +0800
+@@ -295,11 +295,6 @@
+ 	}
+ }
+ 
+-static inline struct scsi_disk *scsi_disk(struct gendisk *disk)
+-{
+-	return container_of(disk->private_data, struct scsi_disk, driver);
+-}
+-
+ static struct scsi_disk *__scsi_disk_get(struct gendisk *disk)
+ {
+ 	struct scsi_disk *sdkp = NULL;
+--- linux-2.6.26.old/include/scsi/sd.h	2008-07-14 05:51:29.000000000 +0800
++++ linux-2.6.26.new/include/scsi/sd.h	2009-10-12 15:07:10.000000000 +0800
+@@ -31,6 +31,12 @@
+  */
+ #define SD_BUF_SIZE		512
+ 
++/*
++ * Number of sectors at the end of the device to avoid multi-sector
++ * accesses to in the case of last_sector_bug
++ */
++#define SD_LAST_BUGGY_SECTORS	8
++
+ struct scsi_disk {
+ 	struct scsi_driver *driver;	/* always &sd_template */
+ 	struct scsi_device *device;
+@@ -39,15 +45,24 @@
+ 	unsigned int	openers;	/* protected by BKL for now, yuck */
+ 	sector_t	capacity;	/* size in 512-byte sectors */
+ 	u32		index;
++	unsigned short	hw_sector_size;
+ 	u8		media_present;
+ 	u8		write_prot;
++	u8		protection_type;/* Data Integrity Field */
+ 	unsigned	previous_state : 1;
++	unsigned	ATO : 1;	/* state of disk ATO bit */
+ 	unsigned	WCE : 1;	/* state of disk WCE bit */
+ 	unsigned	RCD : 1;	/* state of disk RCD bit, unused */
+ 	unsigned	DPOFUA : 1;	/* state of disk DPOFUA bit */
++	unsigned	first_scan : 1;
+ };
+ #define to_scsi_disk(obj) container_of(obj,struct scsi_disk,dev)
+ 
++static inline struct scsi_disk *scsi_disk(struct gendisk *disk)
++{
++	return container_of(disk->private_data, struct scsi_disk, driver);
++}
++
+ #define sd_printk(prefix, sdsk, fmt, a...)				\
+         (sdsk)->disk ?							\
+ 	sdev_printk(prefix, (sdsk)->device, "[%s] " fmt,		\
+--- linux-2.6.26.old/include/linux/usb_usual.h	2008-07-14 05:51:29.000000000 +0800
++++ linux-2.6.26.new/include/linux/usb_usual.h	2009-10-12 17:53:17.000000000 +0800
+@@ -52,8 +52,11 @@
+ 	US_FLAG(MAX_SECTORS_MIN,0x00002000)			\
+ 		/* Sets max_sectors to arch min */		\
+ 	US_FLAG(BULK_IGNORE_TAG,0x00004000)			\
+-		/* Ignore tag mismatch in bulk operations */
+-
++		/* Ignore tag mismatch in bulk operations */    \
++	US_FLAG(SANE_SENSE,     0x00008000)			\
++		/* Sane Sense (> 18 bytes) */			\
++	US_FLAG(CAPACITY_OK,	0x00010000)			\
++		/* READ CAPACITY response is correct */
+ 
+ #define US_FLAG(name, value)	US_FL_##name = value ,
+ enum { US_DO_ALL_FLAGS };
+--- linux-2.6.26.old/include/linux/usb.h	2008-07-14 05:51:29.000000000 +0800
++++ linux-2.6.26.new/include/linux/usb.h	2009-10-12 12:21:47.000000000 +0800
+@@ -1529,6 +1529,7 @@
+ extern int usb_clear_halt(struct usb_device *dev, int pipe);
+ extern int usb_reset_configuration(struct usb_device *dev);
+ extern int usb_set_interface(struct usb_device *dev, int ifnum, int alternate);
++extern void usb_reset_endpoint(struct usb_device *dev, unsigned int epaddr);
+ 
+ /* this request isn't really synchronous, but it belongs with the others */
+ extern int usb_driver_set_configuration(struct usb_device *udev, int config);

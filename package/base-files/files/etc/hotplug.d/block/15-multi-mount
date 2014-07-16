@@ -1,0 +1,113 @@
+#!/bin/sh
+. /etc/arch.sh
+. /etc/functions.sh
+
+local platform="$(nvram get platform)"
+local USB_PATH="1-1.1"
+local USB_DIR_NAME="USB"
+local SD_PATH=""
+local SD_DIR_NAME="SD"
+
+[ "$platform" = "AXA" ] && {
+    USB_PATH="1-1.1"
+    SD_PATH="1-1.2"
+}
+[ "$platform" = "LIS" ] && {
+    USB_PATH="1-1.2"
+    SD_PATH="1-1.1"
+}
+
+USB="$(echo $PHYSDEVPATH | awk 'FS="/" {print $7}')"
+[ "$USB" = "$SD_PATH" ] && {
+    DIR_NAME="$SD_DIR_NAME"
+} || {
+    DIR_NAME="$USB_DIR_NAME"
+}
+
+device=$(basename $DEVPATH)
+local EXIT_FLAG=1
+for dev in /dev/sd[a-z];do
+    [ "/dev/$device" = "${dev}1" ] && EXIT_FLAG=0 
+done
+[ "$EXIT_FLAG" = "1" ] && exit
+case "$ACTION" in
+    "add")
+        # mount usb device
+
+        i = 0
+        arch_led_start storage
+        mkdir -p /tmp/mnt/$DIR_NAME
+        result=1
+        while [ "$result" != "0" -a "$i" -lt "5" ];
+        do
+            mount -t vfat -o iocharset=utf8,utf8=1,umask=0 /dev/$device  /tmp/mnt/$DIR_NAME
+            [ "$?" = "0" ] && {
+                fs="vfat"
+                result=0
+            } || {
+                mount.exfat -o iocharset=utf8,utf8=1,umask=0 /dev/$device  /tmp/mnt/$DIR_NAME
+                [ "$?" = "0" ] && {
+                    fs="exfat"
+                    chmod -R 777 /tmp/mnt/$DIR_NAME
+                    result=0
+                } || {
+                    mount -t ext3 /dev/$device /tmp/mnt/$DIR_NAME
+                    [ "$?" = "0" ] && {
+                        fs="ext3"
+                        chmod -R 777 /tmp/mnt/$DIR_NAME
+                        result=0
+                    }
+                }
+            }
+            i=$(($i+1))
+            sleep 1
+        done
+        # mount succeed
+        [ "$result" = "0" ] && {
+            mkdir -p /tmp/mnt/$DIR_NAME/.upload
+            logger -t "storage[60]" "USB-DEVICE:mount [OK][$DIR_NAME][$fs]"
+            nvram replace attr smbd_rule 0 enable 1
+            nvram replace attr smbd_rule 0 share_path mnt
+            nvram replace attr smbd_rule 0 codepage cp437
+            nvram replace attr storage_state_rule 0 dev_name mnt/$DIR_NAME
+            nvram replace attr storage_state_rule 0 format $fs
+            nvram replace attr storage_state_rule 0 mount_state "mounted"
+        }
+        # mount fail
+        [ "$result" -gt "0" ] && {
+            logger -t "storage[60]" "USB-DEVICE:mount [Failed][$DIR_NAME]"
+            [ "$ext_enable" = "1" ] && {
+                nvram replace attr storage_state_rule 0 mount_state "con_err"
+                case $result in
+                        "13")
+                        logger "EZP_USR" SMB-Client:Permission denied
+                        ;;
+                        "148")
+                        logger "EZP_USR" SMB-Client:Can not connect to host
+                        ;;
+                        *)
+                        logger "EZP_USR" SMB-Client:connect error
+                        ;;
+                esac
+            } || {
+                nvram replace attr storage_state_rule 0 mount_state "unknown"
+            }
+        }
+        USBSTORAGE_SERVICE 
+        arch_led_stop storage
+        ;;
+    "remove")
+        arch_led_start usbremove
+        umount /tmp/mnt/$DIR_NAME
+        [ "$?" = "0" ] && {
+            logger -t "storage[28]" "USB-DEVICE:umount [OK][$DIR_NAME]"
+            rm -rf /tmp/mnt/$DIR_NAME
+            nvram replace attr storage_state_rule 0 mount_state ""
+        }
+        [ "$?" = "1" ] && {
+            logger -t "storage[28]" "USB-DEVICE:umount [Failed][$DIR_NAME]"
+        }
+        USBSTORAGE_SERVICE
+        arch_led_stop usbremove
+    ;;
+esac

@@ -1,0 +1,54 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2006 OpenWrt.org
+. /etc/arch.sh
+
+START=99
+log_msg="MON-server"
+boot() {
+
+    arch_initd_done_start
+
+    [ "$(nvram get license_invalid)" != "0" ] && COMMIT=1
+
+    if [ "$(nvram get prod_cat)" = "K" ]; then
+        sed 's/net\.ipv4\.ip_forward=1/net.ipv4.ip_forward=0/g' \
+            /etc/sysctl.conf.template > /tmp/sysctl.conf
+    else
+        cp /etc/sysctl.conf.template /tmp/sysctl.conf
+    fi
+    # check EEPROM region value
+    region_err=$(nvram get region_err)
+    [ "$region_err" -gt "0" -a "$region_err" -lt "5" ] && {
+       logger "EZP_USR" EEPROM "$(nvram get wan_hwaddr_rule_default)" [$region_err]
+       region_err=$(($region_err + 1))
+       nvram fset region_err=$region_err
+    }
+    # Save value (bootcount and NVRAM variables for upgrade/downgrade)
+    ${COMMIT:+nvram commit}
+    # Watchdog
+    [ -c /dev/watchdog ] && /usr/sbin/watchdog -c /etc/watchdog.conf
+    # Sysctl
+	[ -f /etc/sysctl.conf ] && sysctl -p >&-
+    # min_free_kbytes
+    mem_size=$(free | sed -n '2p' | awk '{FS=" ";print $2}' | tr -d " ")
+    if [ "$mem_size" -ge "32768" ]; then
+        sysctl -w vm.min_free_kbytes=4096
+    else
+        sysctl -w vm.min_free_kbytes=2048
+    fi 
+    # How many sessions we should specified.
+    echo $(nvram get ct_max) > /proc/sys/net/ipv4/netfilter/ip_conntrack_max
+    arch_led_stop boot
+    arch_led_start wifi 
+    nvram default appmgr_rule
+    [ "$(nvram get wan0_proto)" = "wisp" ] && /sbin/ezp-wl-ctrl wisp
+    /usr/sbin/telnetd -l /usr/sbin/cli
+
+    # mount datafs partition
+    [ "$(nvram get brand)" = "PROX" -o "$(nvram get brand)" = "APOLLO" -o "$(nvram get brand)" = "AXIM" ] && {
+        mkdir /tmp/jffs2
+        mount /dev/mtdblock6 /tmp/jffs2 -t jffs2
+    }
+
+    return $err
+}

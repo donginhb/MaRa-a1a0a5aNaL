@@ -1,0 +1,51 @@
+--- ffmpeg-0.5.2/libavcodec/llm.c	1970-01-01 08:00:00.000000000 +0800
++++ ffmpeg-0.5.2/libavcodec/llm.c	2010-08-12 11:33:25.497940769 +0800
+@@ -0,0 +1,37 @@
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++#include <inttypes.h>
++#include <math.h>
++
++#define av_always_inline __attribute__((always_inline)) inline
++#define av_const __attribute__((const))
++
++#if !HAVE_LRINTF
++av_always_inline av_const long int lrintf(float x)
++{
++    return (int)(rint(x));
++}
++#endif /* HAVE_LRINTF */
++
++#if !HAVE_ROUND
++av_always_inline av_const double round(double x)
++{
++    return (x > 0) ? floor(x + 0.5) : ceil(x - 0.5);
++}
++#endif /* HAVE_ROUND */
++
++#if !HAVE_ROUNDF
++av_always_inline av_const float roundf(float x)
++{
++    return (x > 0) ? floor(x + 0.5) : ceil(x - 0.5);
++}
++#endif /* HAVE_ROUNDF */
++
++#if !HAVE_TRUNCF
++av_always_inline av_const float truncf(float x)
++{
++    return (x > 0) ? floor(x) : ceil(x);
++}
++#endif /* HAVE_TRUNCF */
++
+--- ffmpeg-0.5.2/libavcodec/Makefile	2009-06-08 04:14:56.000000000 +0800
++++ ffmpeg-0.5.2/libavcodec/Makefile	2010-08-12 11:33:20.946691330 +0800
+@@ -22,6 +22,8 @@
+        resample2.o                                                      \
+        simple_idct.o                                                    \
+        utils.o                                                          \
++       llm.o                                                          \
++
+ 
+ # parts needed for many different codecs
+ OBJS-$(CONFIG_AANDCT)                  += aandcttab.o

@@ -1,0 +1,183 @@
+diff -Nur old/drivers/usb/core/hcd.c new/drivers/usb/core/hcd.c
+--- old/drivers/usb/core/hcd.c	2007-04-26 11:08:32.000000000 +0800
++++ new/drivers/usb/core/hcd.c	2008-10-24 14:20:13.000000000 +0800
+@@ -786,7 +786,7 @@
+  * to register the usb device.  It also assigns the root hub's USB address
+  * (always 1).
+  */
+-static int register_root_hub(struct usb_hcd *hcd)
++int register_root_hub(struct usb_hcd *hcd)
+ {
+ 	struct device *parent_dev = hcd->self.controller;
+ 	struct usb_device *usb_dev = hcd->self.root_hub;
+@@ -830,6 +830,7 @@
+ 
+ 	return retval;
+ }
++EXPORT_SYMBOL (register_root_hub);
+ 
+ void usb_enable_root_hub_irq (struct usb_bus *bus)
+ {
+diff -Nur old/drivers/usb/core/usb.c new/drivers/usb/core/usb.c
+--- old/drivers/usb/core/usb.c	2007-04-26 11:08:32.000000000 +0800
++++ new/drivers/usb/core/usb.c	2008-10-24 14:20:13.000000000 +0800
+@@ -354,6 +354,7 @@
+ 	}
+ 	return dev;
+ }
++EXPORT_SYMBOL_GPL(usb_alloc_dev);
+ 
+ /**
+  * usb_get_dev - increments the reference count of the usb device structure
+diff -Nur old/drivers/usb/gadget/ether.c new/drivers/usb/gadget/ether.c
+--- old/drivers/usb/gadget/ether.c	2007-04-26 11:08:32.000000000 +0800
++++ new/drivers/usb/gadget/ether.c	2008-10-24 14:20:13.000000000 +0800
+@@ -1722,7 +1722,13 @@
+ 	 * but on at least one, checksumming fails otherwise.  Note:
+ 	 * RNDIS headers involve variable numbers of LE32 values.
+ 	 */
+-	skb_reserve(skb, NET_IP_ALIGN);
++
++	/*
++	   mask by kaiker ,for RT3052 USB OTG device mode
++	   Synopsys USB internal DMA address must set to 4 byte alignment
++	*/
++	
++	//skb_reserve(skb, NET_IP_ALIGN);
+ 
+ 	req->buf = skb->data;
+ 	req->length = size;
+@@ -1955,6 +1961,8 @@
+ 	struct usb_request	*req = NULL;
+ 	unsigned long		flags;
+ 
++	unsigned char *new_addr;
++
+ 	/* apply outgoing CDC or RNDIS filters */
+ 	if (!eth_is_promisc (dev)) {
+ 		u8		*dest = skb->data;
+@@ -2001,6 +2009,18 @@
+ 		rndis_add_hdr (skb);
+ 		length = skb->len;
+ 	}
++	/*
++	   New add by kaiker ,for RT3052 USB OTG device mode
++	   Synopsys USB internal DMA address must set to 4 byte alignment
++	*/
++	
++	#if 1
++	new_addr = skb->data - 2;
++	memcpy(new_addr,skb->data,skb->len);
++	skb->data = new_addr;
++    #endif	
++
++	
+ 	req->buf = skb->data;
+ 	req->context = skb;
+ 	req->complete = tx_complete;
+diff -Nur old/drivers/usb/Kconfig new/drivers/usb/Kconfig
+--- old/drivers/usb/Kconfig	2007-04-26 11:08:32.000000000 +0800
++++ new/drivers/usb/Kconfig	2008-10-24 14:20:13.000000000 +0800
+@@ -22,7 +22,7 @@
+ 	default y if PCMCIA && !M32R			# sl811_cs
+ 	default y if ARM				# SL-811
+ 	default y if SUPERH				# r8a66597-hcd
+-	default PCI
++	#default PCI
+ 
+ # many non-PCI SOC chips embed OHCI
+ config USB_ARCH_HAS_OHCI
+@@ -60,7 +60,7 @@
+ # ARM SA1111 chips have a non-PCI based "OHCI-compatible" USB host interface.
+ config USB
+ 	tristate "Support for Host-side USB"
+-	depends on USB_ARCH_HAS_HCD
++	#depends on USB_ARCH_HAS_HCD
+ 	---help---
+ 	  Universal Serial Bus (USB) is a specification for a serial bus
+ 	  subsystem which offers higher speeds and more features than the
+diff -Nur old/drivers/usb/Makefile new/drivers/usb/Makefile
+--- old/drivers/usb/Makefile	2007-04-26 11:08:32.000000000 +0800
++++ new/drivers/usb/Makefile	2008-10-24 14:20:13.000000000 +0800
+@@ -71,3 +71,4 @@
+ 
+ obj-$(CONFIG_USB_ATM)		+= atm/
+ obj-$(CONFIG_USB_SPEEDTOUCH)	+= atm/
++obj-$(CONFIG_DWC_OTG) 		+= dwc_otg/
+diff -Nur old/drivers/usb/storage/scsiglue.c new/drivers/usb/storage/scsiglue.c
+--- old/drivers/usb/storage/scsiglue.c	2007-04-26 11:08:32.000000000 +0800
++++ new/drivers/usb/storage/scsiglue.c	2008-10-24 14:20:13.000000000 +0800
+@@ -419,7 +419,10 @@
+ 	struct scsi_device *sdev = to_scsi_device(dev);
+ 	unsigned short ms;
+ 
++	
++
+ 	if (sscanf(buf, "%hu", &ms) > 0 && ms <= SCSI_DEFAULT_MAX_SECTORS) {
++		printk("\n kaiker ==>store_max_sectors [%d] \n",ms);
+ 		blk_queue_max_sectors(sdev->request_queue, ms);
+ 		return strlen(buf);
+ 	}
+@@ -466,8 +469,8 @@
+ 	/* lots of sg segments can be handled */
+ 	.sg_tablesize =			SG_ALL,
+ 
+-	/* limit the total size of a transfer to 120 KB */
+-	.max_sectors =                  240,
++	/* limit the total size of a transfer to 120 KB ,kaiker_240*/
++	.max_sectors =                  1024,
+ 
+ 	/* merge commands... this seems to help performance, but
+ 	 * periodically someone should test to see which setting is more
+ 
+diff -Nur old/drivers/usb/core/message.c new/drivers/usb/core/message.c
+--- old/drivers/usb/core/message.c	2007-04-26 11:08:32.000000000 +0800
++++ new/drivers/usb/core/message.c	2008-11-25 21:01:29.000000000 +0800
+@@ -1026,16 +1026,17 @@
+ 
+ 	if (usb_endpoint_out(epaddr)) {
+ 		ep = dev->ep_out[epnum];
+-		dev->ep_out[epnum] = NULL;
+ 	} else {
+ 		ep = dev->ep_in[epnum];
+-		dev->ep_in[epnum] = NULL;
+ 	}
+-	if (ep) {
+-		ep->enabled = 0;
+-		usb_hcd_flush_endpoint(dev, ep);
++	if (ep && dev->bus) {
+ 		usb_hcd_disable_endpoint(dev, ep);
+ 	}
++    if (usb_endpoint_out(epaddr)) {
++        dev->ep_out[epnum] = NULL;
++    } else {
++        dev->ep_in[epnum] = NULL;
++    }
+ }
+ 
+ /**
+diff -Nur old/drivers/usb/gadget/gadget_chips.h new/drivers/usb/gadget/gadget_chips.h
+--- old/drivers/usb/gadget/gadget_chips.h	2007-04-26 11:08:32.000000000 +0800
++++ new/drivers/usb/gadget/gadget_chips.h	2008-10-24 14:20:13.000000000 +0800
+@@ -11,6 +11,12 @@
+  * Some are available on 2.4 kernels; several are available, but not
+  * yet pushed in the 2.6 mainline tree.
+  */
++#if 1 //def DWC_OTG_DEVICE_ONLY
++#define gadget_is_dwc_otg(g)   !strcmp("dwc_otg_pcd", (g)->name)
++#else
++#define gadget_is_dwc_otg(g)   0
++#endif
++
+ #ifdef CONFIG_USB_GADGET_NET2280
+ #define	gadget_is_net2280(g)	!strcmp("net2280", (g)->name)
+ #else
+@@ -206,7 +212,7 @@
+ 		return 0x17;
+ 	else if (gadget_is_atmel_usba(gadget))
+ 		return 0x18;
+-	else if (gadget_is_fsl_usb2(gadget))
++	else if (gadget_is_dwc_otg(gadget))
+ 		return 0x19;
+ 	else if (gadget_is_amd5536udc(gadget))
+ 		return 0x20;

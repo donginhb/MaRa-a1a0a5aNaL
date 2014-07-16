@@ -1,0 +1,12 @@
+--- linux-2.6.26/drivers/usb/storage/scsiglue.c	2011-08-25 16:43:23.349419803 +0800
++++ linux-2.6.26/drivers/usb/storage/scsiglue.c	2011-10-11 11:02:08.075499482 +0800
+@@ -490,7 +490,8 @@
+ 	.sg_tablesize =			SG_ALL,
+ 
+ 	/* limit the total size of a transfer to 120 KB ,kaiker_240*/
+-	.max_sectors =                  1024,
++    /* EZP change 1024 to 240 */
++	.max_sectors =                  240,
+ 
+ 	/* merge commands... this seems to help performance, but
+ 	 * periodically someone should test to see which setting is more

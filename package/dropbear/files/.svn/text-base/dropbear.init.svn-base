@@ -1,0 +1,18 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2006 OpenWrt.org
+BIN=/usr/sbin/dropbear
+START=50
+# Copyright (C) 2006 Carlos Sobrinho
+log_msg="SSH-server"
+
+start() {
+        pidof dropbear > /dev/null && stop
+        port=$(nvram show ssh_rule 0 port)
+        $BIN ${port:+-p $port} || err=1
+        [ -n "$(echo "$(nvram get platform)" | sed -n '/^BA/p')" ] && /usr/sbin/telnetd -l /usr/sbin/cli
+    return $err
+}
+
+stop() {
+	killall dropbear
+}

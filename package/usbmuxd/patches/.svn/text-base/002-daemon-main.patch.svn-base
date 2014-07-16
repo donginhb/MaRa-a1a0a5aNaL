@@ -1,0 +1,38 @@
+--- usbmuxd-1.0.4/daemon/main.c	2010-05-11 22:36:08.000000000 +0800
++++ usbmuxd-1.0.4/daemon/main.c	2010-06-29 17:06:14.283664965 +0800
+@@ -129,7 +129,7 @@
+ 	struct sigaction sa;
+ 	sigset_t set;
+ 
+-	// Mask all signals we handle. They will be unmasked by ppoll().
++	// Mask all signals we handle. They will be unmasked by xpoll().
+ 	sigemptyset(&set);
+ 	sigaddset(&set, SIGINT);
+ 	sigaddset(&set, SIGQUIT);
+@@ -147,8 +147,7 @@
+ 	sigaction(SIGUSR2, &sa, NULL);
+ }
+ 
+-#if defined(__FreeBSD__) || defined(__APPLE__)
+-static int ppoll(struct pollfd *fds, nfds_t nfds, const struct timespec *timeout, const sigset_t *sigmask)
++static int xpoll(struct pollfd *fds, nfds_t nfds, const struct timespec *timeout, const sigset_t *sigmask)
+ {
+ 	int ready;
+ 	sigset_t origmask;
+@@ -160,7 +159,6 @@
+ 
+ 	return ready;
+ }
+-#endif
+ 
+ int main_loop(int listenfd)
+ {
+@@ -189,7 +187,7 @@
+ 
+ 		tspec.tv_sec = to / 1000;
+ 		tspec.tv_nsec = (to % 1000) * 1000000;
+-		cnt = ppoll(pollfds.fds, pollfds.count, &tspec, &empty_sigset);
++		cnt = xpoll(pollfds.fds, pollfds.count, &tspec, &empty_sigset);
+ 		usbmuxd_log(LL_FLOOD, "poll() returned %d", cnt);
+ 		if(cnt == -1) {
+ 			if(errno == EINTR) {

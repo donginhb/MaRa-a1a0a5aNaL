@@ -1,0 +1,20 @@
+--- ../tools/Makefile.in	2010-03-22 00:43:35.000000000 +0800
++++ ../tools/Makefile.in	2010-05-13 10:24:05.524460119 +0800
+@@ -36,7 +36,7 @@
+ host_triplet = mipsel-unknown-linux-gnu
+ bin_PROGRAMS = idevice_id$(EXEEXT) ideviceinfo$(EXEEXT) \
+ 	idevicepair$(EXEEXT) idevicesyslog$(EXEEXT) \
+-	idevicebackup$(EXEEXT) idevicebackup2$(EXEEXT) \
++	idevicebackup$(EXEEXT) \
+ 	ideviceimagemounter$(EXEEXT) idevicescreenshot$(EXEEXT) \
+ 	ideviceenterrecovery$(EXEEXT) idevicedate$(EXEEXT)
+ subdir = tools
+@@ -180,7 +180,7 @@
+ INSTALL_SCRIPT = @INSTALL_SCRIPT@
+ INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+ LD = @LD@
+-LDFLAGS = @LDFLAGS@
++LDFLAGS = @LDFLAGS@ -lz -lgcrypt -lgpg-error -lplist -lxml2 -lusbmuxd -lusb-1.0 -ltasn1 -liconv
+ LFS_CFLAGS = @LFS_CFLAGS@
+ LIBIMOBILEDEVICE_SO_VERSION = @LIBIMOBILEDEVICE_SO_VERSION@
+ LIBOBJS = @LIBOBJS@
